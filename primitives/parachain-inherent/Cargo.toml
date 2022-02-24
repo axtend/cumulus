@@ -1,0 +1,51 @@
+[package]
+name = "cumulus-primitives-parachain-inherent"
+version = "0.1.0"
+authors = ["Parity Technologies <admin@parity.io>"]
+edition = "2018"
+
+[dependencies]
+# Substrate dependencies
+sp-inherents = { git = "https://github.com/purestake/substrate", default-features = false, branch = "moonbeam-polkadot-v0.9.12" }
+sp-core = { git = "https://github.com/purestake/substrate", default-features = false, branch = "moonbeam-polkadot-v0.9.12" }
+sc-client-api = { git = "https://github.com/purestake/substrate", optional = true , branch = "moonbeam-polkadot-v0.9.12" }
+sp-runtime = { git = "https://github.com/purestake/substrate", optional = true , branch = "moonbeam-polkadot-v0.9.12" }
+sp-std = { git = "https://github.com/purestake/substrate", default-features = false, branch = "moonbeam-polkadot-v0.9.12" }
+sp-state-machine = { git = "https://github.com/purestake/substrate", optional = true , branch = "moonbeam-polkadot-v0.9.12" }
+sp-trie = { git = "https://github.com/purestake/substrate", default-features = false, branch = "moonbeam-polkadot-v0.9.12" }
+sp-api = { git = "https://github.com/purestake/substrate", optional = true , branch = "moonbeam-polkadot-v0.9.12" }
+sp-storage = { git = "https://github.com/purestake/substrate", optional = true , branch = "moonbeam-polkadot-v0.9.12" }
+
+# Polkadot dependencies
+polkadot-client = { git = "https://github.com/purestake/polkadot", optional = true, branch = "moonbeam-polkadot-v0.9.12" }
+
+# Cumulus dependencies
+cumulus-primitives-core = { path = "../core", default-features = false }
+cumulus-test-relay-sproof-builder = { path = "../../test/relay-sproof-builder", optional = true }
+
+# Other dependencies
+async-trait = { version = "0.1.42", optional = true }
+codec = { package = "parity-scale-codec", version = "2.3.0", default-features = false, features = [ "derive" ] }
+scale-info = { version = "1.0.0", default-features = false, features = ["derive"] }
+tracing = { version = "0.1.22", optional = true }
+
+[features]
+default = [ "std" ]
+std = [
+	"async-trait",
+	"codec/std",
+	"scale-info/std",
+	"cumulus-primitives-core/std",
+	"sp-inherents/std",
+	"sp-core/std",
+	"sp-trie/std",
+	"sp-std/std",
+	"sp-state-machine",
+	"tracing",
+	"sp-runtime",
+	"sc-client-api",
+	"sp-api",
+	"polkadot-client",
+	"cumulus-test-relay-sproof-builder",
+	"sp-storage",
+]
