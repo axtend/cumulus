@@ -1,0 +1,50 @@
+[workspace]
+members = [
+	"client/cli",
+	"client/consensus/aura",
+	"client/consensus/common",
+	"client/consensus/relay-chain",
+	"client/network",
+	"client/pov-recovery",
+	"client/service",
+	"client/relay-chain-interface",
+	"client/relay-chain-local",
+	"pallets/aura-ext",
+	"pallets/collator-selection",
+	"pallets/dmp-queue",
+	"pallets/parachain-system",
+	"pallets/parachain-system/proc-macro",
+	"pallets/session-benchmarking",
+	"pallets/xcm",
+	"pallets/xcmp-queue",
+	"parachain-template/node",
+	"parachain-template/runtime",
+	"primitives/core",
+	"primitives/parachain-inherent",
+	"primitives/timestamp",
+	"primitives/utility",
+	"polkadot-parachains/",
+	"polkadot-parachains/pallets/parachain-info",
+	"polkadot-parachains/pallets/ping",
+	"polkadot-parachains/rococo-parachain",
+	"polkadot-parachains/shell",
+	"polkadot-parachains/parachains-common",
+	"polkadot-parachains/statemint",
+	"polkadot-parachains/statemine",
+	"polkadot-parachains/westmint",
+	"polkadot-parachains/canvas-kusama",
+	"test/client",
+	"test/relay-sproof-builder",
+	"test/relay-validation-worker-provider",
+	"test/runtime",
+	"test/service",
+]
+
+[profile.release]
+panic = "unwind"
+opt-level = 3
+
+[profile.production]
+inherits = "release"
+lto = true
+codegen-units = 1
