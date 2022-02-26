@@ -7,16 +7,16 @@ edition = "2021"
 
 [dependencies]
 # Substrate deps
-sc-consensus = { git = "https://github.com/purestake/substrate", branch = "moonbeam-polkadot-v0.9.17" }
-sc-client-api = { git = "https://github.com/purestake/substrate", branch = "moonbeam-polkadot-v0.9.17" }
-sp-consensus = { git = "https://github.com/purestake/substrate", branch = "moonbeam-polkadot-v0.9.17" }
-sp-runtime = { git = "https://github.com/purestake/substrate", branch = "moonbeam-polkadot-v0.9.17" }
-sp-blockchain = { git = "https://github.com/purestake/substrate", branch = "moonbeam-polkadot-v0.9.17" }
-sp-api = { git = "https://github.com/purestake/substrate", branch = "moonbeam-polkadot-v0.9.17" }
-sp-trie = { git = "https://github.com/purestake/substrate", branch = "moonbeam-polkadot-v0.9.17" }
+sc-consensus = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
+sc-client-api = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
+sp-consensus = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
+sp-runtime = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
+sp-blockchain = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
+sp-api = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
+sp-trie = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
 
 # Polkadot deps
-polkadot-primitives = { git = "https://github.com/purestake/polkadot", branch = "moonbeam-polkadot-v0.9.17" }
+polkadot-primitives = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
 
 # Cumulus deps
 cumulus-relay-chain-interface = { path = "../../relay-chain-interface" }
@@ -30,7 +30,7 @@ dyn-clone = "1.0.4"
 
 [dev-dependencies]
 # Substrate deps
-sp-tracing = { git = "https://github.com/purestake/substrate", branch = "moonbeam-polkadot-v0.9.17" }
+sp-tracing = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
 # Cumulus dependencies
 cumulus-test-client = { path = "../../../test/client" }
 # Other deps

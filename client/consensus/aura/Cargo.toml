@@ -7,22 +7,22 @@ edition = "2021"
 
 [dependencies]
 # Substrate dependencies
-sp-consensus = { git = "https://github.com/purestake/substrate", branch = "moonbeam-polkadot-v0.9.17" }
-sp-inherents = { git = "https://github.com/purestake/substrate", branch = "moonbeam-polkadot-v0.9.17" }
-sp-runtime = { git = "https://github.com/purestake/substrate", branch = "moonbeam-polkadot-v0.9.17" }
-sp-core = { git = "https://github.com/purestake/substrate", branch = "moonbeam-polkadot-v0.9.17" }
-sp-blockchain = { git = "https://github.com/purestake/substrate", branch = "moonbeam-polkadot-v0.9.17" }
-sp-block-builder = { git = "https://github.com/purestake/substrate", branch = "moonbeam-polkadot-v0.9.17" }
-sp-api = { git = "https://github.com/purestake/substrate", branch = "moonbeam-polkadot-v0.9.17" }
-sp-consensus-aura = { git = "https://github.com/purestake/substrate", branch = "moonbeam-polkadot-v0.9.17" }
-sp-keystore = { git = "https://github.com/purestake/substrate", branch = "moonbeam-polkadot-v0.9.17" }
-sp-application-crypto = { git = "https://github.com/purestake/substrate", branch = "moonbeam-polkadot-v0.9.17" }
-sc-client-api = { git = "https://github.com/purestake/substrate", branch = "moonbeam-polkadot-v0.9.17" }
-sc-consensus-aura = { git = "https://github.com/purestake/substrate", branch = "moonbeam-polkadot-v0.9.17" }
-sc-consensus-slots = { git = "https://github.com/purestake/substrate", branch = "moonbeam-polkadot-v0.9.17" }
-sc-telemetry = { git = "https://github.com/purestake/substrate", branch = "moonbeam-polkadot-v0.9.17" }
-sc-consensus = { git = "https://github.com/purestake/substrate", branch = "moonbeam-polkadot-v0.9.17" }
-substrate-prometheus-endpoint = { git = "https://github.com/purestake/substrate", branch = "moonbeam-polkadot-v0.9.17" }
+sp-consensus = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
+sp-inherents = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
+sp-runtime = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
+sp-core = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
+sp-blockchain = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
+sp-block-builder = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
+sp-api = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
+sp-consensus-aura = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
+sp-keystore = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
+sp-application-crypto = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
+sc-client-api = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
+sc-consensus-aura = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
+sc-consensus-slots = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
+sc-telemetry = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
+sc-consensus = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
+substrate-prometheus-endpoint = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
 
 # Cumulus dependencies
 cumulus-client-consensus-common = { path = "../common" }

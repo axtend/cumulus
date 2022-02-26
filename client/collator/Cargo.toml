@@ -6,17 +6,17 @@ edition = "2021"
 
 [dependencies]
 # Substrate dependencies
-sp-runtime = { git = "https://github.com/purestake/substrate", branch = "moonbeam-polkadot-v0.9.17" }
-sp-core = { git = "https://github.com/purestake/substrate", branch = "moonbeam-polkadot-v0.9.17" }
-sp-consensus = { git = "https://github.com/purestake/substrate", branch = "moonbeam-polkadot-v0.9.17" }
-sp-api = { git = "https://github.com/purestake/substrate", branch = "moonbeam-polkadot-v0.9.17" }
-sc-client-api = { git = "https://github.com/purestake/substrate", branch = "moonbeam-polkadot-v0.9.17" }
+sp-runtime = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
+sp-core = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
+sp-consensus = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
+sp-api = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
+sc-client-api = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
 
 # Polkadot dependencies
-polkadot-primitives = { git = "https://github.com/purestake/polkadot", branch = "moonbeam-polkadot-v0.9.17" }
-polkadot-node-primitives = { git = "https://github.com/purestake/polkadot", branch = "moonbeam-polkadot-v0.9.17" }
-polkadot-overseer = { git = "https://github.com/purestake/polkadot", branch = "moonbeam-polkadot-v0.9.17" }
-polkadot-node-subsystem = { git = "https://github.com/purestake/polkadot", branch = "moonbeam-polkadot-v0.9.17" }
+polkadot-primitives = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
+polkadot-node-primitives = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
+polkadot-overseer = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
+polkadot-node-subsystem = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
 
 # Cumulus dependencies
 cumulus-client-network = { path = "../network" }
@@ -32,16 +32,16 @@ tracing = "0.1.25"
 
 [dev-dependencies]
 # Polkadot dependencies
-polkadot-node-subsystem-test-helpers = { git = "https://github.com/purestake/polkadot", branch = "moonbeam-polkadot-v0.9.17" }
+polkadot-node-subsystem-test-helpers = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
 
 # Cumulus dependencies
 cumulus-test-runtime = { path = "../../test/runtime" }
 cumulus-test-client = { path = "../../test/client" }
 
 # Substrate dependencies
-sp-state-machine = { git = "https://github.com/purestake/substrate", branch = "moonbeam-polkadot-v0.9.17" }
-sp-tracing = { git = "https://github.com/purestake/substrate", branch = "moonbeam-polkadot-v0.9.17" }
-sp-maybe-compressed-blob = { git = "https://github.com/purestake/substrate", branch = "moonbeam-polkadot-v0.9.17" }
+sp-state-machine = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
+sp-tracing = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
+sp-maybe-compressed-blob = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
 
 # Other dependencies
 async-trait = "0.1.42"

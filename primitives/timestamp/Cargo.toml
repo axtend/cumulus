@@ -7,18 +7,18 @@ description = "Provides timestamp related functionality for parachains."
 
 [dependencies]
 # Substrate dependencies
-sp-timestamp = { git = "https://github.com/purestake/substrate", default-features = false, branch = "moonbeam-polkadot-v0.9.17" }
-sp-inherents = { git = "https://github.com/purestake/substrate", default-features = false, branch = "moonbeam-polkadot-v0.9.17" }
-sp-std = { git = "https://github.com/purestake/substrate", default-features = false, branch = "moonbeam-polkadot-v0.9.17" }
+sp-timestamp = { git = "https://github.com/axtend/axlib", default-features = false, branch = "c92f69d" }
+sp-inherents = { git = "https://github.com/axtend/axlib", default-features = false, branch = "c92f69d" }
+sp-std = { git = "https://github.com/axtend/axlib", default-features = false, branch = "c92f69d" }
 
 # Cumulus dependencies
 cumulus-primitives-core = { path = "../core", default-features = false }
 
 [dev-dependencies]
 # Substrate dependencies
-sp-tracing = { git = "https://github.com/purestake/substrate", branch = "moonbeam-polkadot-v0.9.17" }
-sp-runtime = { git = "https://github.com/purestake/substrate", branch = "moonbeam-polkadot-v0.9.17" }
-sp-consensus = { git = "https://github.com/purestake/substrate", branch = "moonbeam-polkadot-v0.9.17" }
+sp-tracing = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
+sp-runtime = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
+sp-consensus = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
 
 # Cumulus dependencies
 cumulus-test-client = { path = "../../test/client" }
