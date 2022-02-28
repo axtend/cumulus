@@ -1,12 +1,12 @@
-// Copyright 2020-2021 Parity Technologies (UK) Ltd.
+// Copyright 2020-2021 Axia Technologies (UK) Ltd.
 // This file is part of Cumulus.
 
-// Substrate is free software: you can redistribute it and/or modify
+// Axlib is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
 
-// Substrate is distributed in the hope that it will be useful,
+// Axlib is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
@@ -20,7 +20,7 @@
 //! * `XcmpMessageSource`
 //!
 //! Also provides an implementation of `SendXcm` which can be placed in a router tuple for relaying
-//! XCM over XCMP if the destination is `Parent/Parachain`. It requires an implementation of
+//! XCM over XCMP if the destination is `Parent/Allychain`. It requires an implementation of
 //! `XcmExecutor` for dispatching incoming XCM messages.
 
 #![cfg_attr(not(feature = "std"), no_std)]
@@ -262,7 +262,7 @@ pub mod pallet {
 		BadFormat(Option<T::Hash>),
 		/// An upward message was sent to the relay chain.
 		UpwardMessageSent(Option<T::Hash>),
-		/// An HRMP message was sent to a sibling parachain.
+		/// An HRMP message was sent to a sibling allychain.
 		XcmpMessageSent(Option<T::Hash>),
 		/// An XCM exceeded the individual message weight budget.
 		OverweightEnqueued(ParaId, RelayBlockNumber, OverweightIndex, Weight),
@@ -359,7 +359,7 @@ pub enum OutboundState {
 /// Struct containing detailed information about the inbound channel.
 #[derive(Clone, Eq, PartialEq, Ord, PartialOrd, Encode, Decode, TypeInfo)]
 pub struct InboundChannelDetails {
-	/// The `ParaId` of the parachain that this channel is connected with.
+	/// The `ParaId` of the allychain that this channel is connected with.
 	sender: ParaId,
 	/// The state of the channel.
 	state: InboundState,
@@ -373,7 +373,7 @@ pub struct InboundChannelDetails {
 /// Struct containing detailed information about the outbound channel.
 #[derive(Clone, Eq, PartialEq, Encode, Decode, TypeInfo)]
 pub struct OutboundChannelDetails {
-	/// The `ParaId` of the parachain that this channel is connected with.
+	/// The `ParaId` of the allychain that this channel is connected with.
 	recipient: ParaId,
 	/// The state of the channel.
 	state: OutboundState,
@@ -590,7 +590,7 @@ impl<T: Config> Pallet<T> {
 		log::debug!("Processing XCMP-XCM: {:?}", &hash);
 		let (result, event) = match Xcm::<T::Call>::try_from(xcm) {
 			Ok(xcm) => {
-				let location = (1, Parachain(sender.into()));
+				let location = (1, Allychain(sender.into()));
 				match T::XcmExecutor::execute_xcm(location, xcm, max_weight) {
 					Outcome::Error(e) => (Err(e.clone()), Event::Fail(Some(hash), e)),
 					Outcome::Complete(w) => (Ok(w), Event::Success(Some(hash))),
@@ -773,7 +773,7 @@ impl<T: Config> Pallet<T> {
 			let index = shuffled[shuffle_index];
 			let sender = status[index].sender;
 			let sender_origin = T::ControllerOriginConverter::convert_origin(
-				(1, Parachain(sender.into())),
+				(1, Allychain(sender.into())),
 				OriginKind::Superuser,
 			);
 			let is_controller = sender_origin
@@ -1069,14 +1069,14 @@ impl<T: Config> XcmpMessageSource for Pallet<T> {
 	}
 }
 
-/// Xcm sender for sending to a sibling parachain.
+/// Xcm sender for sending to a sibling allychain.
 impl<T: Config> SendXcm for Pallet<T> {
 	fn send_xcm(dest: impl Into<MultiLocation>, msg: Xcm<()>) -> Result<(), SendError> {
 		let dest = dest.into();
 
 		match &dest {
-			// An HRMP message for a sibling parachain.
-			MultiLocation { parents: 1, interior: X1(Parachain(id)) } => {
+			// An HRMP message for a sibling allychain.
+			MultiLocation { parents: 1, interior: X1(Allychain(id)) } => {
 				let versioned_xcm = T::VersionWrapper::wrap_version(&dest, msg)
 					.map_err(|()| SendError::DestinationUnsupported)?;
 				let hash = T::Hashing::hash_of(&versioned_xcm);

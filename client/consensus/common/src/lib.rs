@@ -1,4 +1,4 @@
-// Copyright 2019-2021 Parity Technologies (UK) Ltd.
+// Copyright 2019-2021 Axia Technologies (UK) Ltd.
 // This file is part of Cumulus.
 
 // Cumulus is free software: you can redistribute it and/or modify
@@ -18,27 +18,27 @@ use polkadot_primitives::v1::{Hash as PHash, PersistedValidationData};
 use sc_consensus::BlockImport;
 use sp_runtime::traits::Block as BlockT;
 
-mod parachain_consensus;
+mod allychain_consensus;
 #[cfg(test)]
 mod tests;
-pub use parachain_consensus::run_parachain_consensus;
+pub use allychain_consensus::run_allychain_consensus;
 
-/// The result of [`ParachainConsensus::produce_candidate`].
-pub struct ParachainCandidate<B> {
+/// The result of [`AllychainConsensus::produce_candidate`].
+pub struct AllychainCandidate<B> {
 	/// The block that was built for this candidate.
 	pub block: B,
 	/// The proof that was recorded while building the block.
 	pub proof: sp_trie::StorageProof,
 }
 
-/// A specific parachain consensus implementation that can be used by a collator to produce candidates.
+/// A specific allychain consensus implementation that can be used by a collator to produce candidates.
 ///
-/// The collator will call [`Self::produce_candidate`] every time there is a free core for the parachain
+/// The collator will call [`Self::produce_candidate`] every time there is a free core for the allychain
 /// this collator is collating for. It is the job of the consensus implementation to decide if this
 /// specific collator should build a candidate for the given relay chain block. The consensus
 /// implementation could, for example, check whether this specific collator is part of a staked set.
 #[async_trait::async_trait]
-pub trait ParachainConsensus<B: BlockT>: Send + Sync + dyn_clone::DynClone {
+pub trait AllychainConsensus<B: BlockT>: Send + Sync + dyn_clone::DynClone {
 	/// Produce a new candidate at the given parent block and relay-parent blocks.
 	///
 	/// Should return `None` if the consensus implementation decided that it shouldn't build a
@@ -52,31 +52,31 @@ pub trait ParachainConsensus<B: BlockT>: Send + Sync + dyn_clone::DynClone {
 		parent: &B::Header,
 		relay_parent: PHash,
 		validation_data: &PersistedValidationData,
-	) -> Option<ParachainCandidate<B>>;
+	) -> Option<AllychainCandidate<B>>;
 }
 
-dyn_clone::clone_trait_object!(<B> ParachainConsensus<B> where B: BlockT);
+dyn_clone::clone_trait_object!(<B> AllychainConsensus<B> where B: BlockT);
 
 #[async_trait::async_trait]
-impl<B: BlockT> ParachainConsensus<B> for Box<dyn ParachainConsensus<B> + Send + Sync> {
+impl<B: BlockT> AllychainConsensus<B> for Box<dyn AllychainConsensus<B> + Send + Sync> {
 	async fn produce_candidate(
 		&mut self,
 		parent: &B::Header,
 		relay_parent: PHash,
 		validation_data: &PersistedValidationData,
-	) -> Option<ParachainCandidate<B>> {
+	) -> Option<AllychainCandidate<B>> {
 		(*self).produce_candidate(parent, relay_parent, validation_data).await
 	}
 }
 
-/// Parachain specific block import.
+/// Allychain specific block import.
 ///
 /// This is used to set `block_import_params.fork_choice` to `false` as long as the block origin is
-/// not `NetworkInitialSync`. The best block for parachains is determined by the relay chain. Meaning
+/// not `NetworkInitialSync`. The best block for allychains is determined by the relay chain. Meaning
 /// we will update the best block, as it is included by the relay-chain.
-pub struct ParachainBlockImport<I>(I);
+pub struct AllychainBlockImport<I>(I);
 
-impl<I> ParachainBlockImport<I> {
+impl<I> AllychainBlockImport<I> {
 	/// Create a new instance.
 	pub fn new(inner: I) -> Self {
 		Self(inner)
@@ -84,7 +84,7 @@ impl<I> ParachainBlockImport<I> {
 }
 
 #[async_trait::async_trait]
-impl<Block, I> BlockImport<Block> for ParachainBlockImport<I>
+impl<Block, I> BlockImport<Block> for AllychainBlockImport<I>
 where
 	Block: BlockT,
 	I: BlockImport<Block> + Send,

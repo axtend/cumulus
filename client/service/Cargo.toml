@@ -1,7 +1,7 @@
 [package]
 name = "cumulus-client-service"
 version = "0.1.0"
-authors = ["Parity Technologies <admin@parity.io>"]
+authors = ["Axia Technologies <admin@parity.io>"]
 edition = "2021"
 
 [dependencies]
@@ -12,7 +12,7 @@ cumulus-client-pov-recovery = { path = "../pov-recovery" }
 cumulus-relay-chain-interface = { path = "../relay-chain-interface" }
 cumulus-primitives-core = { path = "../../primitives/core" }
 
-# Substrate dependencies
+# Axlib dependencies
 sc-chain-spec = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
 sc-client-api = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
 sc-service = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
@@ -26,7 +26,7 @@ sp-api = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
 sp-core = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
 sp-blockchain = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
 
-# Polkadot dependencies
+# Axia dependencies
 polkadot-primitives = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
 polkadot-overseer = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
 

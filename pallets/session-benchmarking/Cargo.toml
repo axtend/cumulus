@@ -1,10 +1,10 @@
 [package]
 name = "cumulus-pallet-session-benchmarking"
 version = "3.0.0"
-authors = ["Parity Technologies <admin@parity.io>"]
+authors = ["Axia Technologies <admin@parity.io>"]
 edition = "2021"
 license = "Apache-2.0"
-homepage = "https://substrate.io"
+homepage = "https://axlib.io"
 repository = "https://github.com/paritytech/cumulus/"
 description = "FRAME sessions pallet benchmarking for statemint"
 readme = "README.md"

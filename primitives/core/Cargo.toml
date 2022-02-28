@@ -1,19 +1,19 @@
 [package]
 name = "cumulus-primitives-core"
 version = "0.1.0"
-authors = ["Parity Technologies <admin@parity.io>"]
+authors = ["Axia Technologies <admin@parity.io>"]
 edition = "2021"
 
 [dependencies]
-# Substrate dependencies
+# Axlib dependencies
 sp-std = { git = "https://github.com/axtend/axlib", default-features = false, branch = "c92f69d" }
 sp-api = { git = "https://github.com/axtend/axlib", default-features = false, branch = "c92f69d" }
 sp-runtime = { git = "https://github.com/axtend/axlib", default-features = false, branch = "c92f69d" }
 sp-trie = { git = "https://github.com/axtend/axlib", default-features = false, branch = "c92f69d" }
 frame-support = { git = "https://github.com/axtend/axlib", default-features = false, branch = "c92f69d" }
 
-# Polkadot dependencies
-polkadot-parachain = { git = "https://github.com/axtend/axia", default-features = false, branch = "66cb46b" }
+# Axia dependencies
+polkadot-allychain = { git = "https://github.com/axtend/axia", default-features = false, branch = "66cb46b" }
 polkadot-primitives = { git = "https://github.com/axtend/axia", default-features = false, branch = "66cb46b" }
 polkadot-core-primitives = { git = "https://github.com/axtend/axia", default-features = false, branch = "66cb46b" }
 
@@ -26,7 +26,7 @@ std = [
 	"codec/std",
 	"sp-std/std",
 	"polkadot-primitives/std",
-	"polkadot-parachain/std",
+	"polkadot-allychain/std",
 	"polkadot-core-primitives/std",
 	"sp-runtime/std",
 	"sp-trie/std",

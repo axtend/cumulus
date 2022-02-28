@@ -1,4 +1,4 @@
-// Copyright 2021 Parity Technologies (UK) Ltd.
+// Copyright 2021 Axia Technologies (UK) Ltd.
 // This file is part of Cumulus.
 
 // Cumulus is free software: you can redistribute it and/or modify
@@ -71,7 +71,7 @@ pub trait RelayChainInterface: Send + Sync {
 	/// Get the hash of the current best block.
 	async fn best_block_hash(&self) -> RelayChainResult<PHash>;
 
-	/// Returns the whole contents of the downward message queue for the parachain we are collating
+	/// Returns the whole contents of the downward message queue for the allychain we are collating
 	/// for.
 	///
 	/// Returns `None` in case of an error.
@@ -81,7 +81,7 @@ pub trait RelayChainInterface: Send + Sync {
 		relay_parent: PHash,
 	) -> RelayChainResult<Vec<InboundDownwardMessage>>;
 
-	/// Returns channels contents for each inbound HRMP channel addressed to the parachain we are
+	/// Returns channels contents for each inbound HRMP channel addressed to the allychain we are
 	/// collating for.
 	///
 	/// Empty channels are also included.

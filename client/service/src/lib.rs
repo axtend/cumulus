@@ -1,12 +1,12 @@
-// Copyright 2020-2021 Parity Technologies (UK) Ltd.
+// Copyright 2020-2021 Axia Technologies (UK) Ltd.
 // This file is part of Cumulus.
 
-// Substrate is free software: you can redistribute it and/or modify
+// Axlib is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
 
-// Substrate is distributed in the hope that it will be useful,
+// Axlib is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
@@ -18,7 +18,7 @@
 //!
 //! Provides functions for starting a collator node or a normal full node.
 
-use cumulus_client_consensus_common::ParachainConsensus;
+use cumulus_client_consensus_common::AllychainConsensus;
 use cumulus_primitives_core::{CollectCollationInfo, ParaId};
 use cumulus_relay_chain_interface::RelayChainInterface;
 use polkadot_primitives::v1::CollatorPair;
@@ -51,17 +51,17 @@ pub struct StartCollatorParams<'a, Block: BlockT, BS, Client, RCInterface, Spawn
 	pub para_id: ParaId,
 	pub relay_chain_interface: RCInterface,
 	pub task_manager: &'a mut TaskManager,
-	pub parachain_consensus: Box<dyn ParachainConsensus<Block>>,
+	pub allychain_consensus: Box<dyn AllychainConsensus<Block>>,
 	pub import_queue: IQ,
 	pub collator_key: CollatorPair,
 	pub relay_chain_slot_duration: Duration,
 }
 
-/// Start a collator node for a parachain.
+/// Start a collator node for a allychain.
 ///
 /// A collator is similar to a validator in a normal blockchain.
 /// It is responsible for producing blocks and sending the blocks to a
-/// parachain validator for validation and inclusion into the relay chain.
+/// allychain validator for validation and inclusion into the relay chain.
 pub async fn start_collator<'a, Block, BS, Client, Backend, RCInterface, Spawner, IQ>(
 	StartCollatorParams {
 		block_status,
@@ -71,7 +71,7 @@ pub async fn start_collator<'a, Block, BS, Client, Backend, RCInterface, Spawner
 		para_id,
 		task_manager,
 		relay_chain_interface,
-		parachain_consensus,
+		allychain_consensus,
 		import_queue,
 		collator_key,
 		relay_chain_slot_duration,
@@ -96,7 +96,7 @@ where
 	Backend: BackendT<Block> + 'static,
 	IQ: ImportQueue<Block> + 'static,
 {
-	let consensus = cumulus_client_consensus_common::run_parachain_consensus(
+	let consensus = cumulus_client_consensus_common::run_allychain_consensus(
 		para_id,
 		client.clone(),
 		relay_chain_interface.clone(),
@@ -110,7 +110,7 @@ where
 	let overseer_handle = relay_chain_interface
 		.overseer_handle()
 		.map_err(|e| sc_service::Error::Application(Box::new(e)))?
-		.ok_or_else(|| "Polkadot full node did not provide an `OverseerHandle`!")?;
+		.ok_or_else(|| "Axia full node did not provide an `OverseerHandle`!")?;
 
 	let pov_recovery = cumulus_client_pov_recovery::PoVRecovery::new(
 		overseer_handle.clone(),
@@ -135,7 +135,7 @@ where
 		spawner,
 		para_id,
 		key: collator_key,
-		parachain_consensus,
+		allychain_consensus,
 	})
 	.await;
 
@@ -153,9 +153,9 @@ pub struct StartFullNodeParams<'a, Block: BlockT, Client, RCInterface, IQ> {
 	pub import_queue: IQ,
 }
 
-/// Start a full node for a parachain.
+/// Start a full node for a allychain.
 ///
-/// A full node will only sync the given parachain and will follow the
+/// A full node will only sync the given allychain and will follow the
 /// tip of the chain.
 pub fn start_full_node<Block, Client, Backend, RCInterface, IQ>(
 	StartFullNodeParams {
@@ -182,7 +182,7 @@ where
 	RCInterface: RelayChainInterface + Clone + 'static,
 	IQ: ImportQueue<Block> + 'static,
 {
-	let consensus = cumulus_client_consensus_common::run_parachain_consensus(
+	let consensus = cumulus_client_consensus_common::run_allychain_consensus(
 		para_id,
 		client.clone(),
 		relay_chain_interface.clone(),
@@ -196,7 +196,7 @@ where
 	let overseer_handle = relay_chain_interface
 		.overseer_handle()
 		.map_err(|e| sc_service::Error::Application(Box::new(e)))?
-		.ok_or_else(|| "Polkadot full node did not provide an `OverseerHandle`!")?;
+		.ok_or_else(|| "Axia full node did not provide an `OverseerHandle`!")?;
 
 	let pov_recovery = cumulus_client_pov_recovery::PoVRecovery::new(
 		overseer_handle,
@@ -222,19 +222,19 @@ where
 	Ok(())
 }
 
-/// Prepare the parachain's node configuration
+/// Prepare the allychain's node configuration
 ///
-/// This function will disable the default announcement of Substrate for the parachain in favor
+/// This function will disable the default announcement of Axlib for the allychain in favor
 /// of the one of Cumulus.
-pub fn prepare_node_config(mut parachain_config: Configuration) -> Configuration {
-	parachain_config.announce_block = false;
+pub fn prepare_node_config(mut allychain_config: Configuration) -> Configuration {
+	allychain_config.announce_block = false;
 
-	parachain_config
+	allychain_config
 }
 
 /// A shared import queue
 ///
-/// This is basically a hack until the Substrate side is implemented properly.
+/// This is basically a hack until the Axlib side is implemented properly.
 #[derive(Clone)]
 pub struct SharedImportQueue<Block: BlockT>(Arc<parking_lot::Mutex<dyn ImportQueue<Block>>>);
 

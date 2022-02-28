@@ -1,4 +1,4 @@
-// Copyright 2021 Parity Technologies (UK) Ltd.
+// Copyright 2021 Axia Technologies (UK) Ltd.
 // This file is part of Cumulus.
 
 // Cumulus is free software: you can redistribute it and/or modify
@@ -14,17 +14,17 @@
 // You should have received a copy of the GNU General Public License
 // along with Cumulus.  If not, see <http://www.gnu.org/licenses/>.
 
-//! The AuRa consensus algorithm for parachains.
+//! The AuRa consensus algorithm for allychains.
 //!
-//! This extends the Substrate provided AuRa consensus implementation to make it compatible for
-//! parachains. The main entry points for of this consensus algorithm are [`AuraConsensus::build`]
+//! This extends the Axlib provided AuRa consensus implementation to make it compatible for
+//! allychains. The main entry points for of this consensus algorithm are [`AuraConsensus::build`]
 //! and [`fn@import_queue`].
 //!
-//! For more information about AuRa, the Substrate crate should be checked.
+//! For more information about AuRa, the Axlib crate should be checked.
 
 use codec::{Decode, Encode};
 use cumulus_client_consensus_common::{
-	ParachainBlockImport, ParachainCandidate, ParachainConsensus,
+	AllychainBlockImport, AllychainCandidate, AllychainConsensus,
 };
 use cumulus_primitives_core::{relay_chain::v1::Hash as PHash, PersistedValidationData};
 
@@ -56,7 +56,7 @@ pub use sc_consensus_slots::InherentDataProviderExt;
 
 const LOG_TARGET: &str = "aura::cumulus";
 
-/// The implementation of the AURA consensus for parachains.
+/// The implementation of the AURA consensus for allychains.
 pub struct AuraConsensus<B, CIDP> {
 	create_inherent_data_providers: Arc<CIDP>,
 	aura_worker: Arc<
@@ -101,7 +101,7 @@ where
 			block_proposal_slot_portion,
 			max_block_proposal_slot_portion,
 		}: BuildAuraConsensusParams<PF, BI, CIDP, Client, BS, SO>,
-	) -> Box<dyn ParachainConsensus<B>>
+	) -> Box<dyn AllychainConsensus<B>>
 	where
 		Client:
 			ProvideRuntimeApi<B> + BlockOf + AuxStore + HeaderBackend<B> + Send + Sync + 'static,
@@ -125,7 +125,7 @@ where
 		let worker = sc_consensus_aura::build_aura_worker::<P, _, _, _, _, _, _, _, _>(
 			BuildAuraWorkerParams {
 				client: para_client,
-				block_import: ParachainBlockImport::new(block_import),
+				block_import: AllychainBlockImport::new(block_import),
 				justification_sync_link: (),
 				proposer_factory,
 				sync_oracle,
@@ -182,7 +182,7 @@ where
 }
 
 #[async_trait::async_trait]
-impl<B, CIDP> ParachainConsensus<B> for AuraConsensus<B, CIDP>
+impl<B, CIDP> AllychainConsensus<B> for AuraConsensus<B, CIDP>
 where
 	B: BlockT,
 	CIDP: CreateInherentDataProviders<B, (PHash, PersistedValidationData)> + Send + Sync + 'static,
@@ -193,7 +193,7 @@ where
 		parent: &B::Header,
 		relay_parent: PHash,
 		validation_data: &PersistedValidationData,
-	) -> Option<ParachainCandidate<B>> {
+	) -> Option<AllychainCandidate<B>> {
 		let (inherent_data, inherent_data_providers) =
 			self.inherent_data(parent.hash(), validation_data, relay_parent).await?;
 
@@ -212,7 +212,7 @@ where
 
 		let res = self.aura_worker.lock().await.on_slot(info).await?;
 
-		Some(ParachainCandidate { block: res.block, proof: res.storage_proof })
+		Some(AllychainCandidate { block: res.block, proof: res.storage_proof })
 	}
 }
 

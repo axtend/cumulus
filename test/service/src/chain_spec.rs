@@ -1,4 +1,4 @@
-// Copyright 2020-2021 Parity Technologies (UK) Ltd.
+// Copyright 2020-2021 Axia Technologies (UK) Ltd.
 // This file is part of Cumulus.
 
 // Cumulus is free software: you can redistribute it and/or modify
@@ -24,7 +24,7 @@ use serde::{Deserialize, Serialize};
 use sp_core::{sr25519, Pair, Public};
 use sp_runtime::traits::{IdentifyAccount, Verify};
 
-/// Specialized `ChainSpec` for the normal parachain runtime.
+/// Specialized `ChainSpec` for the normal allychain runtime.
 pub type ChainSpec = sc_service::GenericChainSpec<GenesisExt, Extensions>;
 
 /// Extension for the genesis config to add custom keys easily.
@@ -32,7 +32,7 @@ pub type ChainSpec = sc_service::GenericChainSpec<GenesisExt, Extensions>;
 pub struct GenesisExt {
 	/// The runtime genesis config.
 	runtime_genesis_config: cumulus_test_runtime::GenesisConfig,
-	/// The parachain id.
+	/// The allychain id.
 	para_id: ParaId,
 }
 
@@ -40,7 +40,7 @@ impl sp_runtime::BuildStorage for GenesisExt {
 	fn assimilate_storage(&self, storage: &mut sp_core::storage::Storage) -> Result<(), String> {
 		sp_state_machine::BasicExternalities::execute_with_storage(storage, || {
 			sp_io::storage::set(cumulus_test_runtime::TEST_RUNTIME_UPGRADE_KEY, &vec![1, 2, 3, 4]);
-			cumulus_test_runtime::ParachainId::set(&self.para_id);
+			cumulus_test_runtime::AllychainId::set(&self.para_id);
 		});
 
 		self.runtime_genesis_config.assimilate_storage(storage)
@@ -58,7 +58,7 @@ pub fn get_from_seed<TPublic: Public>(seed: &str) -> <TPublic::Pair as Pair>::Pu
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize, ChainSpecGroup, ChainSpecExtension)]
 #[serde(deny_unknown_fields)]
 pub struct Extensions {
-	/// The id of the Parachain.
+	/// The id of the Allychain.
 	pub para_id: u32,
 }
 
@@ -79,7 +79,7 @@ where
 	AccountPublic::from(get_from_seed::<TPublic>(seed)).into_account()
 }
 
-/// Get the chain spec for a specific parachain ID.
+/// Get the chain spec for a specific allychain ID.
 pub fn get_chain_spec(id: ParaId) -> ChainSpec {
 	ChainSpec::from_genesis(
 		"Local Testnet",
@@ -127,7 +127,7 @@ fn testnet_genesis(
 				.to_vec(),
 			..Default::default()
 		},
-		parachain_system: Default::default(),
+		allychain_system: Default::default(),
 		balances: cumulus_test_runtime::BalancesConfig {
 			balances: endowed_accounts.iter().cloned().map(|k| (k, 1 << 60)).collect(),
 		},

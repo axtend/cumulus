@@ -1,4 +1,4 @@
-// Copyright 2020-2021 Parity Technologies (UK) Ltd.
+// Copyright 2020-2021 Axia Technologies (UK) Ltd.
 // This file is part of Cumulus.
 
 // Cumulus is free software: you can redistribute it and/or modify
@@ -14,8 +14,8 @@
 // You should have received a copy of the GNU General Public License
 // along with Cumulus.  If not, see <http://www.gnu.org/licenses/>.
 
-//! Pallet for stuff specific to parachains' usage of XCM. Right now that's just the origin
-//! used by parachains when receiving `Transact` messages from other parachains or the Relay chain
+//! Pallet for stuff specific to allychains' usage of XCM. Right now that's just the origin
+//! used by allychains when receiving `Transact` messages from other allychains or the Relay chain
 //! which must be natively represented.
 
 #![cfg_attr(not(feature = "std"), no_std)]
@@ -76,25 +76,25 @@ pub mod pallet {
 		ExecutedDownward([u8; 8], Outcome),
 	}
 
-	/// Origin for the parachains module.
+	/// Origin for the allychains module.
 	#[derive(PartialEq, Eq, Clone, Encode, Decode, TypeInfo)]
 	#[cfg_attr(feature = "std", derive(Debug))]
 	#[pallet::origin]
 	pub enum Origin {
 		/// It comes from the (parent) relay chain.
 		Relay,
-		/// It comes from a (sibling) parachain.
-		SiblingParachain(ParaId),
+		/// It comes from a (sibling) allychain.
+		SiblingAllychain(ParaId),
 	}
 
 	impl From<ParaId> for Origin {
 		fn from(id: ParaId) -> Origin {
-			Origin::SiblingParachain(id)
+			Origin::SiblingAllychain(id)
 		}
 	}
 	impl From<u32> for Origin {
 		fn from(id: u32) -> Origin {
-			Origin::SiblingParachain(id.into())
+			Origin::SiblingAllychain(id.into())
 		}
 	}
 }
@@ -168,14 +168,14 @@ impl<T: Config> DmpMessageHandler for LimitAndDropDmpExecution<T> {
 	}
 }
 
-/// Ensure that the origin `o` represents a sibling parachain.
-/// Returns `Ok` with the parachain ID of the sibling or an `Err` otherwise.
+/// Ensure that the origin `o` represents a sibling allychain.
+/// Returns `Ok` with the allychain ID of the sibling or an `Err` otherwise.
 pub fn ensure_sibling_para<OuterOrigin>(o: OuterOrigin) -> Result<ParaId, BadOrigin>
 where
 	OuterOrigin: Into<Result<Origin, OuterOrigin>>,
 {
 	match o.into() {
-		Ok(Origin::SiblingParachain(id)) => Ok(id),
+		Ok(Origin::SiblingAllychain(id)) => Ok(id),
 		_ => Err(BadOrigin),
 	}
 }

@@ -1,19 +1,19 @@
 [package]
 name = "cumulus-test-relay-sproof-builder"
 version = "0.1.0"
-authors = ["Parity Technologies <admin@parity.io>"]
+authors = ["Axia Technologies <admin@parity.io>"]
 edition = "2021"
 
 [dependencies]
 # Other dependencies
 codec = { package = "parity-scale-codec", version = "2.3.0", default-features = false, features = [ "derive" ] }
 
-# Substrate dependencies
+# Axlib dependencies
 sp-state-machine = { git = "https://github.com/axtend/axlib", default-features = false, branch = "c92f69d" }
 sp-runtime = { git = "https://github.com/axtend/axlib", default-features = false, branch = "c92f69d" }
 sp-std = { git = "https://github.com/axtend/axlib", default-features = false, branch = "c92f69d" }
 
-# Polkadot dependencies
+# Axia dependencies
 polkadot-primitives = { git = "https://github.com/axtend/axia", default-features = false, branch = "66cb46b" }
 
 # Cumulus dependencies

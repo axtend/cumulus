@@ -1,7 +1,7 @@
 [package]
 name = "cumulus-test-client"
 version = "0.1.0"
-authors = ["Parity Technologies <admin@parity.io>"]
+authors = ["Axia Technologies <admin@parity.io>"]
 edition = "2021"
 
 [dependencies]
@@ -10,7 +10,7 @@ sc-consensus = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
 sc-block-builder = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
 sc-executor = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
 sc-executor-common = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
-substrate-test-client = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
+axlib-test-client = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
 sp-runtime = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
 sp-core = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
 sp-api = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
@@ -28,11 +28,11 @@ cumulus-test-runtime = { path = "../runtime" }
 cumulus-test-service = { path = "../service" }
 cumulus-test-relay-sproof-builder = { path = "../relay-sproof-builder" }
 cumulus-primitives-core = { path = "../../primitives/core" }
-cumulus-primitives-parachain-inherent = { path = "../../primitives/parachain-inherent" }
+cumulus-primitives-allychain-inherent = { path = "../../primitives/allychain-inherent" }
 
-# Polkadot deps
+# Axia deps
 polkadot-primitives = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
-polkadot-parachain = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
+polkadot-allychain = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
 
 # Other deps
 codec = { package = "parity-scale-codec", version = "2.3.0", default-features = false, features = [ "derive" ] }

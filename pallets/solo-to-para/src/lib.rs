@@ -1,4 +1,4 @@
-// Copyright 2022 Parity Technologies (UK) Ltd.
+// Copyright 2022 Axia Technologies (UK) Ltd.
 // This file is part of Cumulus.
 
 // Cumulus is free software: you can redistribute it and/or modify
@@ -17,7 +17,7 @@
 #![cfg_attr(not(feature = "std"), no_std)]
 
 use codec::{Decode, Encode};
-use cumulus_pallet_parachain_system as parachain_system;
+use cumulus_pallet_allychain_system as allychain_system;
 use frame_support::{dispatch::DispatchResult, pallet_prelude::*, weights::DispatchInfo};
 use frame_system::pallet_prelude::*;
 pub use pallet::*;
@@ -38,7 +38,7 @@ pub mod pallet {
 
 	#[pallet::config]
 	pub trait Config:
-		frame_system::Config + parachain_system::Config + pallet_sudo::Config
+		frame_system::Config + allychain_system::Config + pallet_sudo::Config
 	{
 		type Event: From<Event> + IsType<<Self as frame_system::Config>::Event>;
 	}
@@ -78,7 +78,7 @@ pub mod pallet {
 		) -> DispatchResult {
 			ensure_root(origin)?;
 
-			parachain_system::Pallet::<T>::schedule_code_upgrade(code)?;
+			allychain_system::Pallet::<T>::schedule_code_upgrade(code)?;
 			Self::store_pending_custom_validation_head_data(head_data);
 			Ok(())
 		}
@@ -95,13 +95,13 @@ pub mod pallet {
 		/// Set pending custom head data as head data that will be returned by `validate_block`. on the relay chain.
 		fn set_pending_custom_validation_head_data() {
 			if let Some(head_data) = <PendingCustomValidationHeadData<T>>::take() {
-				parachain_system::Pallet::<T>::set_custom_validation_head_data(head_data);
+				allychain_system::Pallet::<T>::set_custom_validation_head_data(head_data);
 				Self::deposit_event(Event::CustomValidationHeadDataApplied);
 			}
 		}
 	}
 
-	impl<T: Config> parachain_system::OnSystemEvent for Pallet<T> {
+	impl<T: Config> allychain_system::OnSystemEvent for Pallet<T> {
 		fn on_validation_data(_data: &PersistedValidationData) {}
 		fn on_validation_code_applied() {
 			crate::Pallet::<T>::set_pending_custom_validation_head_data();

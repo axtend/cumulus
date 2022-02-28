@@ -1,4 +1,4 @@
-// Copyright 2021 Parity Technologies (UK) Ltd.
+// Copyright 2021 Axia Technologies (UK) Ltd.
 // This file is part of Cumulus.
 
 // Cumulus is free software: you can redistribute it and/or modify
@@ -30,7 +30,7 @@ use std::{
 	net::SocketAddr,
 };
 
-/// The `purge-chain` command used to remove the whole chain: the parachain and the relay chain.
+/// The `purge-chain` command used to remove the whole chain: the allychain and the relay chain.
 #[derive(Debug, Parser)]
 pub struct PurgeChainCmd {
 	/// The base struct of the purge-chain command.
@@ -39,7 +39,7 @@ pub struct PurgeChainCmd {
 
 	/// Only delete the para chain database
 	#[clap(long, aliases = &["para"])]
-	pub parachain: bool,
+	pub allychain: bool,
 
 	/// Only delete the relay chain database
 	#[clap(long, aliases = &["relay"])]
@@ -53,11 +53,11 @@ impl PurgeChainCmd {
 		para_config: sc_service::Configuration,
 		relay_config: sc_service::Configuration,
 	) -> sc_cli::Result<()> {
-		let databases = match (self.parachain, self.relaychain) {
+		let databases = match (self.allychain, self.relaychain) {
 			(true, true) | (false, false) => {
-				vec![("parachain", para_config.database), ("relaychain", relay_config.database)]
+				vec![("allychain", para_config.database), ("relaychain", relay_config.database)]
 			},
-			(true, false) => vec![("parachain", para_config.database)],
+			(true, false) => vec![("allychain", para_config.database)],
 			(false, true) => vec![("relaychain", relay_config.database)],
 		};
 

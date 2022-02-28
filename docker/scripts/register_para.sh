@@ -38,7 +38,7 @@ wait_for_file () {
     exit 1
 }
 
-wait_for_file /runtime/cumulus_test_parachain_runtime.compact.wasm
+wait_for_file /runtime/cumulus_test_allychain_runtime.compact.wasm
 wait_for_file /genesis/genesis-state
 
 # this is now straightforward: just send the sudo'd tx to the alice node,
@@ -54,5 +54,5 @@ wait_for_file /genesis/genesis-state
         tx.registrar.registerPara \
             100 \
             '{"scheduling":"Always"}' \
-            @/runtime/cumulus_test_parachain_runtime.compact.wasm \
+            @/runtime/cumulus_test_allychain_runtime.compact.wasm \
             "$(cat /genesis/genesis-state)"

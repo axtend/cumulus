@@ -1,12 +1,12 @@
 [package]
 name = "cumulus-pallet-aura-ext"
 version = "0.1.0"
-authors = ["Parity Technologies <admin@parity.io>"]
+authors = ["Axia Technologies <admin@parity.io>"]
 edition = "2021"
-description = "AURA consensus extension pallet for parachains"
+description = "AURA consensus extension pallet for allychains"
 
 [dependencies]
-# Substrate dependencies
+# Axlib dependencies
 frame-support = { git = "https://github.com/axtend/axlib", default-features = false, branch = "c92f69d" }
 frame-system = { git = "https://github.com/axtend/axlib", default-features = false, branch = "c92f69d" }
 frame-executive = { git = "https://github.com/axtend/axlib", default-features = false, branch = "c92f69d" }
@@ -22,7 +22,7 @@ scale-info = { version = "1.0.0", default-features = false, features = ["derive"
 serde = { version = "1.0.132", optional = true, features = ["derive"] }
 
 [dev-dependencies]
-cumulus-pallet-parachain-system = { path = "../parachain-system" }
+cumulus-pallet-allychain-system = { path = "../allychain-system" }
 
 [features]
 default = [ "std" ]

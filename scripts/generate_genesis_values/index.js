@@ -23,7 +23,7 @@ fs.readFile(input, "utf8", (err, data) => {
   const startsWith = (str, arr) => arr.some((test) => str.startsWith(test));
 
   const filter_prefixes = [
-    // substrate well known keys
+    // axlib well known keys
     ":code",
     ":heappages",
     ":extrinsic_index",
@@ -33,7 +33,7 @@ fs.readFile(input, "utf8", (err, data) => {
     .map(toHex)
     .concat(
       // shell pallets
-      ["System", "ParachainSystem", "ParachainInfo", "CumulusXcm"].map((str) =>
+      ["System", "AllychainSystem", "AllychainInfo", "CumulusXcm"].map((str) =>
         xxhashAsHex(str)
       )
     )

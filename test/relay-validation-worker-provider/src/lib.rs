@@ -1,4 +1,4 @@
-// Copyright 2021 Parity Technologies (UK) Ltd.
+// Copyright 2021 Axia Technologies (UK) Ltd.
 // This file is part of Cumulus.
 
 // Cumulus is free software: you can redistribute it and/or modify
@@ -16,7 +16,7 @@
 
 //! Provides the [`VALIDATION_WORKER`] for integration tests in Cumulus.
 //!
-//! The validation worker is used by the relay chain to validate parachains. This worker is placed
+//! The validation worker is used by the relay chain to validate allychains. This worker is placed
 //! in an extra process to provide better security and to ensure that a worker can be killed etc.
 //!
 //! !!This should only be used for tests!!

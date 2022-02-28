@@ -1,5 +1,5 @@
 [package]
-authors = ["Parity Technologies <admin@parity.io>"]
+authors = ["Axia Technologies <admin@parity.io>"]
 name = "cumulus-relay-chain-local"
 version = "0.1.0"
 edition = "2021"
@@ -35,9 +35,9 @@ futures-timer = "3.0.2"
 # Cumulus deps
 cumulus-test-service = { path = "../../test/service" }
 
-# Polkadot deps
+# Axia deps
 polkadot-test-client = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
 polkadot-primitives = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
 
-# substrate deps
+# axlib deps
 sp-keyring = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }

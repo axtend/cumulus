@@ -9,7 +9,7 @@ services:
     volumes:
       - "polkadot-data-alice:/data"
       - type: bind
-        source: ./test/parachain/res/polkadot_chainspec.json
+        source: ./test/allychain/res/polkadot_chainspec.json
         target: /chainspec.json
         read_only: true
     command: >
@@ -38,7 +38,7 @@ services:
     volumes:
       - "polkadot-data-bob:/data"
       - type: bind
-        source: ./test/parachain/res/polkadot_chainspec.json
+        source: ./test/allychain/res/polkadot_chainspec.json
         target: /chainspec.json
         read_only: true
     command: >
@@ -61,7 +61,7 @@ services:
   genesis_state:
     build:
       context: .
-      dockerfile: ./docker/test-parachain-collator.dockerfile
+      dockerfile: ./docker/test-allychain-collator.dockerfile
     image: "ctpc:latest"
     volumes:
       - "genesis-state:/data"
@@ -73,7 +73,7 @@ services:
   collator:
     build:
       context: .
-      dockerfile: ./docker/test-parachain-collator.dockerfile
+      dockerfile: ./docker/test-allychain-collator.dockerfile
       target: collator
     image: "ctpc:collator"
     volumes:
@@ -90,21 +90,21 @@ services:
   runtime:
     build:
       context: .
-      dockerfile: ./docker/test-parachain-collator.dockerfile
+      dockerfile: ./docker/test-allychain-collator.dockerfile
       target: runtime
     image: "ctpc:runtime"
     volumes:
-      - "parachain-runtime:/runtime"
+      - "allychain-runtime:/runtime"
 
 
   registrar:
     build:
       context: .
-      dockerfile: ./docker/parachain-registrar.dockerfile
+      dockerfile: ./docker/allychain-registrar.dockerfile
     image: para-reg:latest
     volumes:
       - "genesis-state:/genesis"
-      - "parachain-runtime:/runtime"
+      - "allychain-runtime:/runtime"
     depends_on:
       - node_alice
       - runtime
@@ -118,7 +118,7 @@ volumes:
   polkadot-data-bob:
   collator-data:
   genesis-state:
-  parachain-runtime:
+  allychain-runtime:
 
 
 networks:

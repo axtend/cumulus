@@ -1,4 +1,4 @@
-// Copyright 2019-2021 Parity Technologies (UK) Ltd.
+// Copyright 2019-2021 Axia Technologies (UK) Ltd.
 // This file is part of Cumulus.
 
 // Cumulus is free software: you can redistribute it and/or modify
@@ -69,7 +69,7 @@ impl Relaychain {
 }
 
 #[async_trait]
-impl crate::parachain_consensus::RelaychainClient for Relaychain {
+impl crate::allychain_consensus::RelaychainClient for Relaychain {
 	type Error = ClientError;
 
 	type HeadStream = Box<dyn Stream<Item = Vec<u8>> + Send + Unpin>;
@@ -98,7 +98,7 @@ impl crate::parachain_consensus::RelaychainClient for Relaychain {
 		Ok(Box::new(stream.map(|v| v.encode())))
 	}
 
-	async fn parachain_head_at(
+	async fn allychain_head_at(
 		&self,
 		_: &BlockId<PBlock>,
 		_: ParaId,
@@ -133,7 +133,7 @@ fn follow_new_best_works() {
 	let new_best_heads_sender = relay_chain.inner.lock().unwrap().new_best_heads_sender.clone();
 
 	let consensus =
-		run_parachain_consensus(100.into(), client.clone(), relay_chain, Arc::new(|_, _| {}));
+		run_allychain_consensus(100.into(), client.clone(), relay_chain, Arc::new(|_, _| {}));
 
 	let work = async move {
 		new_best_heads_sender.unbounded_send(block.header().clone()).unwrap();
@@ -167,7 +167,7 @@ fn follow_finalized_works() {
 	let finalized_sender = relay_chain.inner.lock().unwrap().finalized_heads_sender.clone();
 
 	let consensus =
-		run_parachain_consensus(100.into(), client.clone(), relay_chain, Arc::new(|_, _| {}));
+		run_allychain_consensus(100.into(), client.clone(), relay_chain, Arc::new(|_, _| {}));
 
 	let work = async move {
 		finalized_sender.unbounded_send(block.header().clone()).unwrap();
@@ -208,7 +208,7 @@ fn follow_finalized_does_not_stop_on_unknown_block() {
 	let finalized_sender = relay_chain.inner.lock().unwrap().finalized_heads_sender.clone();
 
 	let consensus =
-		run_parachain_consensus(100.into(), client.clone(), relay_chain, Arc::new(|_, _| {}));
+		run_allychain_consensus(100.into(), client.clone(), relay_chain, Arc::new(|_, _| {}));
 
 	let work = async move {
 		for _ in 0..3usize {
@@ -237,7 +237,7 @@ fn follow_finalized_does_not_stop_on_unknown_block() {
 	});
 }
 
-// It can happen that we first import a relay chain block, while not yet having the parachain
+// It can happen that we first import a relay chain block, while not yet having the allychain
 // block imported that would be set to the best block. We need to make sure to import this
 // block as new best block in the moment it is imported.
 #[test]
@@ -258,7 +258,7 @@ fn follow_new_best_sets_best_after_it_is_imported() {
 	let new_best_heads_sender = relay_chain.inner.lock().unwrap().new_best_heads_sender.clone();
 
 	let consensus =
-		run_parachain_consensus(100.into(), client.clone(), relay_chain, Arc::new(|_, _| {}));
+		run_allychain_consensus(100.into(), client.clone(), relay_chain, Arc::new(|_, _| {}));
 
 	let work = async move {
 		new_best_heads_sender.unbounded_send(block.header().clone()).unwrap();
@@ -307,12 +307,12 @@ fn follow_new_best_sets_best_after_it_is_imported() {
 	});
 }
 
-/// When we import a new best relay chain block, we extract the best parachain block from it and set
-/// it. This works when we follow the relay chain and parachain at the tip of each other, but there
+/// When we import a new best relay chain block, we extract the best allychain block from it and set
+/// it. This works when we follow the relay chain and allychain at the tip of each other, but there
 /// can be race conditions when we are doing a full sync of both or just the relay chain.
-/// The problem is that we import parachain blocks as best as long as we are in major sync. So, we
+/// The problem is that we import allychain blocks as best as long as we are in major sync. So, we
 /// could import block 100 as best and then import a relay chain block that says that block 99 is
-/// the best parachain block. This should not happen, we should never set the best block to a lower
+/// the best allychain block. This should not happen, we should never set the best block to a lower
 /// block number.
 #[test]
 fn do_not_set_best_block_to_older_block() {
@@ -335,7 +335,7 @@ fn do_not_set_best_block_to_older_block() {
 	let new_best_heads_sender = relay_chain.inner.lock().unwrap().new_best_heads_sender.clone();
 
 	let consensus =
-		run_parachain_consensus(100.into(), client.clone(), relay_chain, Arc::new(|_, _| {}));
+		run_allychain_consensus(100.into(), client.clone(), relay_chain, Arc::new(|_, _| {}));
 
 	let client2 = client.clone();
 	let work = async move {

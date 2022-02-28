@@ -1,4 +1,4 @@
-// Copyright 2021 Parity Technologies (UK) Ltd.
+// Copyright 2021 Axia Technologies (UK) Ltd.
 // This file is part of Cumulus.
 
 // Cumulus is free software: you can redistribute it and/or modify
@@ -16,17 +16,17 @@
 
 //! Cumulus extension pallet for AuRa
 //!
-//! This pallets extends the Substrate AuRa pallet to make it compatible with parachains. It
+//! This pallets extends the Axlib AuRa pallet to make it compatible with allychains. It
 //! provides the [`Pallet`], the [`Config`] and the [`GenesisConfig`].
 //!
-//! It is also required that the parachain runtime uses the provided [`BlockExecutor`] to properly
+//! It is also required that the allychain runtime uses the provided [`BlockExecutor`] to properly
 //! check the constructed block on the relay chain.
 //!
 //! ```
 //!# struct Runtime;
 //!# struct Executive;
 //!# struct CheckInherents;
-//! cumulus_pallet_parachain_system::register_validate_block! {
+//! cumulus_pallet_allychain_system::register_validate_block! {
 //!     Runtime = Runtime,
 //!     BlockExecutor = cumulus_pallet_aura_ext::BlockExecutor::<Runtime, Executive>,
 //!     CheckInherents = CheckInherents,

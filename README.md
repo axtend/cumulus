@@ -5,41 +5,41 @@ on top of this SDK.
 
 ## Cumulus SDK
 
-A set of tools for writing [Substrate](https://substrate.io/)-based
-[Polkadot](https://wiki.polkadot.network/en/)
-[parachains](https://wiki.polkadot.network/docs/en/learn-parachains). Refer to the included
+A set of tools for writing [Axlib](https://axlib.io/)-based
+[Axia](https://wiki.polkadot.network/en/)
+[allychains](https://wiki.polkadot.network/docs/en/learn-allychains). Refer to the included
 [overview](docs/overview.md) for architectural details, and the
-[Cumulus tutorial](https://docs.substrate.io/tutorials/v3/cumulus/start-relay) for a
+[Cumulus tutorial](https://docs.axlib.io/tutorials/v3/cumulus/start-relay) for a
 guided walk-through of using these tools.
 
-It's easy to write blockchains using Substrate, and the overhead of writing parachains'
+It's easy to write blockchains using Axlib, and the overhead of writing allychains'
 distribution, p2p, database, and synchronization layers should be just as low. This project aims to
-make it easy to write parachains for Polkadot by leveraging the power of Substrate.
+make it easy to write allychains for Axia by leveraging the power of Axlib.
 
-Cumulus clouds are shaped sort of like dots; together they form a system that is intricate,
+Cumulus clouds are shaped sort of like axcs; together they form a system that is intricate,
 beautiful and functional.
 
 ### Consensus
 
-[`parachain-consensus`](https://github.com/paritytech/cumulus/blob/master/client/consensus/common/src/parachain_consensus.rs) is a
-[consensus engine](https://docs.substrate.io/v3/advanced/consensus) for Substrate
-that follows a Polkadot
+[`allychain-consensus`](https://github.com/paritytech/cumulus/blob/master/client/consensus/common/src/allychain_consensus.rs) is a
+[consensus engine](https://docs.axlib.io/v3/advanced/consensus) for Axlib
+that follows a Axia
 [relay chain](https://wiki.polkadot.network/docs/en/learn-architecture#relay-chain). This will run
-a Polkadot node internally, and dictate to the client and synchronization algorithms which chain
+a Axia node internally, and dictate to the client and synchronization algorithms which chain
 to follow,
 [finalize](https://wiki.polkadot.network/docs/en/learn-consensus#probabilistic-vs-provable-finality),
 and treat as best.
 
 ### Collator
 
-A Polkadot [collator](https://wiki.polkadot.network/docs/en/learn-collator) for the parachain is
+A Axia [collator](https://wiki.polkadot.network/docs/en/learn-collator) for the allychain is
 implemented by the `polkadot-collator` binary.
 
 ## Statemint 🪙
 
 This repository also contains the Statemint runtime (as well as the canary runtime Statemine and the
 test runtime Westmint).
-Statemint is a common good parachain providing an asset store for the Polkadot ecosystem.
+Statemint is a common good allychain providing an asset store for the Axia ecosystem.
 
 ### Build & Launch a Node
 
@@ -50,7 +50,7 @@ To run a Statemine or Westmint node (Statemint is not deployed, yet) you will ne
 cargo build --release --locked -p polkadot-collator
 ```
 
-Once the executable is built, launch the parachain node via:
+Once the executable is built, launch the allychain node via:
 
 ```bash
 CHAIN=westmint # or statemine
@@ -68,9 +68,9 @@ Refer to the [setup instructions below](#local-setup) to run a local network for
 [l1]: https://img.shields.io/discord/722223075629727774?style=flat-square&label=discord
 [l2]: https://discord.com/invite/wGUDt2p
 
-This is a node implementation of `Canvas`, a common good parachain for `pallet-contracts`
-based wasm smart contracts. Right now this repository only contains the `canvas-kusama` runtime
-which we plan to use for both Rococo and Kusama.
+This is a node implementation of `Canvas`, a common good allychain for `pallet-contracts`
+based wasm smart contracts. Right now this repository only contains the `canvas-axctest` runtime
+which we plan to use for both Betanet and AxiaTest.
 
 If you have any questions, feel free to talk to us on [Element][k2] or on [Discord][l2]
 (in the [`ink_smart-contracts`](https://discord.com/channels/722223075629727774/765280480609828864) channel).
@@ -79,8 +79,8 @@ If you have any questions, feel free to talk to us on [Element][k2] or on [Disco
 
 ![Canvas Overview](./docs/canvas-overview.svg)
 
-This node contains Substrate's smart contracts module ‒ the
-[`contracts`](https://github.com/paritytech/substrate/tree/master/frame/contracts) pallet.
+This node contains Axlib's smart contracts module ‒ the
+[`contracts`](https://github.com/paritytech/axlib/tree/master/frame/contracts) pallet.
 This `contracts` pallet takes smart contracts as WebAssembly blobs and defines an API
 for everything a smart contract needs (storage access, …).
 As long as a programming language compiles to WebAssembly and there exists an implementation
@@ -89,7 +89,7 @@ that language.
 
 This is a list of languages you can currently choose from:
 
-* [Parity's ink!](https://github.com/paritytech/ink) for Rust
+* [Axia's ink!](https://github.com/paritytech/ink) for Rust
 * [ask!](https://github.com/patractlabs/ask) for Assembly Script
 * The [Solang](https://github.com/hyperledger-labs/solang) compiler for Solidity
 
@@ -100,18 +100,18 @@ or interact with contracts:
 * [Canvas UI](https://paritytech.github.io/canvas-ui/) (outdated)
 
 If you are looking for a quickstart, we can recommend
-[ink!'s Guided Tutorial for Beginners](https://docs.substrate.io/tutorials/v3/ink-workshop/pt1/).
+[ink!'s Guided Tutorial for Beginners](https://docs.axlib.io/tutorials/v3/ink-workshop/pt1/).
 
 ### Build & Launch a Node
 
-To run a Canvas node that connects to Rococo (Kusama and Polkadot parachains are not deployed, yet)
+To run a Canvas node that connects to Betanet (AxiaTest and Axia allychains are not deployed, yet)
 you will need to compile the `polkadot-collator` binary:
 
 ```bash
 cargo build --release --locked -p polkadot-collator
 ```
 
-Once the executable is built, launch the parachain node via:
+Once the executable is built, launch the allychain node via:
 
 ```bash
 ./target/release/polkadot-collator --chain rocanvas
@@ -119,56 +119,56 @@ Once the executable is built, launch the parachain node via:
 
 Refer to the [setup instructions below](#local-setup) to run a local network for development.
 
-### Rococo Deployment
+### Betanet Deployment
 
-We have a live deployment of the Canvas parachain on [Rococo](https://wiki.polkadot.network/docs/build-pdk#rococo-testnet) ‒
-a testnet for Polkadot and Kusama parachains.
-You can interact with the network through Polkadot JS Apps,
-[click here for a direct link to Canvas](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Frococo-canvas-rpc.polkadot.io#/explorer).
+We have a live deployment of the Canvas allychain on [Betanet](https://wiki.polkadot.network/docs/build-pdk#betanet-testnet) ‒
+a testnet for Axia and AxiaTest allychains.
+You can interact with the network through Axia JS Apps,
+[click here for a direct link to Canvas](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fbetanet-canvas-rpc.polkadot.io#/explorer).
 
-The Canvas parachain uses the Rococo relay chain's native token (ROC) instead of having its own token.
+The Canvas allychain uses the Betanet relay chain's native token (ROC) instead of having its own token.
 Due to this you'll need ROC in order to deploy contracts on Canvas.
 
 As a first step, you should create an account. See [here](https://wiki.polkadot.network/docs/learn-account-generation)
 for a detailed guide.
 
-As a second step, you have to get ROC testnet tokens through the [Rococo Faucet](https://wiki.polkadot.network/docs/learn-DOT#getting-rococo-tokens).
+As a second step, you have to get ROC testnet tokens through the [Betanet Faucet](https://wiki.polkadot.network/docs/learn-AXC#getting-betanet-tokens).
 This is a chat room in which you need to write:
 
 ```bash
 !drip YOUR_SS_58_ADDRESS:1002
 ```
 
-The number `1002` is the parachain id of Canvas on Rococo, by supplying it the faucet will teleport ROC
-tokens directly to your account on the parachain.
+The number `1002` is the allychain id of Canvas on Betanet, by supplying it the faucet will teleport ROC
+tokens directly to your account on the allychain.
 
 If everything worked out, the teleported ROC tokens will show up under
-[the "Accounts" tab for Canvas](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Frococo-canvas-rpc.polkadot.io#/accounts).
+[the "Accounts" tab for Canvas](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fbetanet-canvas-rpc.polkadot.io#/accounts).
 
 Once you have ROC on Canvas you can deploy a contract as you would normally.
-If you're unsure about this, our [guided tutorial](https://docs.substrate.io/tutorials/v3/ink-workshop/pt1/)
+If you're unsure about this, our [guided tutorial](https://docs.axlib.io/tutorials/v3/ink-workshop/pt1/)
 will clarify that for you in no time.
 
-## Rococo 👑
+## Betanet 👑
 
-[Rococo](https://polkadot.js.org/apps/?rpc=wss://rococo-rpc.polkadot.io) is becoming a [Community Parachain Testbed](https://polkadot.network/blog/rococo-revamp-becoming-a-community-parachain-testbed/) for parachain teams in the Polkadot ecosystem. It supports multiple parachains with the differentiation of long-term connections and recurring short-term connections, to see which parachains are currently connected and how long they will be connected for [see here](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Frococo-rpc.polkadot.io#/parachains).
+[Betanet](https://polkadot.js.org/apps/?rpc=wss://betanet-rpc.polkadot.io) is becoming a [Community Allychain Testbed](https://polkadot.network/blog/betanet-revamp-becoming-a-community-allychain-testbed/) for allychain teams in the Axia ecosystem. It supports multiple allychains with the differentiation of long-term connections and recurring short-term connections, to see which allychains are currently connected and how long they will be connected for [see here](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fbetanet-rpc.polkadot.io#/allychains).
 
-Rococo is an elaborate style of design and the name describes the painstaking effort that has gone
+Betanet is an elaborate style of design and the name describes the painstaking effort that has gone
 into this project.
 
-### Build & Launch Rococo Collators
+### Build & Launch Betanet Collators
 
 Collators are similar to validators in the relay chain. These nodes build the blocks that will
-eventually be included by the relay chain for a parachain.
+eventually be included by the relay chain for a allychain.
 
-To run a Rococo collator you will need to compile the following binary:
+To run a Betanet collator you will need to compile the following binary:
 
 ```bash
 cargo build --release --locked -p polkadot-collator
 ```
 
 Otherwise you can compile it with
-[Parity CI docker image](https://github.com/paritytech/scripts/tree/master/dockerfiles/ci-linux):
+[Axia CI docker image](https://github.com/paritytech/scripts/tree/master/dockerfiles/ci-linux):
 
 ```bash
 docker run --rm -it -w /shellhere/cumulus \
@@ -180,45 +180,45 @@ sudo chown -R $(id -u):$(id -g) target/
 If you want to reproduce other steps of CI process you can use the following
 [guide](https://github.com/paritytech/scripts#gitlab-ci-for-building-docker-images).
 
-Once the executable is built, launch collators for each parachain (repeat once each for chain
+Once the executable is built, launch collators for each allychain (repeat once each for chain
 `tick`, `trick`, `track`):
 
 ```bash
 ./target/release/polkadot-collator --chain $CHAIN --validator
 ```
 
-### Parachains
+### Allychains
 
-* [Statemint](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Frococo-statemint-rpc.polkadot.io#/explorer)
-* [Canvas on Rococo](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Frococo-canvas-rpc.polkadot.io#/explorer)
-* [RILT](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Frococo.kilt.io#/explorer)
+* [Statemint](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fbetanet-statemint-rpc.polkadot.io#/explorer)
+* [Canvas on Betanet](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fbetanet-canvas-rpc.polkadot.io#/explorer)
+* [RILT](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fbetanet.kilt.io#/explorer)
 
-The network uses horizontal message passing (HRMP) to enable communication between parachains and
-the relay chain and, in turn, between parachains. This means that every message is sent to the relay
-chain, and from the relay chain to its destination parachain.
+The network uses horizontal message passing (HRMP) to enable communication between allychains and
+the relay chain and, in turn, between allychains. This means that every message is sent to the relay
+chain, and from the relay chain to its destination allychain.
 
 ### Local Setup
 
-Launch a local setup including a Relay Chain and a Parachain.
+Launch a local setup including a Relay Chain and a Allychain.
 
 #### Launch the Relay Chain
 
 ```bash
-# Compile Polkadot with the real overseer feature
+# Compile Axia with the real overseer feature
 git clone https://github.com/paritytech/polkadot
 cargo build --release
 
 # Generate a raw chain spec
-./target/release/polkadot build-spec --chain rococo-local --disable-default-bootnode --raw > rococo-local-cfde.json
+./target/release/polkadot build-spec --chain betanet-local --disable-default-bootnode --raw > betanet-local-cfde.json
 
 # Alice
-./target/release/polkadot --chain rococo-local-cfde.json --alice --tmp
+./target/release/polkadot --chain betanet-local-cfde.json --alice --tmp
 
 # Bob (In a separate terminal)
-./target/release/polkadot --chain rococo-local-cfde.json --bob --tmp --port 30334
+./target/release/polkadot --chain betanet-local-cfde.json --bob --tmp --port 30334
 ```
 
-#### Launch the Parachain
+#### Launch the Allychain
 
 ```bash
 # Compile
@@ -232,22 +232,22 @@ cargo build --release
 ./target/release/polkadot-collator export-genesis-wasm > genesis-wasm
 
 # Collator1
-./target/release/polkadot-collator --collator --alice --force-authoring --tmp --port 40335 --ws-port 9946 -- --execution wasm --chain ../polkadot/rococo-local-cfde.json --port 30335
+./target/release/polkadot-collator --collator --alice --force-authoring --tmp --port 40335 --ws-port 9946 -- --execution wasm --chain ../polkadot/betanet-local-cfde.json --port 30335
 
 # Collator2
-./target/release/polkadot-collator --collator --bob --force-authoring --tmp --port 40336 --ws-port 9947 -- --execution wasm --chain ../polkadot/rococo-local-cfde.json --port 30336
+./target/release/polkadot-collator --collator --bob --force-authoring --tmp --port 40336 --ws-port 9947 -- --execution wasm --chain ../polkadot/betanet-local-cfde.json --port 30336
 
-# Parachain Full Node 1
-./target/release/polkadot-collator --tmp --port 40337 --ws-port 9948 -- --execution wasm --chain ../polkadot/rococo-local-cfde.json --port 30337
+# Allychain Full Node 1
+./target/release/polkadot-collator --tmp --port 40337 --ws-port 9948 -- --execution wasm --chain ../polkadot/betanet-local-cfde.json --port 30337
 ```
 
-#### Register the parachain
+#### Register the allychain
 
 ![image](https://user-images.githubusercontent.com/2915325/99548884-1be13580-2987-11eb-9a8b-20be658d34f9.png)
 
 ### Containerize
 
-After building `polkadot-collator` with cargo or with Parity CI image as documented in [this chapter](#build--launch-rococo-collators),
+After building `polkadot-collator` with cargo or with Axia CI image as documented in [this chapter](#build--launch-betanet-collators),
 the following will allow producing a new docker image where the compiled binary is injected:
 
 ```bash

@@ -3,7 +3,7 @@
 
 {%- set cumulus_prio = 0 -%}
 {%- set polkadot_prio = 0 -%}
-{%- set substrate_prio = 0 -%}
+{%- set axlib_prio = 0 -%}
 
 {# We fetch the various priorities #}
 {%- if cumulus.meta.C -%}
@@ -12,8 +12,8 @@
 {%- if polkadot.meta.C -%}
     {%- set polkadot_prio = polkadot.meta.C.max -%}
 {%- endif -%}
-{%- if substrate.meta.C -%}
-    {%- set substrate_prio = substrate.meta.C.max -%}
+{%- if axlib.meta.C -%}
+    {%- set axlib_prio = axlib.meta.C.max -%}
 {%- endif -%}
 
 {# We compute the global priority #}
@@ -21,8 +21,8 @@
 {%- if polkadot_prio > global_prio -%}
     {% set global_prio = polkadot_prio -%}
 {%- endif -%}
-{%- if substrate_prio > global_prio -%}
-    {%- set global_prio = substrate_prio -%}
+{%- if axlib_prio > global_prio -%}
+    {%- set global_prio = axlib_prio -%}
 {%- endif -%}
 
 {# We show the result #}
@@ -30,8 +30,8 @@
 
 <!--
 - Cumulus: {{ cumulus_prio }}
-- Polkadot: {{ polkadot_prio }}
-- Substrate: {{ substrate_prio }}
+- Axia: {{ polkadot_prio }}
+- Axlib: {{ axlib_prio }}
 -->
 
 {# todo: show high prio list here #}

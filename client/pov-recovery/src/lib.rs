@@ -1,4 +1,4 @@
-// Copyright 2021 Parity Technologies (UK) Ltd.
+// Copyright 2021 Axia Technologies (UK) Ltd.
 // This file is part of Cumulus.
 
 // Cumulus is free software: you can redistribute it and/or modify
@@ -6,7 +6,7 @@
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
 
-// Polkadot is distributed in the hope that it will be useful,
+// Axia is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
@@ -14,12 +14,12 @@
 // You should have received a copy of the GNU General Public License
 // along with Cumulus.  If not, see <http://www.gnu.org/licenses/>.
 
-//! Parachain PoV recovery
+//! Allychain PoV recovery
 //!
-//! A parachain needs to build PoVs that are send to the relay chain to progress. These PoVs are
+//! A allychain needs to build PoVs that are send to the relay chain to progress. These PoVs are
 //! erasure encoded and one piece of it is stored by each relay chain validator. As the relay chain
-//! decides on which PoV per parachain to include and thus, to progess the parachain it can happen
-//! that the block corresponding to this PoV isn't propagated in the parachain network. This can have
+//! decides on which PoV per allychain to include and thus, to progess the allychain it can happen
+//! that the block corresponding to this PoV isn't propagated in the allychain network. This can have
 //! several reasons, either a malicious collator that managed to include its own PoV and doesn't want
 //! to share it with the rest of the network or maybe a collator went down before it could distribute
 //! the block in the network. When something like this happens we can use the PoV recovery algorithm
@@ -27,7 +27,7 @@
 //!
 //! It works in the following way:
 //!
-//! 1. For every included relay chain block we note the backed candidate of our parachain. If the
+//! 1. For every included relay chain block we note the backed candidate of our allychain. If the
 //!    block belonging to the PoV is already known, we do nothing. Otherwise we start
 //!    a timer that waits a random time between 0..relay_chain_slot_length before starting to recover
 //!    the PoV.
@@ -55,7 +55,7 @@ use polkadot_primitives::v1::{
 	CandidateReceipt, CommittedCandidateReceipt, Id as ParaId, SessionIndex,
 };
 
-use cumulus_primitives_core::ParachainBlockData;
+use cumulus_primitives_core::AllychainBlockData;
 use cumulus_relay_chain_interface::{RelayChainInterface, RelayChainResult};
 
 use codec::Decode;
@@ -118,8 +118,8 @@ pub struct PoVRecovery<Block: BlockT, PC, IQ, RC> {
 	/// Uses parent -> blocks mapping.
 	waiting_for_parent: HashMap<Block::Hash, Vec<Block>>,
 	recovery_delay: RecoveryDelay,
-	parachain_client: Arc<PC>,
-	parachain_import_queue: IQ,
+	allychain_client: Arc<PC>,
+	allychain_import_queue: IQ,
 	relay_chain_interface: RC,
 	para_id: ParaId,
 }
@@ -134,8 +134,8 @@ where
 	pub fn new(
 		overseer_handle: OverseerHandle,
 		recovery_delay: RecoveryDelay,
-		parachain_client: Arc<PC>,
-		parachain_import_queue: IQ,
+		allychain_client: Arc<PC>,
+		allychain_import_queue: IQ,
 		relay_chain_interface: RCInterface,
 		para_id: ParaId,
 	) -> Self {
@@ -145,8 +145,8 @@ where
 			active_candidate_recovery: ActiveCandidateRecovery::new(overseer_handle),
 			recovery_delay,
 			waiting_for_parent: HashMap::new(),
-			parachain_client,
-			parachain_import_queue,
+			allychain_client,
+			allychain_import_queue,
 			relay_chain_interface,
 			para_id,
 		}
@@ -164,18 +164,18 @@ where
 				tracing::warn!(
 					target: LOG_TARGET,
 					error = ?e,
-					"Failed to decode parachain header from pending candidate",
+					"Failed to decode allychain header from pending candidate",
 				);
 				return
 			},
 		};
 
-		if *header.number() <= self.parachain_client.usage_info().chain.finalized_number {
+		if *header.number() <= self.allychain_client.usage_info().chain.finalized_number {
 			return
 		}
 
 		let hash = header.hash();
-		match self.parachain_client.block_status(&BlockId::Hash(hash)) {
+		match self.allychain_client.block_status(&BlockId::Hash(hash)) {
 			Ok(BlockStatus::Unknown) => (),
 			// Any other state means, we should ignore it.
 			Ok(_) => return,
@@ -278,13 +278,13 @@ where
 			},
 		};
 
-		let block_data = match ParachainBlockData::<Block>::decode(&mut &raw_block_data[..]) {
+		let block_data = match AllychainBlockData::<Block>::decode(&mut &raw_block_data[..]) {
 			Ok(d) => d,
 			Err(error) => {
 				tracing::warn!(
 					target: LOG_TARGET,
 					?error,
-					"Failed to decode parachain block data from recovered PoV",
+					"Failed to decode allychain block data from recovered PoV",
 				);
 
 				self.clear_waiting_for_parent(block_hash);
@@ -297,7 +297,7 @@ where
 
 		let parent = *block.header().parent_hash();
 
-		match self.parachain_client.block_status(&BlockId::hash(parent)) {
+		match self.allychain_client.block_status(&BlockId::hash(parent)) {
 			Ok(BlockStatus::Unknown) => {
 				if self.active_candidate_recovery.is_being_recovered(&parent) {
 					tracing::debug!(
@@ -372,14 +372,14 @@ where
 			}
 		}
 
-		self.parachain_import_queue
+		self.allychain_import_queue
 			.import_blocks(BlockOrigin::ConsensusBroadcast, incoming_blocks);
 	}
 
 	/// Run the pov-recovery.
 	pub async fn run(mut self) {
-		let mut imported_blocks = self.parachain_client.import_notification_stream().fuse();
-		let mut finalized_blocks = self.parachain_client.finality_notification_stream().fuse();
+		let mut imported_blocks = self.allychain_client.import_notification_stream().fuse();
+		let mut finalized_blocks = self.allychain_client.finality_notification_stream().fuse();
 		let pending_candidates =
 			match pending_candidates(self.relay_chain_interface.clone(), self.para_id).await {
 				Ok(pending_candidate_stream) => pending_candidate_stream.fuse(),
@@ -441,7 +441,7 @@ where
 	}
 }
 
-/// Returns a stream over pending candidates for the parachain corresponding to `para_id`.
+/// Returns a stream over pending candidates for the allychain corresponding to `para_id`.
 async fn pending_candidates(
 	relay_chain_client: impl RelayChainInterface + Clone,
 	para_id: ParaId,

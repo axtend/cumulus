@@ -1,4 +1,4 @@
-// Copyright 2019-2021 Parity Technologies (UK) Ltd.
+// Copyright 2019-2021 Axia Technologies (UK) Ltd.
 // This file is part of Cumulus.
 
 // Cumulus is free software: you can redistribute it and/or modify
@@ -23,7 +23,7 @@ mod genesis;
 
 use std::{future::Future, time::Duration};
 
-use cumulus_client_consensus_common::{ParachainCandidate, ParachainConsensus};
+use cumulus_client_consensus_common::{AllychainCandidate, AllychainConsensus};
 use cumulus_client_network::BlockAnnounceValidator;
 use cumulus_client_service::{
 	prepare_node_config, start_collator, start_full_node, StartCollatorParams, StartFullNodeParams,
@@ -54,7 +54,7 @@ use sp_runtime::{codec::Encode, generic, traits::BlakeTwo256};
 use sp_state_machine::BasicExternalities;
 use sp_trie::PrefixedMemoryDB;
 use std::sync::Arc;
-use substrate_test_client::{
+use axlib_test_client::{
 	BlockchainEventsExt, RpcHandlersExt, RpcTransactionError, RpcTransactionOutput,
 };
 
@@ -68,13 +68,13 @@ pub use sp_keyring::Sr25519Keyring as Keyring;
 struct NullConsensus;
 
 #[async_trait::async_trait]
-impl ParachainConsensus<Block> for NullConsensus {
+impl AllychainConsensus<Block> for NullConsensus {
 	async fn produce_candidate(
 		&mut self,
 		_: &Header,
 		_: PHash,
 		_: &PersistedValidationData,
-	) -> Option<ParachainCandidate<Block>> {
+	) -> Option<AllychainCandidate<Block>> {
 		None
 	}
 }
@@ -167,12 +167,12 @@ pub fn new_partial(
 	Ok(params)
 }
 
-/// Start a node with the given parachain `Configuration` and relay chain `Configuration`.
+/// Start a node with the given allychain `Configuration` and relay chain `Configuration`.
 ///
 /// This is the actual implementation that is abstract over the executor and the runtime api.
-#[sc_tracing::logging::prefix_logs_with(parachain_config.network.node_name.as_str())]
+#[sc_tracing::logging::prefix_logs_with(allychain_config.network.node_name.as_str())]
 async fn start_node_impl<RB>(
-	parachain_config: Configuration,
+	allychain_config: Configuration,
 	collator_key: Option<CollatorPair>,
 	relay_chain_config: Configuration,
 	para_id: ParaId,
@@ -191,13 +191,13 @@ where
 		+ Send
 		+ 'static,
 {
-	if matches!(parachain_config.role, Role::Light) {
+	if matches!(allychain_config.role, Role::Light) {
 		return Err("Light client not supported!".into())
 	}
 
-	let mut parachain_config = prepare_node_config(parachain_config);
+	let mut allychain_config = prepare_node_config(allychain_config);
 
-	let params = new_partial(&mut parachain_config)?;
+	let params = new_partial(&mut allychain_config)?;
 
 	let transaction_pool = params.transaction_pool.clone();
 	let mut task_manager = params.task_manager;
@@ -231,11 +231,11 @@ where
 		BlockAnnounceValidator::new(relay_chain_interface.clone(), para_id);
 	let block_announce_validator_builder = move |_| Box::new(block_announce_validator) as Box<_>;
 
-	let prometheus_registry = parachain_config.prometheus_registry().cloned();
+	let prometheus_registry = allychain_config.prometheus_registry().cloned();
 	let import_queue = cumulus_client_service::SharedImportQueue::new(params.import_queue);
 	let (network, system_rpc_tx, start_network) =
 		sc_service::build_network(sc_service::BuildNetworkParams {
-			config: &parachain_config,
+			config: &allychain_config,
 			client: client.clone(),
 			transaction_pool: transaction_pool.clone(),
 			spawn_handle: task_manager.spawn_handle(),
@@ -255,7 +255,7 @@ where
 		client: client.clone(),
 		transaction_pool: transaction_pool.clone(),
 		task_manager: &mut task_manager,
-		config: parachain_config,
+		config: allychain_config,
 		keystore: params.keystore_container.sync_keystore(),
 		backend,
 		network: network.clone(),
@@ -274,7 +274,7 @@ where
 
 	let relay_chain_interface_for_closure = relay_chain_interface.clone();
 	if let Some(collator_key) = collator_key {
-		let parachain_consensus: Box<dyn ParachainConsensus<Block>> = match consensus {
+		let allychain_consensus: Box<dyn AllychainConsensus<Block>> = match consensus {
 			Consensus::RelayChain => {
 				let proposer_factory = sc_basic_authorship::ProposerFactory::with_proof_recording(
 					task_manager.spawn_handle(),
@@ -290,8 +290,8 @@ where
 					move |_, (relay_parent, validation_data)| {
 						let relay_chain_interface = relay_chain_interface_for_closure.clone();
 						async move {
-							let parachain_inherent =
-							cumulus_primitives_parachain_inherent::ParachainInherentData::create_at(
+							let allychain_inherent =
+							cumulus_primitives_allychain_inherent::AllychainInherentData::create_at(
 								relay_parent,
 								&relay_chain_interface,
 								&validation_data,
@@ -300,12 +300,12 @@ where
 
 							let time = sp_timestamp::InherentDataProvider::from_system_time();
 
-							let parachain_inherent = parachain_inherent.ok_or_else(|| {
+							let allychain_inherent = allychain_inherent.ok_or_else(|| {
 								Box::<dyn std::error::Error + Send + Sync>::from(String::from(
 									"error",
 								))
 							})?;
-							Ok((time, parachain_inherent))
+							Ok((time, allychain_inherent))
 						}
 					},
 					client.clone(),
@@ -322,7 +322,7 @@ where
 			spawner: task_manager.spawn_handle(),
 			task_manager: &mut task_manager,
 			para_id,
-			parachain_consensus,
+			allychain_consensus,
 			relay_chain_interface,
 			collator_key,
 			import_queue,
@@ -382,11 +382,11 @@ pub struct TestNodeBuilder {
 	tokio_handle: tokio::runtime::Handle,
 	key: Sr25519Keyring,
 	collator_key: Option<CollatorPair>,
-	parachain_nodes: Vec<MultiaddrWithPeerId>,
-	parachain_nodes_exclusive: bool,
+	allychain_nodes: Vec<MultiaddrWithPeerId>,
+	allychain_nodes_exclusive: bool,
 	relay_chain_nodes: Vec<MultiaddrWithPeerId>,
 	wrap_announce_block: Option<Box<dyn FnOnce(AnnounceBlockFn) -> AnnounceBlockFn>>,
-	storage_update_func_parachain: Option<Box<dyn Fn()>>,
+	storage_update_func_allychain: Option<Box<dyn Fn()>>,
 	storage_update_func_relay_chain: Option<Box<dyn Fn()>>,
 	consensus: Consensus,
 }
@@ -394,7 +394,7 @@ pub struct TestNodeBuilder {
 impl TestNodeBuilder {
 	/// Create a new instance of `Self`.
 	///
-	/// `para_id` - The parachain id this node is running for.
+	/// `para_id` - The allychain id this node is running for.
 	/// `tokio_handle` - The tokio handler to use.
 	/// `key` - The key that will be used to generate the name and that will be passed as `dev_seed`.
 	pub fn new(para_id: ParaId, tokio_handle: tokio::runtime::Handle, key: Sr25519Keyring) -> Self {
@@ -403,11 +403,11 @@ impl TestNodeBuilder {
 			para_id,
 			tokio_handle,
 			collator_key: None,
-			parachain_nodes: Vec::new(),
-			parachain_nodes_exclusive: false,
+			allychain_nodes: Vec::new(),
+			allychain_nodes_exclusive: false,
 			relay_chain_nodes: Vec::new(),
 			wrap_announce_block: None,
-			storage_update_func_parachain: None,
+			storage_update_func_allychain: None,
 			storage_update_func_relay_chain: None,
 			consensus: Consensus::RelayChain,
 		}
@@ -420,33 +420,33 @@ impl TestNodeBuilder {
 		self
 	}
 
-	/// Instruct the node to exclusively connect to registered parachain nodes.
+	/// Instruct the node to exclusively connect to registered allychain nodes.
 	///
-	/// Parachain nodes can be registered using [`Self::connect_to_parachain_node`] and
-	/// [`Self::connect_to_parachain_nodes`].
-	pub fn exclusively_connect_to_registered_parachain_nodes(mut self) -> Self {
-		self.parachain_nodes_exclusive = true;
+	/// Allychain nodes can be registered using [`Self::connect_to_allychain_node`] and
+	/// [`Self::connect_to_allychain_nodes`].
+	pub fn exclusively_connect_to_registered_allychain_nodes(mut self) -> Self {
+		self.allychain_nodes_exclusive = true;
 		self
 	}
 
-	/// Make the node connect to the given parachain node.
+	/// Make the node connect to the given allychain node.
 	///
 	/// By default the node will not be connected to any node or will be able to discover any other
 	/// node.
-	pub fn connect_to_parachain_node(mut self, node: &TestNode) -> Self {
-		self.parachain_nodes.push(node.addr.clone());
+	pub fn connect_to_allychain_node(mut self, node: &TestNode) -> Self {
+		self.allychain_nodes.push(node.addr.clone());
 		self
 	}
 
-	/// Make the node connect to the given parachain nodes.
+	/// Make the node connect to the given allychain nodes.
 	///
 	/// By default the node will not be connected to any node or will be able to discover any other
 	/// node.
-	pub fn connect_to_parachain_nodes<'a>(
+	pub fn connect_to_allychain_nodes<'a>(
 		mut self,
 		nodes: impl Iterator<Item = &'a TestNode>,
 	) -> Self {
-		self.parachain_nodes.extend(nodes.map(|n| n.addr.clone()));
+		self.allychain_nodes.extend(nodes.map(|n| n.addr.clone()));
 		self
 	}
 
@@ -456,7 +456,7 @@ impl TestNodeBuilder {
 	/// node.
 	pub fn connect_to_relay_chain_node(
 		mut self,
-		node: &polkadot_test_service::PolkadotTestNode,
+		node: &polkadot_test_service::AxiaTestNode,
 	) -> Self {
 		self.relay_chain_nodes.push(node.addr.clone());
 		self
@@ -468,7 +468,7 @@ impl TestNodeBuilder {
 	/// node.
 	pub fn connect_to_relay_chain_nodes<'a>(
 		mut self,
-		nodes: impl IntoIterator<Item = &'a polkadot_test_service::PolkadotTestNode>,
+		nodes: impl IntoIterator<Item = &'a polkadot_test_service::AxiaTestNode>,
 	) -> Self {
 		self.relay_chain_nodes.extend(nodes.into_iter().map(|n| n.addr.clone()));
 		self
@@ -483,9 +483,9 @@ impl TestNodeBuilder {
 		self
 	}
 
-	/// Allows accessing the parachain storage before the test node is built.
-	pub fn update_storage_parachain(mut self, updater: impl Fn() + 'static) -> Self {
-		self.storage_update_func_parachain = Some(Box::new(updater));
+	/// Allows accessing the allychain storage before the test node is built.
+	pub fn update_storage_allychain(mut self, updater: impl Fn() + 'static) -> Self {
+		self.storage_update_func_allychain = Some(Box::new(updater));
 		self
 	}
 
@@ -503,12 +503,12 @@ impl TestNodeBuilder {
 
 	/// Build the [`TestNode`].
 	pub async fn build(self) -> TestNode {
-		let parachain_config = node_config(
-			self.storage_update_func_parachain.unwrap_or_else(|| Box::new(|| ())),
+		let allychain_config = node_config(
+			self.storage_update_func_allychain.unwrap_or_else(|| Box::new(|| ())),
 			self.tokio_handle.clone(),
 			self.key.clone(),
-			self.parachain_nodes,
-			self.parachain_nodes_exclusive,
+			self.allychain_nodes,
+			self.allychain_nodes_exclusive,
 			self.para_id,
 			self.collator_key.is_some(),
 		)
@@ -524,9 +524,9 @@ impl TestNodeBuilder {
 		relay_chain_config.network.node_name =
 			format!("{} (relay chain)", relay_chain_config.network.node_name);
 
-		let multiaddr = parachain_config.network.listen_addresses[0].clone();
+		let multiaddr = allychain_config.network.listen_addresses[0].clone();
 		let (task_manager, client, network, rpc_handlers, transaction_pool) = start_node_impl(
-			parachain_config,
+			allychain_config,
 			self.collator_key,
 			relay_chain_config,
 			self.para_id,
@@ -571,7 +571,7 @@ pub fn node_config(
 	spec.set_storage(storage);
 
 	let mut network_config = NetworkConfiguration::new(
-		format!("{} (parachain)", key_seed.to_string()),
+		format!("{} (allychain)", key_seed.to_string()),
 		"network/test/0.1",
 		Default::default(),
 		None,
@@ -663,7 +663,7 @@ impl TestNode {
 		self.rpc_handlers.send_transaction(extrinsic.into()).await
 	}
 
-	/// Register a parachain at this relay chain.
+	/// Register a allychain at this relay chain.
 	pub async fn schedule_upgrade(&self, validation: Vec<u8>) -> Result<(), RpcTransactionError> {
 		let call = frame_system::Call::set_code { code: validation };
 
@@ -737,7 +737,7 @@ pub fn run_relay_chain_validator_node(
 	key: Sr25519Keyring,
 	storage_update_func: impl Fn(),
 	boot_nodes: Vec<MultiaddrWithPeerId>,
-) -> polkadot_test_service::PolkadotTestNode {
+) -> polkadot_test_service::AxiaTestNode {
 	let config = polkadot_test_service::node_config(
 		storage_update_func,
 		tokio_handle,

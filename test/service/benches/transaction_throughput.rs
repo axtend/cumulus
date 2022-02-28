@@ -1,6 +1,6 @@
 // This file is part of Cumulus.
 
-// Copyright (C) 2021 Parity Technologies (UK) Ltd.
+// Copyright (C) 2021 Axia Technologies (UK) Ltd.
 // SPDX-License-Identifier: GPL-3.0-or-later WITH Classpath-exception-2.0
 
 // This program is free software: you can redistribute it and/or modify
@@ -161,10 +161,10 @@ fn transaction_throughput_benchmarks(c: &mut Criterion) {
 		vec![alice.addr.clone()],
 	);
 
-	// Register parachain
+	// Register allychain
 	runtime
 		.block_on(
-			alice.register_parachain(
+			alice.register_allychain(
 				para_id,
 				cumulus_test_service::runtime::WASM_BINARY
 					.expect("You need to build the WASM binary to run this test!")
@@ -174,7 +174,7 @@ fn transaction_throughput_benchmarks(c: &mut Criterion) {
 		)
 		.unwrap();
 
-	// Run charlie as parachain collator
+	// Run charlie as allychain collator
 	let charlie = runtime.block_on(
 		cumulus_test_service::TestNodeBuilder::new(para_id, tokio_handle.clone(), Charlie)
 			.enable_collator()
@@ -182,11 +182,11 @@ fn transaction_throughput_benchmarks(c: &mut Criterion) {
 			.build(),
 	);
 
-	// Run dave as parachain collator
+	// Run dave as allychain collator
 	let dave = runtime.block_on(
 		cumulus_test_service::TestNodeBuilder::new(para_id, tokio_handle.clone(), Dave)
 			.enable_collator()
-			.connect_to_parachain_node(&charlie)
+			.connect_to_allychain_node(&charlie)
 			.connect_to_relay_chain_nodes(vec![&alice, &bob])
 			.build(),
 	);

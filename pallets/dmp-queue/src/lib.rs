@@ -1,4 +1,4 @@
-// Copyright 2020-2021 Parity Technologies (UK) Ltd.
+// Copyright 2020-2021 Axia Technologies (UK) Ltd.
 // This file is part of Cumulus.
 
 // Cumulus is free software: you can redistribute it and/or modify
@@ -374,7 +374,7 @@ mod tests {
 			transaction_version: 1,
 			state_version: 1,
 		};
-		pub const ParachainId: ParaId = ParaId::new(200);
+		pub const AllychainId: ParaId = ParaId::new(200);
 		pub const ReservedXcmpWeight: Weight = 0;
 		pub const ReservedDmpWeight: Weight = 0;
 	}

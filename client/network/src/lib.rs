@@ -1,22 +1,22 @@
-// Copyright 2019-2021 Parity Technologies (UK) Ltd.
-// This file is part of Polkadot.
+// Copyright 2019-2021 Axia Technologies (UK) Ltd.
+// This file is part of Axia.
 
-// Polkadot is free software: you can redistribute it and/or modify
+// Axia is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
 
-// Polkadot is distributed in the hope that it will be useful,
+// Axia is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
 
 // You should have received a copy of the GNU General Public License
-// along with Polkadot.  If not, see <http://www.gnu.org/licenses/>.
+// along with Axia.  If not, see <http://www.gnu.org/licenses/>.
 
-//! Parachain specific networking
+//! Allychain specific networking
 //!
-//! Provides a custom block announcement implementation for parachains
+//! Provides a custom block announcement implementation for allychains
 //! that use the relay chain provided consensus. See [`BlockAnnounceValidator`]
 //! and [`WaitToAnnounce`] for more information about this implementation.
 
@@ -31,7 +31,7 @@ use sp_runtime::{
 
 use cumulus_relay_chain_interface::RelayChainInterface;
 use polkadot_node_primitives::{CollationSecondedSignal, Statement};
-use polkadot_parachain::primitives::HeadData;
+use polkadot_allychain::primitives::HeadData;
 use polkadot_primitives::v1::{
 	Block as PBlock, CandidateReceipt, CompactStatement, Hash as PHash, Id as ParaId,
 	OccupiedCoreAssumption, SigningContext, UncheckedSigned,
@@ -191,9 +191,9 @@ impl TryFrom<&'_ CollationSecondedSignal> for BlockAnnounceData {
 	}
 }
 
-/// Parachain specific block announce validator.
+/// Allychain specific block announce validator.
 ///
-/// This block announce validator is required if the parachain is running
+/// This block announce validator is required if the allychain is running
 /// with the relay chain provided consensus to make sure each node only
 /// imports a reasonable number of blocks per round. The relay chain provided
 /// consensus doesn't have any authorities and so it could happen that without
@@ -202,7 +202,7 @@ impl TryFrom<&'_ CollationSecondedSignal> for BlockAnnounceData {
 ///
 /// To solve this problem, each block announcement is delayed until a collator
 /// has received a [`Statement::Seconded`] for its `PoV`. This message tells the
-/// collator that its `PoV` was validated successfully by a parachain validator and
+/// collator that its `PoV` was validated successfully by a allychain validator and
 /// that it is very likely that this `PoV` will be included in the relay chain. Every
 /// collator that doesn't receive the message for its `PoV` will not announce its block.
 /// For more information on the block announcement, see [`WaitToAnnounce`].
@@ -212,7 +212,7 @@ impl TryFrom<&'_ CollationSecondedSignal> for BlockAnnounceData {
 /// We call this extra data `justification`.
 /// It is expected that the attached data is a SCALE encoded [`BlockAnnounceData`]. The
 /// statement is checked to be a [`CompactStatement::Seconded`] and that it is signed by an active
-/// parachain validator.
+/// allychain validator.
 ///
 /// If no justification was provided we check if the block announcement is at the tip of the known
 /// chain. If it is at the tip, it is required to provide a justification or otherwise we reject
@@ -243,7 +243,7 @@ impl<Block: BlockT, RCInterface> BlockAnnounceValidator<Block, RCInterface>
 where
 	RCInterface: RelayChainInterface + Clone,
 {
-	/// Get the included block of the given parachain in the relay chain.
+	/// Get the included block of the given allychain in the relay chain.
 	async fn included_block(
 		relay_chain_interface: &RCInterface,
 		block_id: &BlockId<PBlock>,
@@ -254,19 +254,19 @@ where
 			.await
 			.map_err(|e| Box::new(BlockAnnounceError(format!("{:?}", e))) as Box<_>)?
 			.ok_or_else(|| {
-				Box::new(BlockAnnounceError("Could not find parachain head in relay chain".into()))
+				Box::new(BlockAnnounceError("Could not find allychain head in relay chain".into()))
 					as Box<_>
 			})?;
 		let para_head =
 			Block::Header::decode(&mut &validation_data.parent_head.0[..]).map_err(|e| {
-				Box::new(BlockAnnounceError(format!("Failed to decode parachain head: {:?}", e)))
+				Box::new(BlockAnnounceError(format!("Failed to decode allychain head: {:?}", e)))
 					as Box<_>
 			})?;
 
 		Ok(para_head)
 	}
 
-	/// Get the backed block hash of the given parachain in the relay chain.
+	/// Get the backed block hash of the given allychain in the relay chain.
 	async fn backed_block_hash(
 		relay_chain_interface: &RCInterface,
 		block_id: &BlockId<PBlock>,

@@ -1,12 +1,12 @@
 [package]
 name = "cumulus-client-consensus-aura"
-description = "AURA consensus algorithm for parachains"
+description = "AURA consensus algorithm for allychains"
 version = "0.1.0"
-authors = ["Parity Technologies <admin@parity.io>"]
+authors = ["Axia Technologies <admin@parity.io>"]
 edition = "2021"
 
 [dependencies]
-# Substrate dependencies
+# Axlib dependencies
 sp-consensus = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
 sp-inherents = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
 sp-runtime = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
@@ -22,7 +22,7 @@ sc-consensus-aura = { git = "https://github.com/axtend/axlib", branch = "c92f69d
 sc-consensus-slots = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
 sc-telemetry = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
 sc-consensus = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
-substrate-prometheus-endpoint = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
+axlib-prometheus-endpoint = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
 
 # Cumulus dependencies
 cumulus-client-consensus-common = { path = "../common" }

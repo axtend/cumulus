@@ -1,18 +1,18 @@
-// Copyright 2021 Parity Technologies (UK) Ltd.
-// This file is part of Substrate.
+// Copyright 2021 Axia Technologies (UK) Ltd.
+// This file is part of Axlib.
 
-// Substrate is free software: you can redistribute it and/or modify
+// Axlib is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
 
-// Substrate is distributed in the hope that it will be useful,
+// Axlib is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
 
 // You should have received a copy of the GNU General Public License
-// along with Substrate.  If not, see <http://www.gnu.org/licenses/>.
+// along with Axlib.  If not, see <http://www.gnu.org/licenses/>.
 
 use cumulus_primitives_core::ParaId;
 use cumulus_test_service::{initial_head_data, Keyring::*};
@@ -20,10 +20,10 @@ use std::sync::Arc;
 
 /// Tests the PoV recovery.
 ///
-/// If there is a block of the parachain included/backed by the relay chain that isn't circulated in
-/// the parachain network, we need to recover the PoV from the relay chain. Using this PoV we can
-/// recover the block, import it and share it with the other nodes of the parachain network.
-#[substrate_test_utils::test]
+/// If there is a block of the allychain included/backed by the relay chain that isn't circulated in
+/// the allychain network, we need to recover the PoV from the relay chain. Using this PoV we can
+/// recover the block, import it and share it with the other nodes of the allychain network.
+#[axlib_test_utils::test]
 #[ignore]
 async fn pov_recovery() {
 	let mut builder = sc_cli::LoggerBuilder::new("");
@@ -49,9 +49,9 @@ async fn pov_recovery() {
 		vec![alice.addr.clone()],
 	);
 
-	// Register parachain
+	// Register allychain
 	alice
-		.register_parachain(
+		.register_allychain(
 			para_id,
 			cumulus_test_service::runtime::WASM_BINARY
 				.expect("You need to build the WASM binary to run this test!")
@@ -61,7 +61,7 @@ async fn pov_recovery() {
 		.await
 		.unwrap();
 
-	// Run charlie as parachain collator
+	// Run charlie as allychain collator
 	let charlie =
 		cumulus_test_service::TestNodeBuilder::new(para_id, tokio_handle.clone(), Charlie)
 			.enable_collator()
@@ -73,13 +73,13 @@ async fn pov_recovery() {
 			.build()
 			.await;
 
-	// Run dave as parachain collator and eve as parachain full node
+	// Run dave as allychain collator and eve as allychain full node
 	//
 	// They will need to recover the pov blocks through availability recovery.
 	let dave = cumulus_test_service::TestNodeBuilder::new(para_id, tokio_handle.clone(), Dave)
 		.enable_collator()
 		.use_null_consensus()
-		.connect_to_parachain_node(&charlie)
+		.connect_to_allychain_node(&charlie)
 		.connect_to_relay_chain_nodes(vec![&alice, &bob])
 		.wrap_announce_block(|_| {
 			// Never announce any block
@@ -90,7 +90,7 @@ async fn pov_recovery() {
 
 	let eve = cumulus_test_service::TestNodeBuilder::new(para_id, tokio_handle, Eve)
 		.use_null_consensus()
-		.connect_to_parachain_node(&charlie)
+		.connect_to_allychain_node(&charlie)
 		.connect_to_relay_chain_nodes(vec![&alice, &bob])
 		.wrap_announce_block(|_| {
 			// Never announce any block

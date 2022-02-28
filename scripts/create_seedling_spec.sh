@@ -2,7 +2,7 @@
 
 usage() {
     echo Usage:
-    echo "$0 <srtool compressed runtime path> <name> <id> <chain type> <bootnodes> <relay chain> <parachain id> <sudo key>"
+    echo "$0 <srtool compressed runtime path> <name> <id> <chain type> <bootnodes> <relay chain> <allychain id> <sudo key>"
     exit 1
 }
 
@@ -43,14 +43,14 @@ cat seedling-spec-plain.json | jq --rawfile code seedling-hex.txt '.genesis.runt
     | jq --arg relay_chain $relay_chain '.relay_chain = $relay_chain' \
     | jq --argjson para_id $para_id '.para_id = $para_id' \
     | jq --arg sudo $sudo '.genesis.runtime.sudo.key = $sudo' \
-    | jq --argjson para_id $para_id '.genesis.runtime.parachainInfo.parachainId = $para_id' \
+    | jq --argjson para_id $para_id '.genesis.runtime.allychainInfo.allychainId = $para_id' \
     > edited-seedling-plain.json
 
 # build a raw spec
 $binary build-spec --disable-default-bootnode --chain edited-seedling-plain.json --raw > seedling-spec-raw.json
 
 # build genesis data
-$binary export-genesis-state --parachain-id=$para_id --chain seedling-spec-raw.json > seedling-head-data
+$binary export-genesis-state --allychain-id=$para_id --chain seedling-spec-raw.json > seedling-head-data
 
 # build genesis wasm
 $binary export-genesis-wasm --chain seedling-spec-raw.json > seedling-wasm

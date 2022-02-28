@@ -1,4 +1,4 @@
-// Copyright 2021 Parity Technologies (UK) Ltd.
+// Copyright 2021 Axia Technologies (UK) Ltd.
 // This file is part of Cumulus.
 
 // Cumulus is free software: you can redistribute it and/or modify
@@ -27,7 +27,7 @@ pub mod pallet {
 	pub struct Pallet<T>(_);
 
 	#[pallet::config]
-	pub trait Config: frame_system::Config + cumulus_pallet_parachain_system::Config {}
+	pub trait Config: frame_system::Config + cumulus_pallet_allychain_system::Config {}
 
 	#[pallet::hooks]
 	impl<T: Config> Hooks<BlockNumberFor<T>> for Pallet<T> {}
@@ -40,7 +40,7 @@ pub mod pallet {
 			_: OriginFor<T>,
 			custom_header: sp_std::vec::Vec<u8>,
 		) -> DispatchResult {
-			cumulus_pallet_parachain_system::Pallet::<T>::set_custom_validation_head_data(
+			cumulus_pallet_allychain_system::Pallet::<T>::set_custom_validation_head_data(
 				custom_header,
 			);
 			Ok(())

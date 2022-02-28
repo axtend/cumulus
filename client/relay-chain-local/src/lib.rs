@@ -1,4 +1,4 @@
-// Copyright 2021 Parity Technologies (UK) Ltd.
+// Copyright 2021 Axia Technologies (UK) Ltd.
 // This file is part of Cumulus.
 
 // Cumulus is free software: you can redistribute it and/or modify
@@ -20,7 +20,7 @@ use async_trait::async_trait;
 use cumulus_primitives_core::{
 	relay_chain::{
 		v1::{CommittedCandidateReceipt, OccupiedCoreAssumption, SessionIndex, ValidatorId},
-		v2::ParachainHost,
+		v2::AllychainHost,
 		Block as PBlock, BlockId, Hash as PHash, Header as PHeader, InboundHrmpMessage,
 	},
 	InboundDownwardMessage, ParaId, PersistedValidationData,
@@ -85,7 +85,7 @@ where
 		+ UsageProvider<PBlock>
 		+ Sync
 		+ Send,
-	Client::Api: ParachainHost<PBlock> + BabeApi<PBlock>,
+	Client::Api: AllychainHost<PBlock> + BabeApi<PBlock>,
 {
 	async fn retrieve_dmq_contents(
 		&self,
@@ -282,7 +282,7 @@ where
 }
 
 /// Builder for a concrete relay chain interface, created from a full node. Builds
-/// a [`RelayChainLocal`] to access relay chain data necessary for parachain operation.
+/// a [`RelayChainLocal`] to access relay chain data necessary for allychain operation.
 ///
 /// The builder takes a [`polkadot_client::Client`]
 /// that wraps a concrete instance. By using [`polkadot_client::ExecuteWithClient`]
@@ -312,13 +312,13 @@ impl ExecuteWithClient for RelayChainLocalBuilder {
 			+ 'static
 			+ Sync
 			+ Send,
-		Client::Api: ParachainHost<PBlock> + BabeApi<PBlock>,
+		Client::Api: AllychainHost<PBlock> + BabeApi<PBlock>,
 	{
 		Arc::new(RelayChainLocal::new(client, self.backend, self.sync_oracle, self.overseer_handle))
 	}
 }
 
-/// Build the Polkadot full node using the given `config`.
+/// Build the Axia full node using the given `config`.
 #[sc_tracing::logging::prefix_logs_with("Relaychain")]
 fn build_polkadot_full_node(
 	config: Configuration,
@@ -381,7 +381,7 @@ mod tests {
 	use polkadot_primitives::v1::Block as PBlock;
 	use polkadot_test_client::{
 		construct_transfer_extrinsic, BlockBuilderExt, Client, ClientBlockImportExt,
-		DefaultTestClientBuilderExt, ExecutionStrategy, InitPolkadotBlockBuilder,
+		DefaultTestClientBuilderExt, ExecutionStrategy, InitAxiaBlockBuilder,
 		TestClientBuilder, TestClientBuilderExt,
 	};
 	use sc_service::Arc;

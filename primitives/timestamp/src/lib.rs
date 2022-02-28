@@ -1,4 +1,4 @@
-// Copyright 2021 Parity Technologies (UK) Ltd.
+// Copyright 2021 Axia Technologies (UK) Ltd.
 // This file is part of Cumulus.
 
 // Cumulus is free software: you can redistribute it and/or modify
@@ -16,14 +16,14 @@
 
 //! Cumulus timestamp related primitives.
 //!
-//! Provides a [`InherentDataProvider`] that should be used in the validation phase of the parachain.
+//! Provides a [`InherentDataProvider`] that should be used in the validation phase of the allychain.
 //! It will be used to create the inherent data and that will be used to check the inherents inside
-//! the parachain block (in this case the timestamp inherent). As we don't have access to any clock
+//! the allychain block (in this case the timestamp inherent). As we don't have access to any clock
 //! from the runtime the timestamp is always passed as an inherent into the runtime. To check this
 //! inherent when validating the block, we will use the relay chain slot. As the relay chain slot
 //! is derived from a timestamp, we can easily convert it back to a timestamp by muliplying it with
 //! the slot duration. By comparing the relay chain slot derived timestamp with the timestamp we can
-//! ensure that the parachain timestamp is reasonable.
+//! ensure that the allychain timestamp is reasonable.
 
 #![cfg_attr(not(feature = "std"), no_std)]
 
@@ -36,7 +36,7 @@ pub use sp_timestamp::{InherentType, INHERENT_IDENTIFIER};
 /// The inherent data provider for the timestamp.
 ///
 /// This should be used in the runtime when checking the inherents in the validation phase of the
-/// parachain.
+/// allychain.
 pub struct InherentDataProvider {
 	relay_chain_slot: Slot,
 	relay_chain_slot_duration: Duration,
@@ -59,7 +59,7 @@ impl InherentDataProvider {
 
 	/// Provide the inherent data into the given `inherent_data`.
 	pub fn provide_inherent_data(&self, inherent_data: &mut InherentData) -> Result<(), Error> {
-		// As the parachain starts building at around `relay_chain_slot + 1` we use that slot to
+		// As the allychain starts building at around `relay_chain_slot + 1` we use that slot to
 		// calculate the timestamp.
 		let data: InherentType = ((*self.relay_chain_slot + 1) *
 			self.relay_chain_slot_duration.as_millis() as u64)
@@ -77,8 +77,8 @@ mod tests {
 	use cumulus_primitives_core::{relay_chain::Hash as PHash, PersistedValidationData};
 	use cumulus_test_client::{
 		runtime::{Block, Header, WASM_BINARY},
-		BlockData, BuildParachainBlockData, Client, ClientBlockImportExt, ExecutorResult, HeadData,
-		InitBlockBuilder, ParachainBlockData, TestClientBuilder, TestClientBuilderExt,
+		BlockData, BuildAllychainBlockData, Client, ClientBlockImportExt, ExecutorResult, HeadData,
+		InitBlockBuilder, AllychainBlockData, TestClientBuilder, TestClientBuilderExt,
 		ValidationParams,
 	};
 	use cumulus_test_relay_sproof_builder::RelayStateSproofBuilder;
@@ -89,7 +89,7 @@ mod tests {
 
 	fn call_validate_block(
 		parent_head: Header,
-		block_data: ParachainBlockData,
+		block_data: AllychainBlockData,
 		relay_parent_storage_root: PHash,
 	) -> ExecutorResult<Header> {
 		cumulus_test_client::validate_block(
@@ -109,7 +109,7 @@ mod tests {
 		at: BlockId<Block>,
 		timestamp: u64,
 		relay_chain_slot: Slot,
-	) -> (ParachainBlockData, PHash) {
+	) -> (AllychainBlockData, PHash) {
 		let sproof_builder =
 			RelayStateSproofBuilder { current_slot: relay_chain_slot, ..Default::default() };
 
@@ -130,7 +130,7 @@ mod tests {
 				sproof_builder,
 				timestamp,
 			)
-			.build_parachain_block(*parent_header.state_root());
+			.build_allychain_block(*parent_header.state_root());
 
 		(block, relay_parent_storage_root)
 	}

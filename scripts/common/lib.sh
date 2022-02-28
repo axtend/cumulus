@@ -111,7 +111,7 @@ skip_if_companion_pr() {
   echo "[+] PR title: $pr_title"
 
   if echo "$pr_title" | grep -qi '^companion'; then
-    echo "[!] PR is a companion PR. Build is already done in substrate"
+    echo "[!] PR is a companion PR. Build is already done in axlib"
     exit 0
   else
     echo "[+] PR is not a companion PR. Proceeding test"
@@ -132,7 +132,7 @@ has_runtime_changes() {
   to=$2
 
   if git diff --name-only "${from}...${to}" \
-    | grep -q -e '^runtime/polkadot' -e '^runtime/kusama' -e '^primitives/src/' -e '^runtime/common'
+    | grep -q -e '^runtime/polkadot' -e '^runtime/axctest' -e '^primitives/src/' -e '^runtime/common'
   then
     return 0
   else

@@ -1,4 +1,4 @@
-// Copyright 2019-2021 Parity Technologies (UK) Ltd.
+// Copyright 2019-2021 Axia Technologies (UK) Ltd.
 // This file is part of Cumulus.
 
 // Cumulus is free software: you can redistribute it and/or modify
@@ -86,8 +86,8 @@ pub const TEST_RUNTIME_UPGRADE_KEY: &[u8] = b"+test_runtime_upgrade_key+";
 #[cfg(not(feature = "increment-spec-version"))]
 #[sp_version::runtime_version]
 pub const VERSION: RuntimeVersion = RuntimeVersion {
-	spec_name: create_runtime_str!("cumulus-test-parachain"),
-	impl_name: create_runtime_str!("cumulus-test-parachain"),
+	spec_name: create_runtime_str!("cumulus-test-allychain"),
+	impl_name: create_runtime_str!("cumulus-test-allychain"),
 	authoring_version: 1,
 	// Read the note above.
 	spec_version: 1,
@@ -100,8 +100,8 @@ pub const VERSION: RuntimeVersion = RuntimeVersion {
 #[cfg(feature = "increment-spec-version")]
 #[sp_version::runtime_version]
 pub const VERSION: RuntimeVersion = RuntimeVersion {
-	spec_name: create_runtime_str!("cumulus-test-parachain"),
-	impl_name: create_runtime_str!("cumulus-test-parachain"),
+	spec_name: create_runtime_str!("cumulus-test-allychain"),
+	impl_name: create_runtime_str!("cumulus-test-allychain"),
 	authoring_version: 1,
 	// Read the note above.
 	spec_version: 2,
@@ -201,7 +201,7 @@ impl frame_system::Config for Runtime {
 	type BlockWeights = RuntimeBlockWeights;
 	type BlockLength = RuntimeBlockLength;
 	type SS58Prefix = SS58Prefix;
-	type OnSetCode = cumulus_pallet_parachain_system::ParachainSetCode<Self>;
+	type OnSetCode = cumulus_pallet_allychain_system::AllychainSetCode<Self>;
 	type MaxConsumers = frame_support::traits::ConstU32<16>;
 }
 
@@ -256,8 +256,8 @@ impl pallet_sudo::Config for Runtime {
 	type Event = Event;
 }
 
-impl cumulus_pallet_parachain_system::Config for Runtime {
-	type SelfParaId = ParachainId;
+impl cumulus_pallet_allychain_system::Config for Runtime {
+	type SelfParaId = AllychainId;
 	type Event = Event;
 	type OnSystemEvent = ();
 	type OutboundXcmpMessageSource = ();
@@ -268,7 +268,7 @@ impl cumulus_pallet_parachain_system::Config for Runtime {
 }
 
 parameter_types! {
-	pub storage ParachainId: cumulus_primitives_core::ParaId = 100.into();
+	pub storage AllychainId: cumulus_primitives_core::ParaId = 100.into();
 }
 
 impl test_pallet::Config for Runtime {}
@@ -280,7 +280,7 @@ construct_runtime! {
 		UncheckedExtrinsic = UncheckedExtrinsic,
 	{
 		System: frame_system,
-		ParachainSystem: cumulus_pallet_parachain_system,
+		AllychainSystem: cumulus_pallet_allychain_system,
 		Timestamp: pallet_timestamp,
 		Balances: pallet_balances,
 		Sudo: pallet_sudo,
@@ -441,17 +441,17 @@ impl_runtime_apis! {
 
 	impl cumulus_primitives_core::CollectCollationInfo<Block> for Runtime {
 		fn collect_collation_info(header: &<Block as BlockT>::Header) -> cumulus_primitives_core::CollationInfo {
-			ParachainSystem::collect_collation_info(header)
+			AllychainSystem::collect_collation_info(header)
 		}
 	}
 }
 
 struct CheckInherents;
 
-impl cumulus_pallet_parachain_system::CheckInherents<Block> for CheckInherents {
+impl cumulus_pallet_allychain_system::CheckInherents<Block> for CheckInherents {
 	fn check_inherents(
 		block: &Block,
-		relay_state_proof: &cumulus_pallet_parachain_system::RelayChainStateProof,
+		relay_state_proof: &cumulus_pallet_allychain_system::RelayChainStateProof,
 	) -> sp_inherents::CheckInherentsResult {
 		if relay_state_proof.read_slot().expect("Reads slot") == 1337u64 {
 			let mut res = sp_inherents::CheckInherentsResult::new();
@@ -474,7 +474,7 @@ impl cumulus_pallet_parachain_system::CheckInherents<Block> for CheckInherents {
 	}
 }
 
-cumulus_pallet_parachain_system::register_validate_block! {
+cumulus_pallet_allychain_system::register_validate_block! {
 	Runtime = Runtime,
 	BlockExecutor = Executive,
 	CheckInherents = CheckInherents,

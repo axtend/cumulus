@@ -1,0 +1,19 @@
+[package]
+name = "cumulus-pallet-allychain-system-proc-macro"
+version = "0.1.0"
+authors = ["Axia Technologies <admin@parity.io>"]
+edition = "2021"
+description = "Proc macros provided by the allychain-system pallet"
+
+[lib]
+proc-macro = true
+
+[dependencies]
+syn = "1.0.81"
+proc-macro2 = "1.0.36"
+quote = "1.0.9"
+proc-macro-crate = "1.1.3"
+
+[features]
+default = [ "std" ]
+std = []

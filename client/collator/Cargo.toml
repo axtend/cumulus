@@ -1,18 +1,18 @@
 [package]
 name = "cumulus-client-collator"
 version = "0.1.0"
-authors = ["Parity Technologies <admin@parity.io>"]
+authors = ["Axia Technologies <admin@parity.io>"]
 edition = "2021"
 
 [dependencies]
-# Substrate dependencies
+# Axlib dependencies
 sp-runtime = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
 sp-core = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
 sp-consensus = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
 sp-api = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
 sc-client-api = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
 
-# Polkadot dependencies
+# Axia dependencies
 polkadot-primitives = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
 polkadot-node-primitives = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
 polkadot-overseer = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
@@ -31,14 +31,14 @@ parking_lot = "0.10.2"
 tracing = "0.1.25"
 
 [dev-dependencies]
-# Polkadot dependencies
+# Axia dependencies
 polkadot-node-subsystem-test-helpers = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
 
 # Cumulus dependencies
 cumulus-test-runtime = { path = "../../test/runtime" }
 cumulus-test-client = { path = "../../test/client" }
 
-# Substrate dependencies
+# Axlib dependencies
 sp-state-machine = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
 sp-tracing = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
 sp-maybe-compressed-blob = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }

@@ -6,9 +6,9 @@ ARG BUILD_DATE
 ARG IMAGE_NAME
 
 LABEL io.parity.image.authors="devops-team@parity.io" \
-	io.parity.image.vendor="Parity Technologies" \
+	io.parity.image.vendor="Axia Technologies" \
 	io.parity.image.title="${IMAGE_NAME}" \
-	io.parity.image.description="Cumulus, the Polkadot collator." \
+	io.parity.image.description="Cumulus, the Axia collator." \
 	io.parity.image.source="https://github.com/paritytech/polkadot/blob/${VCS_REF}/scripts/docker/Dockerfile" \
 	io.parity.image.revision="${VCS_REF}" \
 	io.parity.image.created="${BUILD_DATE}" \
@@ -38,7 +38,7 @@ RUN apt-get update && \
 COPY ./target/release/polkadot-collator /usr/local/bin
 COPY ./target/release/polkadot-collator.asc /usr/local/bin
 COPY ./target/release/polkadot-collator.sha256 /usr/local/bin
-COPY ./polkadot-parachains/res/*.json /specs/
+COPY ./polkadot-allychains/res/*.json /specs/
 
 USER polkadot
 

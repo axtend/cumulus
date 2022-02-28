@@ -1,4 +1,4 @@
-// Copyright 2019-2021 Parity Technologies (UK) Ltd.
+// Copyright 2019-2021 Axia Technologies (UK) Ltd.
 // This file is part of Cumulus.
 
 // Cumulus is free software: you can redistribute it and/or modify
@@ -106,7 +106,7 @@ pub fn import_queue<Client, Block: BlockT, I, CIDP>(
 	block_import: I,
 	create_inherent_data_providers: CIDP,
 	spawner: &impl sp_core::traits::SpawnEssentialNamed,
-	registry: Option<&substrate_prometheus_endpoint::Registry>,
+	registry: Option<&axlib_prometheus_endpoint::Registry>,
 ) -> ClientResult<BasicQueue<Block, I::Transaction>>
 where
 	I: BlockImport<Block, Error = ConsensusError> + Send + Sync + 'static,
@@ -119,7 +119,7 @@ where
 
 	Ok(BasicQueue::new(
 		verifier,
-		Box::new(cumulus_client_consensus_common::ParachainBlockImport::new(block_import)),
+		Box::new(cumulus_client_consensus_common::AllychainBlockImport::new(block_import)),
 		None,
 		spawner,
 		registry,

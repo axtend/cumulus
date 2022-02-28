@@ -1,4 +1,4 @@
-// Copyright 2020-2021 Parity Technologies (UK) Ltd.
+// Copyright 2020-2021 Axia Technologies (UK) Ltd.
 // This file is part of Cumulus.
 
 // Cumulus is free software: you can redistribute it and/or modify
@@ -21,7 +21,7 @@ use cumulus_test_runtime::Block;
 use polkadot_primitives::v0::HeadData;
 use sp_runtime::traits::Block as BlockT;
 
-/// Returns the initial head data for a parachain ID.
+/// Returns the initial head data for a allychain ID.
 pub fn initial_head_data(para_id: ParaId) -> HeadData {
 	let spec = Box::new(crate::chain_spec::get_chain_spec(para_id));
 	let block: Block =

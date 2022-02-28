@@ -1,18 +1,18 @@
-// Copyright 2020-2021 Parity Technologies (UK) Ltd.
-// This file is part of Polkadot.
+// Copyright 2020-2021 Axia Technologies (UK) Ltd.
+// This file is part of Axia.
 
-// Polkadot is free software: you can redistribute it and/or modify
+// Axia is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
 
-// Polkadot is distributed in the hope that it will be useful,
+// Axia is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
 
 // You should have received a copy of the GNU General Public License
-// along with Polkadot.  If not, see <http://www.gnu.org/licenses/>.
+// along with Axia.  If not, see <http://www.gnu.org/licenses/>.
 
 use super::*;
 use async_trait::async_trait;
@@ -31,7 +31,7 @@ use polkadot_primitives::v1::{
 use polkadot_service::Handle;
 use polkadot_test_client::{
 	Client as PClient, ClientBlockImportExt, DefaultTestClientBuilderExt, FullBackend as PBackend,
-	InitPolkadotBlockBuilder, TestClientBuilder, TestClientBuilderExt,
+	InitAxiaBlockBuilder, TestClientBuilder, TestClientBuilderExt,
 };
 use sc_client_api::{Backend, BlockchainEvents};
 use sp_blockchain::HeaderBackend;
@@ -134,7 +134,7 @@ impl RelayChainInterface for DummyRelayChainInterface {
 		if self.data.lock().has_pending_availability {
 			Ok(Some(CommittedCandidateReceipt {
 				descriptor: CandidateDescriptor {
-					para_head: polkadot_parachain::primitives::HeadData(default_header().encode())
+					para_head: polkadot_allychain::primitives::HeadData(default_header().encode())
 						.hash(),
 					para_id: 0u32.into(),
 					relay_parent: PHash::random(),
@@ -313,7 +313,7 @@ async fn make_gossip_message_and_header(
 			pov_hash: PHash::random(),
 			erasure_root: PHash::random(),
 			signature: sp_core::sr25519::Signature([0u8; 64]).into(),
-			para_head: polkadot_parachain::primitives::HeadData(header.encode()).hash(),
+			para_head: polkadot_allychain::primitives::HeadData(header.encode()).hash(),
 			validation_code_hash: ValidationCodeHash::from(PHash::random()),
 		},
 	};

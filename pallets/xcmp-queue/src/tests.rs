@@ -1,4 +1,4 @@
-// Copyright (C) 2021 Parity Technologies (UK) Ltd.
+// Copyright (C) 2021 Axia Technologies (UK) Ltd.
 // SPDX-License-Identifier: Apache-2.0
 
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -95,7 +95,7 @@ fn suspend_xcm_execution_works() {
 		message_format.extend(xcm.clone());
 		let messages = vec![(ParaId::from(999), 1u32.into(), message_format.as_slice())];
 
-		// This should have executed the incoming XCM, because it came from a system parachain
+		// This should have executed the incoming XCM, because it came from a system allychain
 		XcmpQueue::handle_xcmp_messages(messages.into_iter(), Weight::max_value());
 
 		let queued_xcm = InboundXcmpMessages::<Test>::get(ParaId::from(999), 1u32);

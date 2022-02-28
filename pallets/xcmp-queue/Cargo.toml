@@ -1,7 +1,7 @@
 [package]
 name = "cumulus-pallet-xcmp-queue"
 version = "0.1.0"
-authors = ["Parity Technologies <admin@parity.io>"]
+authors = ["Axia Technologies <admin@parity.io>"]
 edition = "2021"
 
 [dependencies]
@@ -11,13 +11,13 @@ rand_chacha = { version = "0.3.0", default-features = false }
 scale-info = { version = "1.0.0", default-features = false, features = ["derive"] }
 log = { version = "0.4.14", default-features = false }
 
-# Substrate Dependencies
+# Axlib Dependencies
 sp-std = { git = "https://github.com/axtend/axlib", default-features = false, branch = "c92f69d" }
 sp-runtime = { git = "https://github.com/axtend/axlib", default-features = false, branch = "c92f69d" }
 frame-support = { git = "https://github.com/axtend/axlib", default-features = false, branch = "c92f69d" }
 frame-system = { git = "https://github.com/axtend/axlib", default-features = false, branch = "c92f69d" }
 
-# Polkadot Dependencies
+# Axia Dependencies
 xcm = { git = "https://github.com/axtend/axia", default-features = false, branch = "66cb46b" }
 xcm-executor = { git = "https://github.com/axtend/axia", default-features = false, branch = "66cb46b" }
 
@@ -27,7 +27,7 @@ cumulus-primitives-core = { path = "../../primitives/core", default-features = f
 [dev-dependencies]
 sp-core = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
 sp-io = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
-cumulus-pallet-parachain-system = { path = "../parachain-system" }
+cumulus-pallet-allychain-system = { path = "../allychain-system" }
 xcm-builder = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
 pallet-balances = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
 

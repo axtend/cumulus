@@ -1,12 +1,12 @@
-// Copyright 2020-2021 Parity Technologies (UK) Ltd.
+// Copyright 2020-2021 Axia Technologies (UK) Ltd.
 // This file is part of Cumulus.
 
-// Substrate is free software: you can redistribute it and/or modify
+// Axlib is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
 
-// Substrate is distributed in the hope that it will be useful,
+// Axlib is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
@@ -19,12 +19,12 @@
 #![cfg_attr(not(feature = "std"), no_std)]
 
 use codec::{Decode, Encode};
-use polkadot_parachain::primitives::HeadData;
+use polkadot_allychain::primitives::HeadData;
 use sp_runtime::{traits::Block as BlockT, RuntimeDebug};
 use sp_std::prelude::*;
 
 pub use polkadot_core_primitives::InboundDownwardMessage;
-pub use polkadot_parachain::primitives::{
+pub use polkadot_allychain::primitives::{
 	DmpMessageHandler, Id as ParaId, IsSystem, UpwardMessage, ValidationParams, XcmpMessageFormat,
 	XcmpMessageHandler,
 };
@@ -139,21 +139,21 @@ pub enum ServiceQuality {
 	Fast,
 }
 
-/// The parachain block that is created by a collator.
+/// The allychain block that is created by a collator.
 ///
 /// This is send as PoV (proof of validity block) to the relay-chain validators. There it will be
-/// passed to the parachain validation Wasm blob to be validated.
+/// passed to the allychain validation Wasm blob to be validated.
 #[derive(codec::Encode, codec::Decode, Clone)]
-pub struct ParachainBlockData<B: BlockT> {
-	/// The header of the parachain block.
+pub struct AllychainBlockData<B: BlockT> {
+	/// The header of the allychain block.
 	header: B::Header,
-	/// The extrinsics of the parachain block.
+	/// The extrinsics of the allychain block.
 	extrinsics: sp_std::vec::Vec<B::Extrinsic>,
 	/// The data that is required to emulate the storage accesses executed by all extrinsics.
 	storage_proof: sp_trie::CompactProof,
 }
 
-impl<B: BlockT> ParachainBlockData<B> {
+impl<B: BlockT> AllychainBlockData<B> {
 	/// Creates a new instance of `Self`.
 	pub fn new(
 		header: <B as BlockT>::Header,
@@ -201,7 +201,7 @@ impl<B: BlockT> ParachainBlockData<B> {
 pub struct CollationInfoV1 {
 	/// Messages destined to be interpreted by the Relay chain itself.
 	pub upward_messages: Vec<UpwardMessage>,
-	/// The horizontal messages sent by the parachain.
+	/// The horizontal messages sent by the allychain.
 	pub horizontal_messages: Vec<OutboundHrmpMessage>,
 	/// New validation code.
 	pub new_validation_code: Option<relay_chain::v1::ValidationCode>,
@@ -230,7 +230,7 @@ impl CollationInfoV1 {
 pub struct CollationInfo {
 	/// Messages destined to be interpreted by the Relay chain itself.
 	pub upward_messages: Vec<UpwardMessage>,
-	/// The horizontal messages sent by the parachain.
+	/// The horizontal messages sent by the allychain.
 	pub horizontal_messages: Vec<OutboundHrmpMessage>,
 	/// New validation code.
 	pub new_validation_code: Option<relay_chain::v1::ValidationCode>,

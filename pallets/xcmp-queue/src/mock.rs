@@ -1,4 +1,4 @@
-// Copyright (C) 2021 Parity Technologies (UK) Ltd.
+// Copyright (C) 2021 Axia Technologies (UK) Ltd.
 // SPDX-License-Identifier: Apache-2.0
 
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -42,7 +42,7 @@ frame_support::construct_runtime!(
 	{
 		System: frame_system::{Pallet, Call, Config, Storage, Event<T>},
 		Balances: pallet_balances::{Pallet, Call, Storage, Config<T>, Event<T>},
-		ParachainSystem: cumulus_pallet_parachain_system::{
+		AllychainSystem: cumulus_pallet_allychain_system::{
 			Pallet, Call, Config, Storage, Inherent, Event<T>, ValidateUnsigned,
 		},
 		XcmpQueue: xcmp_queue::{Pallet, Call, Storage, Event<T>},
@@ -79,7 +79,7 @@ impl frame_system::Config for Test {
 	type OnKilledAccount = ();
 	type SystemWeightInfo = ();
 	type SS58Prefix = SS58Prefix;
-	type OnSetCode = cumulus_pallet_parachain_system::ParachainSetCode<Test>;
+	type OnSetCode = cumulus_pallet_allychain_system::AllychainSetCode<Test>;
 	type MaxConsumers = frame_support::traits::ConstU32<16>;
 }
 
@@ -100,7 +100,7 @@ impl pallet_balances::Config for Test {
 	type ReserveIdentifier = [u8; 8];
 }
 
-impl cumulus_pallet_parachain_system::Config for Test {
+impl cumulus_pallet_allychain_system::Config for Test {
 	type Event = Event;
 	type OnSystemEvent = ();
 	type SelfParaId = ();
@@ -113,7 +113,7 @@ impl cumulus_pallet_parachain_system::Config for Test {
 
 parameter_types! {
 	pub const RelayChain: MultiLocation = MultiLocation::parent();
-	pub Ancestry: MultiLocation = X1(Parachain(1u32.into())).into();
+	pub Ancestry: MultiLocation = X1(Allychain(1u32.into())).into();
 	pub UnitWeightCost: Weight = 1_000_000;
 	pub const MaxInstructions: u32 = 100;
 }
@@ -158,8 +158,8 @@ pub type XcmRouter = (
 	XcmpQueue,
 );
 
-pub struct SystemParachainAsSuperuser<Origin>(PhantomData<Origin>);
-impl<Origin: OriginTrait> ConvertOrigin<Origin> for SystemParachainAsSuperuser<Origin> {
+pub struct SystemAllychainAsSuperuser<Origin>(PhantomData<Origin>);
+impl<Origin: OriginTrait> ConvertOrigin<Origin> for SystemAllychainAsSuperuser<Origin> {
 	fn convert_origin(
 		origin: impl Into<MultiLocation>,
 		kind: OriginKind,
@@ -170,7 +170,7 @@ impl<Origin: OriginTrait> ConvertOrigin<Origin> for SystemParachainAsSuperuser<O
 				origin,
 				MultiLocation {
 					parents: 1,
-					interior: X1(Parachain(id)),
+					interior: X1(Allychain(id)),
 				} if ParaId::from(id).is_system(),
 			) {
 			Ok(Origin::root())
@@ -183,11 +183,11 @@ impl<Origin: OriginTrait> ConvertOrigin<Origin> for SystemParachainAsSuperuser<O
 impl Config for Test {
 	type Event = Event;
 	type XcmExecutor = xcm_executor::XcmExecutor<XcmConfig>;
-	type ChannelInfo = ParachainSystem;
+	type ChannelInfo = AllychainSystem;
 	type VersionWrapper = ();
 	type ExecuteOverweightOrigin = EnsureRoot<AccountId>;
 	type ControllerOrigin = EnsureRoot<AccountId>;
-	type ControllerOriginConverter = SystemParachainAsSuperuser<Origin>;
+	type ControllerOriginConverter = SystemAllychainAsSuperuser<Origin>;
 }
 
 pub fn new_test_ext() -> sp_io::TestExternalities {

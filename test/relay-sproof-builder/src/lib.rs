@@ -1,4 +1,4 @@
-// Copyright 2021 Parity Technologies (UK) Ltd.
+// Copyright 2021 Axia Technologies (UK) Ltd.
 // This file is part of Cumulus.
 
 // Cumulus is free software: you can redistribute it and/or modify
@@ -25,7 +25,7 @@ use sp_std::collections::btree_map::BTreeMap;
 /// Builds a sproof (portmanteau of 'spoof' and 'proof') of the relay chain state.
 #[derive(Clone)]
 pub struct RelayStateSproofBuilder {
-	/// The para id of the current parachain.
+	/// The para id of the current allychain.
 	///
 	/// This doesn't get into the storage proof produced by the builder, however, it is used for
 	/// generation of the storage image and by auxilary methods.
