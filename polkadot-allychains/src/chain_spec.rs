@@ -192,7 +192,7 @@ fn testnet_genesis(
 		aura: betanet_allychain_runtime::AuraConfig { authorities: initial_authorities },
 		aura_ext: Default::default(),
 		allychain_system: Default::default(),
-		polkadot_xcm: betanet_allychain_runtime::AxiaXcmConfig {
+		axia_xcm: betanet_allychain_runtime::AxiaXcmConfig {
 			safe_xcm_version: Some(SAFE_XCM_VERSION),
 		},
 	}
@@ -460,7 +460,7 @@ fn statemint_genesis(
 		aura: Default::default(),
 		aura_ext: Default::default(),
 		allychain_system: Default::default(),
-		polkadot_xcm: statemint_runtime::AxiaXcmConfig {
+		axia_xcm: statemint_runtime::AxiaXcmConfig {
 			safe_xcm_version: Some(SAFE_XCM_VERSION),
 		},
 	}
@@ -647,7 +647,7 @@ fn statemine_genesis(
 		aura: Default::default(),
 		aura_ext: Default::default(),
 		allychain_system: Default::default(),
-		polkadot_xcm: statemine_runtime::AxiaXcmConfig {
+		axia_xcm: statemine_runtime::AxiaXcmConfig {
 			safe_xcm_version: Some(SAFE_XCM_VERSION),
 		},
 	}
@@ -829,7 +829,7 @@ fn westmint_genesis(
 		aura: Default::default(),
 		aura_ext: Default::default(),
 		allychain_system: Default::default(),
-		polkadot_xcm: westmint_runtime::AxiaXcmConfig {
+		axia_xcm: westmint_runtime::AxiaXcmConfig {
 			safe_xcm_version: Some(SAFE_XCM_VERSION),
 		},
 	}
@@ -1080,7 +1080,7 @@ fn canvas_axctest_genesis(
 		aura: Default::default(),
 		aura_ext: Default::default(),
 		allychain_system: Default::default(),
-		polkadot_xcm: canvas_axctest_runtime::AxiaXcmConfig {
+		axia_xcm: canvas_axctest_runtime::AxiaXcmConfig {
 			safe_xcm_version: Some(SAFE_XCM_VERSION),
 		},
 		sudo: canvas_axctest_runtime::SudoConfig {

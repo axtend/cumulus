@@ -192,7 +192,7 @@ fn testnet_genesis(
 		aura: rococo_parachain_runtime::AuraConfig { authorities: initial_authorities },
 		aura_ext: Default::default(),
 		parachain_system: Default::default(),
-		polkadot_xcm: rococo_parachain_runtime::PolkadotXcmConfig {
+		axia_xcm: rococo_parachain_runtime::PolkadotXcmConfig {
 			safe_xcm_version: Some(SAFE_XCM_VERSION),
 		},
 	}
@@ -460,7 +460,7 @@ fn statemint_genesis(
 		aura: Default::default(),
 		aura_ext: Default::default(),
 		parachain_system: Default::default(),
-		polkadot_xcm: statemint_runtime::PolkadotXcmConfig {
+		axia_xcm: statemint_runtime::PolkadotXcmConfig {
 			safe_xcm_version: Some(SAFE_XCM_VERSION),
 		},
 	}
@@ -647,7 +647,7 @@ fn statemine_genesis(
 		aura: Default::default(),
 		aura_ext: Default::default(),
 		parachain_system: Default::default(),
-		polkadot_xcm: statemine_runtime::PolkadotXcmConfig {
+		axia_xcm: statemine_runtime::PolkadotXcmConfig {
 			safe_xcm_version: Some(SAFE_XCM_VERSION),
 		},
 	}
@@ -829,7 +829,7 @@ fn westmint_genesis(
 		aura: Default::default(),
 		aura_ext: Default::default(),
 		parachain_system: Default::default(),
-		polkadot_xcm: westmint_runtime::PolkadotXcmConfig {
+		axia_xcm: westmint_runtime::PolkadotXcmConfig {
 			safe_xcm_version: Some(SAFE_XCM_VERSION),
 		},
 	}
@@ -1080,7 +1080,7 @@ fn canvas_kusama_genesis(
 		aura: Default::default(),
 		aura_ext: Default::default(),
 		parachain_system: Default::default(),
-		polkadot_xcm: canvas_kusama_runtime::PolkadotXcmConfig {
+		axia_xcm: canvas_kusama_runtime::PolkadotXcmConfig {
 			safe_xcm_version: Some(SAFE_XCM_VERSION),
 		},
 		sudo: canvas_kusama_runtime::SudoConfig {

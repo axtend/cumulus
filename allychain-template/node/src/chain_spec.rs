@@ -214,7 +214,7 @@ fn testnet_genesis(
 		aura: Default::default(),
 		aura_ext: Default::default(),
 		allychain_system: Default::default(),
-		polkadot_xcm: allychain_template_runtime::AxiaXcmConfig {
+		axia_xcm: allychain_template_runtime::AxiaXcmConfig {
 			safe_xcm_version: Some(SAFE_XCM_VERSION),
 		},
 	}
