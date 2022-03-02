@@ -14,7 +14,7 @@ sp-runtime = { git = "https://github.com/axtend/axlib", default-features = false
 sp-std = { git = "https://github.com/axtend/axlib", default-features = false, branch = "c92f69d" }
 
 # Axia dependencies
-polkadot-primitives = { git = "https://github.com/axtend/axia", default-features = false, branch = "66cb46b" }
+axia-primitives = { git = "https://github.com/axtend/axia", default-features = false, branch = "66cb46b" }
 
 # Cumulus dependencies
 cumulus-primitives-core = { path = "../../primitives/core", default-features = false }

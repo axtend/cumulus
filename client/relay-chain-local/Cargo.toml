@@ -5,8 +5,8 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-polkadot-client = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
-polkadot-service = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
+axia-client = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
+axia-service = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
 
 cumulus-primitives-core = { path = "../../primitives/core" }
 cumulus-relay-chain-interface = { path = "../relay-chain-interface" }
@@ -36,8 +36,8 @@ futures-timer = "3.0.2"
 cumulus-test-service = { path = "../../test/service" }
 
 # Axia deps
-polkadot-test-client = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
-polkadot-primitives = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
+axia-test-client = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
+axia-primitives = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
 
 # axlib deps
 sp-keyring = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }

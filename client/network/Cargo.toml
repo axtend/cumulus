@@ -16,9 +16,9 @@ sc-client-api = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
 sp-state-machine = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
 
 # Axia deps
-polkadot-primitives = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
-polkadot-node-primitives = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
-polkadot-allychain = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
+axia-primitives = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
+axia-node-primitives = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
+axia-allychain = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
 
 cumulus-relay-chain-interface = { path = "../relay-chain-interface" }
 
@@ -40,9 +40,9 @@ cumulus-primitives-core = { path = "../../primitives/core" }
 cumulus-relay-chain-local = { path = "../relay-chain-local" }
 
 # Axia deps
-polkadot-test-client = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
-polkadot-client = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
-polkadot-service = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
+axia-test-client = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
+axia-client = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
+axia-service = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
 
 # axlib deps
 sc-client-api = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }

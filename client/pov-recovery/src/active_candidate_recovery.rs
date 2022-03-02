@@ -16,9 +16,9 @@
 
 use sp_runtime::traits::Block as BlockT;
 
-use polkadot_node_primitives::AvailableData;
-use polkadot_node_subsystem::messages::AvailabilityRecoveryMessage;
-use polkadot_overseer::Handle as OverseerHandle;
+use axia_node_primitives::AvailableData;
+use axia_node_subsystem::messages::AvailabilityRecoveryMessage;
+use axia_overseer::Handle as OverseerHandle;
 
 use futures::{channel::oneshot, stream::FuturesUnordered, Future, FutureExt, StreamExt};
 

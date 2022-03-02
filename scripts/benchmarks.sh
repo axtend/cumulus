@@ -3,9 +3,9 @@
 steps=50
 repeat=20
 
-statemineOutput=./polkadot-allychains/statemine/src/weights
-statemintOutput=./polkadot-allychains/statemint/src/weights
-westmintOutput=./polkadot-allychains/westmint/src/weights
+statemineOutput=./axia-allychains/statemine/src/weights
+statemintOutput=./axia-allychains/statemint/src/weights
+westmintOutput=./axia-allychains/westmint/src/weights
 
 statemineChain=statemine-dev
 statemintChain=statemint-dev
@@ -26,7 +26,7 @@ pallets=(
 
 for p in ${pallets[@]}
 do
-	./target/production/polkadot-collator benchmark \
+	./target/production/axia-collator benchmark \
 		--chain=$statemineChain \
 		--execution=wasm \
 		--wasm-execution=compiled \
@@ -38,7 +38,7 @@ do
         --header=./file_header.txt \
 		--output=$statemineOutput
 
-	./target/production/polkadot-collator benchmark \
+	./target/production/axia-collator benchmark \
 		--chain=$statemintChain \
 		--execution=wasm \
 		--wasm-execution=compiled \
@@ -50,7 +50,7 @@ do
         --header=./file_header.txt \
 		--output=$statemintOutput
 
-	./target/production/polkadot-collator benchmark \
+	./target/production/axia-collator benchmark \
 		--chain=$westmintChain \
 		--execution=wasm \
 		--wasm-execution=compiled \

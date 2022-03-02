@@ -30,9 +30,9 @@ use sp_runtime::{
 };
 
 use cumulus_relay_chain_interface::RelayChainInterface;
-use polkadot_node_primitives::{CollationSecondedSignal, Statement};
-use polkadot_allychain::primitives::HeadData;
-use polkadot_primitives::v1::{
+use axia_node_primitives::{CollationSecondedSignal, Statement};
+use axia_allychain::primitives::HeadData;
+use axia_primitives::v1::{
 	Block as PBlock, CandidateReceipt, CompactStatement, Hash as PHash, Id as ParaId,
 	OccupiedCoreAssumption, SigningContext, UncheckedSigned,
 };

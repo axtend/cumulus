@@ -12,9 +12,9 @@ sp-trie = { git = "https://github.com/axtend/axlib", default-features = false, b
 frame-support = { git = "https://github.com/axtend/axlib", default-features = false, branch = "c92f69d" }
 
 # Axia dependencies
-polkadot-allychain = { git = "https://github.com/axtend/axia", default-features = false, branch = "66cb46b" }
-polkadot-primitives = { git = "https://github.com/axtend/axia", default-features = false, branch = "66cb46b" }
-polkadot-core-primitives = { git = "https://github.com/axtend/axia", default-features = false, branch = "66cb46b" }
+axia-allychain = { git = "https://github.com/axtend/axia", default-features = false, branch = "66cb46b" }
+axia-primitives = { git = "https://github.com/axtend/axia", default-features = false, branch = "66cb46b" }
+axia-core-primitives = { git = "https://github.com/axtend/axia", default-features = false, branch = "66cb46b" }
 xcm = { git = "https://github.com/axtend/axia", default-features = false, branch = "66cb46b" }
 
 cumulus-primitives-core = { path = "../core", default-features = false }
@@ -28,9 +28,9 @@ default = [ "std" ]
 std = [
 	"codec/std",
 	"sp-std/std",
-	"polkadot-primitives/std",
-	"polkadot-allychain/std",
-	"polkadot-core-primitives/std",
+	"axia-primitives/std",
+	"axia-allychain/std",
+	"axia-core-primitives/std",
 	"sp-runtime/std",
 	"sp-trie/std",
 	"frame-support/std",

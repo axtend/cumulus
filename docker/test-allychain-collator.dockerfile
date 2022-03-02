@@ -1,10 +1,10 @@
-# This file is sourced from https://github.com/paritytech/polkadot/blob/master/scripts/dockerfiles/polkadot/polkadot_builder.Dockerfile
+# This file is sourced from https://github.com/paritytech/axia/blob/master/scripts/dockerfiles/axia/axia_builder.Dockerfile
 FROM docker.io/paritytech/ci-linux:production as builder
 
 WORKDIR /cumulus
 COPY . /cumulus
 
-RUN cargo build --release --locked -p polkadot-collator
+RUN cargo build --release --locked -p axia-collator
 
 # the collator stage is normally built once, cached, and then ignored, but can
 # be specified with the --target build flag. This adds some extra tooling to the
@@ -21,9 +21,9 @@ RUN apt-get update && apt-get install jq curl bash -y && \
     curl -sL https://deb.nodesource.com/setup_12.x | bash - && \
     apt-get install -y nodejs && \
     npm install --global yarn && \
-    yarn global add @polkadot/api-cli@0.10.0-beta.14
+    yarn global add @axia/api-cli@0.10.0-beta.14
 COPY --from=builder \
-    /paritytech/cumulus/target/release/polkadot-collator /usr/bin
+    /paritytech/cumulus/target/release/axia-collator /usr/bin
 COPY ./docker/scripts/inject_bootnodes.sh /usr/bin
 CMD ["/usr/bin/inject_bootnodes.sh"]
 COPY ./docker/scripts/healthcheck.sh /usr/bin/
@@ -41,6 +41,6 @@ CMD ["cp", "-v", "/var/opt/cumulus_test_allychain_runtime.compact.wasm", "/runti
 
 FROM debian:buster-slim
 COPY --from=builder \
-    /paritytech/cumulus/target/release/polkadot-collator /usr/bin
+    /paritytech/cumulus/target/release/axia-collator /usr/bin
 
-CMD ["/usr/bin/polkadot-collator"]
+CMD ["/usr/bin/axia-collator"]

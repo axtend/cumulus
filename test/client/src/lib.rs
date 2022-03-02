@@ -32,7 +32,7 @@ use sp_runtime::{generic::Era, BuildStorage, SaturatedConversion};
 
 pub use block_builder::*;
 pub use cumulus_test_runtime as runtime;
-pub use polkadot_allychain::primitives::{BlockData, HeadData, ValidationParams, ValidationResult};
+pub use axia_allychain::primitives::{BlockData, HeadData, ValidationParams, ValidationResult};
 pub use sc_executor::error::Result as ExecutorResult;
 pub use axlib_test_client::*;
 

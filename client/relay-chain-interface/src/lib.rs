@@ -23,7 +23,7 @@ use cumulus_primitives_core::{
 	},
 	InboundDownwardMessage, ParaId, PersistedValidationData,
 };
-use polkadot_overseer::Handle as OverseerHandle;
+use axia_overseer::Handle as OverseerHandle;
 use sc_client_api::{blockchain::BlockStatus, StorageProof};
 
 use futures::Stream;

@@ -13,10 +13,10 @@ sp-api = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
 sc-client-api = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
 
 # Axia dependencies
-polkadot-primitives = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
-polkadot-node-primitives = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
-polkadot-overseer = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
-polkadot-node-subsystem = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
+axia-primitives = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
+axia-node-primitives = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
+axia-overseer = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
+axia-node-subsystem = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
 
 # Cumulus dependencies
 cumulus-client-network = { path = "../network" }
@@ -32,7 +32,7 @@ tracing = "0.1.25"
 
 [dev-dependencies]
 # Axia dependencies
-polkadot-node-subsystem-test-helpers = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
+axia-node-subsystem-test-helpers = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
 
 # Cumulus dependencies
 cumulus-test-runtime = { path = "../../test/runtime" }

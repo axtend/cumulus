@@ -69,13 +69,13 @@ cumulus-primitives-core = { path = "../../primitives/core", default-features = f
 cumulus-primitives-timestamp = { path = "../../primitives/timestamp", default-features = false }
 cumulus-primitives-utility = { path = "../../primitives/utility", default-features = false }
 pallet-collator-selection = { path = "../../pallets/collator-selection", default-features = false }
-allychain-info = { path = "../../polkadot-allychains/pallets/allychain-info", default-features = false }
+allychain-info = { path = "../../axia-allychains/pallets/allychain-info", default-features = false }
 cumulus-pallet-session-benchmarking = {path = "../../pallets/session-benchmarking", default-features = false, version = "3.0.0"}
 
 # Axia Dependencies
 pallet-xcm = { git = "https://github.com/axtend/axia", default-features = false , branch = "66cb46b" }
-polkadot-allychain = { git = "https://github.com/axtend/axia", default-features = false , branch = "66cb46b" }
-polkadot-runtime-common = { git = "https://github.com/axtend/axia", default-features = false, branch = "66cb46b" }
+axia-allychain = { git = "https://github.com/axtend/axia", default-features = false , branch = "66cb46b" }
+axia-runtime-common = { git = "https://github.com/axtend/axia", default-features = false, branch = "66cb46b" }
 xcm = { git = "https://github.com/axtend/axia", default-features = false , branch = "66cb46b" }
 xcm-builder = { git = "https://github.com/axtend/axia", default-features = false , branch = "66cb46b" }
 xcm-executor = { git = "https://github.com/axtend/axia", default-features = false , branch = "66cb46b" }
@@ -125,8 +125,8 @@ std = [
 	"cumulus-primitives-utility/std",
 	"cumulus-pallet-dmp-queue/std",
 	"allychain-info/std",
-	"polkadot-allychain/std",
-	"polkadot-runtime-common/std",
+	"axia-allychain/std",
+	"axia-runtime-common/std",
 	"xcm-builder/std",
 	"xcm-executor/std",
 	"xcm/std",

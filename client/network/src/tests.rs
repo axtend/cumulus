@@ -21,15 +21,15 @@ use cumulus_relay_chain_local::{check_block_in_chain, BlockCheckStatus};
 use cumulus_test_service::runtime::{Block, Hash, Header};
 use futures::{executor::block_on, poll, task::Poll, FutureExt, Stream, StreamExt};
 use parking_lot::Mutex;
-use polkadot_node_primitives::{SignedFullStatement, Statement};
-use polkadot_primitives::v1::{
+use axia_node_primitives::{SignedFullStatement, Statement};
+use axia_primitives::v1::{
 	CandidateCommitments, CandidateDescriptor, CollatorPair, CommittedCandidateReceipt,
 	Hash as PHash, HeadData, Header as PHeader, Id as ParaId, InboundDownwardMessage,
 	InboundHrmpMessage, OccupiedCoreAssumption, PersistedValidationData, SessionIndex,
 	SigningContext, ValidationCodeHash, ValidatorId,
 };
-use polkadot_service::Handle;
-use polkadot_test_client::{
+use axia_service::Handle;
+use axia_test_client::{
 	Client as PClient, ClientBlockImportExt, DefaultTestClientBuilderExt, FullBackend as PBackend,
 	InitAxiaBlockBuilder, TestClientBuilder, TestClientBuilderExt,
 };
@@ -134,7 +134,7 @@ impl RelayChainInterface for DummyRelayChainInterface {
 		if self.data.lock().has_pending_availability {
 			Ok(Some(CommittedCandidateReceipt {
 				descriptor: CandidateDescriptor {
-					para_head: polkadot_allychain::primitives::HeadData(default_header().encode())
+					para_head: axia_allychain::primitives::HeadData(default_header().encode())
 						.hash(),
 					para_id: 0u32.into(),
 					relay_parent: PHash::random(),
@@ -196,7 +196,7 @@ impl RelayChainInterface for DummyRelayChainInterface {
 
 	async fn get_storage_by_key(
 		&self,
-		_: &polkadot_service::BlockId,
+		_: &axia_service::BlockId,
 		_: &[u8],
 	) -> RelayChainResult<Option<StorageValue>> {
 		unimplemented!("Not needed for test")
@@ -204,7 +204,7 @@ impl RelayChainInterface for DummyRelayChainInterface {
 
 	async fn prove_read(
 		&self,
-		_: &polkadot_service::BlockId,
+		_: &axia_service::BlockId,
 		_: &Vec<Vec<u8>>,
 	) -> RelayChainResult<sc_client_api::StorageProof> {
 		unimplemented!("Not needed for test")
@@ -313,7 +313,7 @@ async fn make_gossip_message_and_header(
 			pov_hash: PHash::random(),
 			erasure_root: PHash::random(),
 			signature: sp_core::sr25519::Signature([0u8; 64]).into(),
-			para_head: polkadot_allychain::primitives::HeadData(header.encode()).hash(),
+			para_head: axia_allychain::primitives::HeadData(header.encode()).hash(),
 			validation_code_hash: ValidationCodeHash::from(PHash::random()),
 		},
 	};
@@ -542,7 +542,7 @@ fn relay_parent_not_imported_when_block_announce_is_processed() {
 		let (mut validator, api) = make_validator_and_api();
 
 		let mut client = api.relay_client.clone();
-		let block = client.init_polkadot_block_builder().build().expect("Build new block").block;
+		let block = client.init_axia_block_builder().build().expect("Build new block").block;
 
 		let (signal, header) = make_gossip_message_and_header(api, block.hash(), 0).await;
 

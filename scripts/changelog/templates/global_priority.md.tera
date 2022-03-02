@@ -2,15 +2,15 @@
 ## Global Priority
 
 {%- set cumulus_prio = 0 -%}
-{%- set polkadot_prio = 0 -%}
+{%- set axia_prio = 0 -%}
 {%- set axlib_prio = 0 -%}
 
 {# We fetch the various priorities #}
 {%- if cumulus.meta.C -%}
     {%- set cumulus_prio = cumulus.meta.C.max -%}
 {%- endif -%}
-{%- if polkadot.meta.C -%}
-    {%- set polkadot_prio = polkadot.meta.C.max -%}
+{%- if axia.meta.C -%}
+    {%- set axia_prio = axia.meta.C.max -%}
 {%- endif -%}
 {%- if axlib.meta.C -%}
     {%- set axlib_prio = axlib.meta.C.max -%}
@@ -18,8 +18,8 @@
 
 {# We compute the global priority #}
 {%- set global_prio = cumulus_prio -%}
-{%- if polkadot_prio > global_prio -%}
-    {% set global_prio = polkadot_prio -%}
+{%- if axia_prio > global_prio -%}
+    {% set global_prio = axia_prio -%}
 {%- endif -%}
 {%- if axlib_prio > global_prio -%}
     {%- set global_prio = axlib_prio -%}
@@ -30,7 +30,7 @@
 
 <!--
 - Cumulus: {{ cumulus_prio }}
-- Axia: {{ polkadot_prio }}
+- Axia: {{ axia_prio }}
 - Axlib: {{ axlib_prio }}
 -->
 

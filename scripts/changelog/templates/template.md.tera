@@ -9,7 +9,7 @@ This release contains the changes from `{{ env.REF1 }}` to `{{ env.REF2 }}`.
 {% endif -%}
 
 {%- set changes = cumulus.changes | concat(with=axlib.changes) -%}
-{%- set changes = changes | concat(with=polkadot.changes) -%}
+{%- set changes = changes | concat(with=axia.changes) -%}
 {%- include "debug.md.tera" -%}
 
 {%- set CML = "[C]" -%}

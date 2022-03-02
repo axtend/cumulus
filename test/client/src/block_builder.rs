@@ -19,7 +19,7 @@ use cumulus_primitives_core::{AllychainBlockData, PersistedValidationData};
 use cumulus_primitives_allychain_inherent::{AllychainInherentData, INHERENT_IDENTIFIER};
 use cumulus_test_relay_sproof_builder::RelayStateSproofBuilder;
 use cumulus_test_runtime::{Block, GetLastTimestamp, Hash, Header};
-use polkadot_primitives::v1::{BlockNumber as PBlockNumber, Hash as PHash};
+use axia_primitives::v1::{BlockNumber as PBlockNumber, Hash as PHash};
 use sc_block_builder::{BlockBuilder, BlockBuilderProvider};
 use sp_api::ProvideRuntimeApi;
 use sp_runtime::{

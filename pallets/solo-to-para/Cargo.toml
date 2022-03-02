@@ -18,7 +18,7 @@ cumulus-pallet-allychain-system = { default-features = false, path = "../allycha
 cumulus-primitives-core = { path = "../../primitives/core", default-features = false }
 
 # Axia dependecies
-polkadot-primitives = { git = "https://github.com/axtend/axia", default-features = false, branch = "66cb46b" }
+axia-primitives = { git = "https://github.com/axtend/axia", default-features = false, branch = "66cb46b" }
 
 # Other Dependencies
 codec = { package = "parity-scale-codec", version = "2.3.0", default-features = false, features = ["derive"]}
@@ -32,7 +32,7 @@ std = [
 	"pallet-sudo/std",
 	"cumulus-pallet-allychain-system/std",
 	"cumulus-primitives-core/std",
-	"polkadot-primitives/std",
+	"axia-primitives/std",
 	"frame-support/std",
 	"sp-runtime/std",
 	"sp-std/std",

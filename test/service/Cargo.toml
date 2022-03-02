@@ -39,9 +39,9 @@ sp-tracing = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
 axlib-test-client = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
 
 # Axia
-polkadot-primitives = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
-polkadot-service = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
-polkadot-test-service = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
+axia-primitives = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
+axia-service = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
+axia-test-service = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
 
 # Cumulus
 cumulus-client-consensus-relay-chain = { path = "../../client/consensus/relay-chain" }
@@ -65,7 +65,7 @@ jsonrpc-core = "18.0.0"
 futures = "0.3.5"
 
 # Axia dependencies
-polkadot-test-service = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
+axia-test-service = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
 
 # Axlib dependencies
 sc-cli = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }

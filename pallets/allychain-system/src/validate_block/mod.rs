@@ -16,7 +16,7 @@
 
 //! A module that enables a runtime to work as allychain.
 
-use polkadot_allychain::primitives::ValidationParams;
+use axia_allychain::primitives::ValidationParams;
 
 #[cfg(not(feature = "std"))]
 #[doc(hidden)]
@@ -26,7 +26,7 @@ mod tests;
 
 #[cfg(not(feature = "std"))]
 #[doc(hidden)]
-pub use polkadot_allychain;
+pub use axia_allychain;
 #[cfg(not(feature = "std"))]
 #[doc(hidden)]
 pub use sp_runtime::traits::GetRuntimeBlockType;

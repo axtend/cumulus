@@ -1,7 +1,7 @@
 const fs = require("fs");
 const { exit } = require("process");
-const { WsProvider, ApiPromise } = require("@polkadot/api");
-const util = require("@polkadot/util");
+const { WsProvider, ApiPromise } = require("@axia/api");
+const util = require("@axia/util");
 
 // Utility script constructing a SCALE-encoded setStorage call from a key-value json array of
 // genesis values by connecting to a running instance of the chain. (It is not required to be

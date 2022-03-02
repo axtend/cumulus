@@ -8,7 +8,7 @@ use frame_support::{
 	weights::{IdentityFee, Weight},
 };
 use pallet_xcm::XcmPassthrough;
-use polkadot_allychain::primitives::Sibling;
+use axia_allychain::primitives::Sibling;
 use xcm::latest::prelude::*;
 use xcm_builder::{
 	AccountId32Aliases, AllowTopLevelPaidExecutionFrom, AllowUnpaidExecutionFrom, CurrencyAdapter,

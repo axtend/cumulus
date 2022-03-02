@@ -115,7 +115,7 @@ pub fn register_validate_block(input: proc_macro::TokenStream) -> proc_macro::To
 
 				#[no_mangle]
 				unsafe fn validate_block(arguments: *const u8, arguments_len: usize) -> u64 {
-					let params = #crate_::validate_block::polkadot_allychain::load_params(
+					let params = #crate_::validate_block::axia_allychain::load_params(
 						arguments,
 						arguments_len,
 					);
@@ -127,7 +127,7 @@ pub fn register_validate_block(input: proc_macro::TokenStream) -> proc_macro::To
 						#check_inherents,
 					>(params);
 
-					#crate_::validate_block::polkadot_allychain::write_result(&res)
+					#crate_::validate_block::axia_allychain::write_result(&res)
 				}
 			}
 		}

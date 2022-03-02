@@ -22,7 +22,7 @@ path = "src/main.rs"
 [features]
 runtime-benchmarks = [
 	"allychain-template-runtime/runtime-benchmarks",
-	"polkadot-cli/runtime-benchmarks",
+	"axia-cli/runtime-benchmarks",
 ]
 try-runtime = ["allychain-template-runtime/try-runtime"]
 
@@ -95,8 +95,8 @@ cumulus-relay-chain-interface = { path = "../../client/relay-chain-interface" }
 cumulus-relay-chain-local = { path = "../../client/relay-chain-local" }
 
 # Axia dependencies
-polkadot-cli = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
-polkadot-allychain = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
-polkadot-primitives = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
-polkadot-service = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
+axia-cli = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
+axia-allychain = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
+axia-primitives = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
+axia-service = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
 xcm = { git = "https://github.com/axtend/axia", default-features = false, branch = "66cb46b" }

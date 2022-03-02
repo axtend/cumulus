@@ -14,8 +14,8 @@ for each release of Axia. It is generated directly to the upstream
 at each release branch using the
 [Axlib Template Generator](https://github.com/paritytech/axlib-template-generator/).
 
-👉 Learn more about allychains [here](https://wiki.polkadot.network/docs/learn-allychains), and
-parathreads [here](https://wiki.polkadot.network/docs/learn-parathreads).
+👉 Learn more about allychains [here](https://wiki.axia.network/docs/learn-allychains), and
+parathreads [here](https://wiki.axia.network/docs/learn-parathreads).
 
 
 🧙 Learn about how to use this template and run your own allychain testnet for it in the

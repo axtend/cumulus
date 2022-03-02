@@ -27,7 +27,7 @@ chain_spec_summary() {
 }
 
 check_collator() {
-    BIN=target/release/polkadot-collator
+    BIN=target/release/axia-collator
     if [ -f $BIN ]; then
         echo "✅ Collator binary found:"
         $BIN --version
@@ -41,7 +41,7 @@ set -e
 
 chain_id=$1
 rpc_endpoint=$2
-work_dir="polkadot-allychains/res"
+work_dir="axia-allychains/res"
 chain_spec=$work_dir/$chain_id.json
 chain_values=$work_dir/${chain_id}_values.json
 chain_values_scale=$work_dir/${chain_id}_values.scale
@@ -51,14 +51,14 @@ chain_spec_summary
 
 if [ "$rpc_endpoint" == "" ]; then
     # default connecting to the official rpc
-    rpc_endpoint='wss://statemint-shell.polkadot.io'
+    rpc_endpoint='wss://statemint-shell.axia.io'
 fi
 
 if [[ "$rpc_endpoint" =~ "localhost" ]]; then
     check_collator
     echo -e "Make sure you have a collator running with the correct version at $rpc_endpoint."
     echo -e "If you don't, NOW is the time to start it with:"
-    echo -e "target/release/polkadot-collator --chain polkadot-allychains/res/shell-statemint.json --tmp\n"
+    echo -e "target/release/axia-collator --chain axia-allychains/res/shell-statemint.json --tmp\n"
     read -p "You can abort with CTRL+C if this is not correct, otherwise press ENTER "
 fi
 
@@ -77,4 +77,4 @@ popd
 node scripts/scale_encode_genesis $chain_values $chain_values_scale $rpc_endpoint
 
 
-ls -al polkadot-allychains/res/${chain_id}_value*.*
+ls -al axia-allychains/res/${chain_id}_value*.*

@@ -12,7 +12,7 @@ cumulus-primitives-allychain-inherent = { path = "../../primitives/allychain-inh
 cumulus-pallet-allychain-system-proc-macro = { path = "proc-macro", default-features = false }
 
 # Axia dependencies
-polkadot-allychain = { git = "https://github.com/axtend/axia", default-features = false, features = [ "wasm-api" ], branch = "66cb46b" }
+axia-allychain = { git = "https://github.com/axtend/axia", default-features = false, features = [ "wasm-api" ], branch = "66cb46b" }
 xcm = { git = "https://github.com/axtend/axia", default-features = false, branch = "66cb46b" }
 
 # Axlib dependencies

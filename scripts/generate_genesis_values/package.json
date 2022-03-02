@@ -9,6 +9,6 @@
   "author": "Axia Technologies <admin@parity.io>",
   "license": "ISC",
   "dependencies": {
-    "@polkadot/util-crypto": "^6.5.1"
+    "@axia/util-crypto": "^6.5.1"
   }
 }

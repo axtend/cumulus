@@ -31,8 +31,8 @@ cumulus-primitives-core = { path = "../../primitives/core" }
 cumulus-primitives-allychain-inherent = { path = "../../primitives/allychain-inherent" }
 
 # Axia deps
-polkadot-primitives = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
-polkadot-allychain = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
+axia-primitives = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
+axia-allychain = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
 
 # Other deps
 codec = { package = "parity-scale-codec", version = "2.3.0", default-features = false, features = [ "derive" ] }

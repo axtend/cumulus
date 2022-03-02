@@ -11,7 +11,7 @@ seed=$2
 wasm=$3
 genesis=$4
 allychain_id=$5
-types=$6 # we can remove this once allychain types are included in polkadot-js-api
+types=$6 # we can remove this once allychain types are included in axia-js-api
 
 [ -z "$url" ] && usage
 [ -z "$seed" ] && usage
@@ -28,9 +28,9 @@ if ! [ -r "$types" ]; then
     exit 1
 fi
 
-if ! which polkadot-js-api &> /dev/null; then
-    echo 'command `polkadot-js-api` not in PATH'
-    echo "npm install -g @polkadot/api-cli@beta"
+if ! which axia-js-api &> /dev/null; then
+    echo 'command `axia-js-api` not in PATH'
+    echo "npm install -g @axia/api-cli@beta"
     exit 1
 fi
 
@@ -40,7 +40,7 @@ test -f "$seed" && seed="$(cat "$seed")"
 
 wasm=$(cat $wasm)
 
-polkadot-js-api \
+axia-js-api \
     --ws "${url?}" \
     --sudo \
     --seed "${seed?}" \

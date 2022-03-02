@@ -28,8 +28,8 @@ use cumulus_primitives_core::{
 use cumulus_relay_chain_interface::{RelayChainError, RelayChainInterface, RelayChainResult};
 use futures::{FutureExt, Stream, StreamExt};
 use parking_lot::Mutex;
-use polkadot_client::{ClientHandle, ExecuteWithClient, FullBackend};
-use polkadot_service::{
+use axia_client::{ClientHandle, ExecuteWithClient, FullBackend};
+use axia_service::{
 	AuxStore, BabeApi, CollatorPair, Configuration, Handle, NewFull, Role, TaskManager,
 };
 use sc_client_api::{
@@ -284,11 +284,11 @@ where
 /// Builder for a concrete relay chain interface, created from a full node. Builds
 /// a [`RelayChainLocal`] to access relay chain data necessary for allychain operation.
 ///
-/// The builder takes a [`polkadot_client::Client`]
-/// that wraps a concrete instance. By using [`polkadot_client::ExecuteWithClient`]
+/// The builder takes a [`axia_client::Client`]
+/// that wraps a concrete instance. By using [`axia_client::ExecuteWithClient`]
 /// the builder gets access to this concrete instance and instantiates a [`RelayChainLocal`] with it.
 struct RelayChainLocalBuilder {
-	polkadot_client: polkadot_client::Client,
+	axia_client: axia_client::Client,
 	backend: Arc<FullBackend>,
 	sync_oracle: Arc<Mutex<Box<dyn SyncOracle + Send + Sync>>>,
 	overseer_handle: Option<Handle>,
@@ -296,7 +296,7 @@ struct RelayChainLocalBuilder {
 
 impl RelayChainLocalBuilder {
 	pub fn build(self) -> Arc<dyn RelayChainInterface> {
-		self.polkadot_client.clone().execute_with(self)
+		self.axia_client.clone().execute_with(self)
 	}
 }
 
@@ -320,25 +320,25 @@ impl ExecuteWithClient for RelayChainLocalBuilder {
 
 /// Build the Axia full node using the given `config`.
 #[sc_tracing::logging::prefix_logs_with("Relaychain")]
-fn build_polkadot_full_node(
+fn build_axia_full_node(
 	config: Configuration,
 	telemetry_worker_handle: Option<TelemetryWorkerHandle>,
-) -> Result<(NewFull<polkadot_client::Client>, CollatorPair), polkadot_service::Error> {
+) -> Result<(NewFull<axia_client::Client>, CollatorPair), axia_service::Error> {
 	let is_light = matches!(config.role, Role::Light);
 	if is_light {
-		Err(polkadot_service::Error::Sub("Light client not supported.".into()))
+		Err(axia_service::Error::Sub("Light client not supported.".into()))
 	} else {
 		let collator_key = CollatorPair::generate().0;
 
-		let relay_chain_full_node = polkadot_service::build_full(
+		let relay_chain_full_node = axia_service::build_full(
 			config,
-			polkadot_service::IsCollator::Yes(collator_key.clone()),
+			axia_service::IsCollator::Yes(collator_key.clone()),
 			None,
 			true,
 			None,
 			telemetry_worker_handle,
 			false,
-			polkadot_service::RealOverseerGen,
+			axia_service::RealOverseerGen,
 		)?;
 
 		Ok((relay_chain_full_node, collator_key))
@@ -347,14 +347,14 @@ fn build_polkadot_full_node(
 
 /// Builds a relay chain interface by constructing a full relay chain node
 pub fn build_relay_chain_interface(
-	polkadot_config: Configuration,
+	axia_config: Configuration,
 	telemetry_worker_handle: Option<TelemetryWorkerHandle>,
 	task_manager: &mut TaskManager,
-) -> Result<(Arc<(dyn RelayChainInterface + 'static)>, CollatorPair), polkadot_service::Error> {
+) -> Result<(Arc<(dyn RelayChainInterface + 'static)>, CollatorPair), axia_service::Error> {
 	let (full_node, collator_key) =
-		build_polkadot_full_node(polkadot_config, telemetry_worker_handle).map_err(
+		build_axia_full_node(axia_config, telemetry_worker_handle).map_err(
 			|e| match e {
-				polkadot_service::Error::Sub(x) => x,
+				axia_service::Error::Sub(x) => x,
 				s => format!("{}", s).into(),
 			},
 		)?;
@@ -362,7 +362,7 @@ pub fn build_relay_chain_interface(
 	let sync_oracle: Box<dyn SyncOracle + Send + Sync> = Box::new(full_node.network.clone());
 	let sync_oracle = Arc::new(Mutex::new(sync_oracle));
 	let relay_chain_interface_builder = RelayChainLocalBuilder {
-		polkadot_client: full_node.client.clone(),
+		axia_client: full_node.client.clone(),
 		backend: full_node.backend.clone(),
 		sync_oracle,
 		overseer_handle: full_node.overseer_handle.clone(),
@@ -378,8 +378,8 @@ mod tests {
 
 	use super::*;
 
-	use polkadot_primitives::v1::Block as PBlock;
-	use polkadot_test_client::{
+	use axia_primitives::v1::Block as PBlock;
+	use axia_test_client::{
 		construct_transfer_extrinsic, BlockBuilderExt, Client, ClientBlockImportExt,
 		DefaultTestClientBuilderExt, ExecutionStrategy, InitAxiaBlockBuilder,
 		TestClientBuilder, TestClientBuilderExt,
@@ -408,7 +408,7 @@ mod tests {
 		let backend = builder.backend();
 		let client = Arc::new(builder.build());
 
-		let block_builder = client.init_polkadot_block_builder();
+		let block_builder = client.init_axia_block_builder();
 		let block = block_builder.build().expect("Finalizes the block").block;
 		let dummy_network: Box<dyn SyncOracle + Sync + Send> = Box::new(DummyNetwork {});
 
@@ -480,9 +480,9 @@ mod tests {
 			sp_keyring::Sr25519Keyring::Bob,
 			1000,
 		);
-		let mut block_builder = client.init_polkadot_block_builder();
+		let mut block_builder = client.init_axia_block_builder();
 		// Push an extrinsic to get a different block hash.
-		block_builder.push_polkadot_extrinsic(ext).expect("Push extrinsic");
+		block_builder.push_axia_extrinsic(ext).expect("Push extrinsic");
 		let block2 = block_builder.build().expect("Build second block").block;
 		let hash2 = block2.hash();
 

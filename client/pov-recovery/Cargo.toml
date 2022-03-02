@@ -15,10 +15,10 @@ sc-client-api = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
 sc-consensus = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
 
 # Axia deps
-polkadot-primitives = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
-polkadot-node-primitives = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
-polkadot-overseer = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
-polkadot-node-subsystem = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
+axia-primitives = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
+axia-node-primitives = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
+axia-overseer = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
+axia-node-subsystem = { git = "https://github.com/axtend/axia", branch = "66cb46b" }
 
 # Cumulus deps
 cumulus-primitives-core = { path = "../../primitives/core" }

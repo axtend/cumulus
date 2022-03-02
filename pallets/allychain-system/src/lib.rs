@@ -44,7 +44,7 @@ use frame_support::{
 	weights::{Pays, PostDispatchInfo, Weight},
 };
 use frame_system::{ensure_none, ensure_root};
-use polkadot_allychain::primitives::RelayChainBlockNumber;
+use axia_allychain::primitives::RelayChainBlockNumber;
 use sp_runtime::{
 	traits::{Block as BlockT, BlockNumberProvider, Hash},
 	transaction_validity::{
@@ -694,7 +694,7 @@ impl<T: Config> GetChannelInfo for Pallet<T> {
 
 impl<T: Config> Pallet<T> {
 	/// Validate the given [`PersistedValidationData`] against the
-	/// [`ValidationParams`](polkadot_allychain::primitives::ValidationParams).
+	/// [`ValidationParams`](axia_allychain::primitives::ValidationParams).
 	///
 	/// This check will only be executed when the block is currently being executed in the context
 	/// of [`validate_block`]. If this is being executed in the context of block building or block
@@ -862,10 +862,10 @@ impl<T: Config> Pallet<T> {
 		weight_used
 	}
 
-	/// Put a new validation function into a particular location where polkadot
-	/// monitors for updates. Calling this function notifies polkadot that a new
+	/// Put a new validation function into a particular location where axia
+	/// monitors for updates. Calling this function notifies axia that a new
 	/// upgrade has been scheduled.
-	fn notify_polkadot_of_pending_upgrade(code: &[u8]) {
+	fn notify_axia_of_pending_upgrade(code: &[u8]) {
 		NewValidationCode::<T>::put(code);
 		<DidSetValidationCode<T>>::put(true);
 	}
@@ -895,13 +895,13 @@ impl<T: Config> Pallet<T> {
 		ensure!(validation_function.len() <= cfg.max_code_size as usize, Error::<T>::TooBig);
 
 		// When a code upgrade is scheduled, it has to be applied in two
-		// places, synchronized: both polkadot and the individual allychain
+		// places, synchronized: both axia and the individual allychain
 		// have to upgrade on the same relay chain block.
 		//
-		// `notify_polkadot_of_pending_upgrade` notifies polkadot; the `PendingValidationCode`
+		// `notify_axia_of_pending_upgrade` notifies axia; the `PendingValidationCode`
 		// storage keeps track locally for the allychain upgrade, which will
 		// be applied later: when the relay-chain communicates go-ahead signal to us.
-		Self::notify_polkadot_of_pending_upgrade(&validation_function);
+		Self::notify_axia_of_pending_upgrade(&validation_function);
 		<PendingValidationCode<T>>::put(validation_function);
 		Self::deposit_event(Event::ValidationFunctionStored);
 

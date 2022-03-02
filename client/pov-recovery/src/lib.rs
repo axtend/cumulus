@@ -49,9 +49,9 @@ use sp_runtime::{
 	traits::{Block as BlockT, Header as HeaderT, NumberFor},
 };
 
-use polkadot_node_primitives::{AvailableData, POV_BOMB_LIMIT};
-use polkadot_overseer::Handle as OverseerHandle;
-use polkadot_primitives::v1::{
+use axia_node_primitives::{AvailableData, POV_BOMB_LIMIT};
+use axia_overseer::Handle as OverseerHandle;
+use axia_primitives::v1::{
 	CandidateReceipt, CommittedCandidateReceipt, Id as ParaId, SessionIndex,
 };
 
