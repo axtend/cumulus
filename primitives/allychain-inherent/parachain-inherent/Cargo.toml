@@ -1,7 +1,7 @@
 [package]
 name = "cumulus-primitives-allychain-inherent"
 version = "0.1.0"
-authors = ["Parity Technologies <admin@parity.io>"]
+authors = ["Axia Technologies <admin@axia.io>"]
 edition = "2021"
 
 [dependencies]

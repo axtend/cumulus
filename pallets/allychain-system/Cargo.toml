@@ -1,7 +1,7 @@
 [package]
 name = "cumulus-pallet-allychain-system"
 version = "0.1.0"
-authors = ["Axia Technologies <admin@parity.io>"]
+authors = ["Axia Technologies <admin@axia.io>"]
 edition = "2021"
 description = "Base pallet for cumulus-based allychains"
 

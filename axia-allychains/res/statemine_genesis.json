@@ -10,7 +10,7 @@
   "properties": {
     "ss58Format": 2,
     "tokenDecimals": 12,
-    "tokenSymbol": "KSM"
+    "tokenSymbol": "AXCT"
   },
   "relay_chain": "axctest",
   "para_id": 1000,

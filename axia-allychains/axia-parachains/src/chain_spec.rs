@@ -1,4 +1,4 @@
-// Copyright 2019-2021 Parity Technologies (UK) Ltd.
+// Copyright 2019-2021 Axia Technologies (UK) Ltd.
 // This file is part of Cumulus.
 
 // Cumulus is free software: you can redistribute it and/or modify
@@ -469,7 +469,7 @@ fn statemint_genesis(
 pub fn statemine_development_config() -> StatemineChainSpec {
 	let mut properties = sc_chain_spec::Properties::new();
 	properties.insert("ss58Format".into(), 2.into());
-	properties.insert("tokenSymbol".into(), "KSM".into());
+	properties.insert("tokenSymbol".into(), "AXCT".into());
 	properties.insert("tokenDecimals".into(), 12.into());
 
 	StatemineChainSpec::from_genesis(
@@ -506,7 +506,7 @@ pub fn statemine_development_config() -> StatemineChainSpec {
 pub fn statemine_local_config() -> StatemineChainSpec {
 	let mut properties = sc_chain_spec::Properties::new();
 	properties.insert("ss58Format".into(), 2.into());
-	properties.insert("tokenSymbol".into(), "KSM".into());
+	properties.insert("tokenSymbol".into(), "AXCT".into());
 	properties.insert("tokenDecimals".into(), 12.into());
 
 	StatemineChainSpec::from_genesis(
@@ -557,7 +557,7 @@ pub fn statemine_local_config() -> StatemineChainSpec {
 pub fn statemine_config() -> StatemineChainSpec {
 	let mut properties = sc_chain_spec::Properties::new();
 	properties.insert("ss58Format".into(), 2.into());
-	properties.insert("tokenSymbol".into(), "KSM".into());
+	properties.insert("tokenSymbol".into(), "AXCT".into());
 	properties.insert("tokenDecimals".into(), 12.into());
 
 	StatemineChainSpec::from_genesis(

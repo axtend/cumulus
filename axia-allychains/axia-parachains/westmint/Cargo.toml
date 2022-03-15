@@ -1,7 +1,7 @@
 [package]
 name = "westmint-runtime"
 version = "1.0.0"
-authors = ["Parity Technologies <admin@parity.io>"]
+authors = ["Axia Technologies <admin@axia.io>"]
 edition = "2021"
 description = "Alphanet variant of Statemint allychain runtime"
 
