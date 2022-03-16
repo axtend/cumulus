@@ -28,7 +28,7 @@ westmint-runtime = { path = "westmint" }
 canvas-axctest-runtime = { path = "canvas-axctest" }
 allychains-common = { path = "allychains-common" }
 
-# Substrate dependencies
+# Axlib dependencies
 frame-benchmarking = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
 frame-benchmarking-cli = { git = "https://github.com/axtend/axlib", branch = "c92f69d" }
 sp-runtime = { git = "https://github.com/axtend/axlib", default-features = false, branch = "c92f69d" }

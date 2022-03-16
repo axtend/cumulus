@@ -14,7 +14,7 @@ serde = { version = "1.0.132", optional = true, features = ["derive"] }
 scale-info = { version = "1.0.0", default-features = false, features = ["derive"] }
 smallvec = "1.6.1"
 
-# Substrate dependencies
+# Axlib dependencies
 sp-std = { git = "https://github.com/axtend/axlib", default-features = false, branch = "c92f69d" }
 sp-api = { git = "https://github.com/axtend/axlib", default-features = false, branch = "c92f69d" }
 sp-io = { git = "https://github.com/axtend/axlib", default-features = false, branch = "c92f69d" }

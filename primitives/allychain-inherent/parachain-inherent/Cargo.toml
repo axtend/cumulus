@@ -5,7 +5,7 @@ authors = ["Axia Technologies <admin@axia.io>"]
 edition = "2021"
 
 [dependencies]
-# Substrate dependencies
+# Axlib dependencies
 sp-inherents = { git = "https://github.com/axtend/axlib", default-features = false, branch = "c92f69d" }
 sp-core = { git = "https://github.com/axtend/axlib", default-features = false, branch = "c92f69d" }
 sc-client-api = { git = "https://github.com/axtend/axlib", optional = true , branch = "c92f69d" }
