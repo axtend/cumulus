@@ -2,12 +2,7 @@
   "name": "Canvas on Betanet",
   "id": "canvas-betanet",
   "chainType": "Live",
-  "bootNodes": [
-    "/ip4/34.90.191.237/tcp/30333/p2p/12D3KooWKg3Rpxcr9oJ8n6khoxpGKWztCZydtUZk2cojHqnfLrpj",
-    "/ip4/35.204.68.28/tcp/30333/p2p/12D3KooWPEXYrz8tHU3nDtPoPw4V7ou5dzMEWSTuUj7vaWiYVAVh",
-    "/ip4/34.90.139.15/tcp/30333/p2p/12D3KooWEVU8AFNary4nP4qEnEcwJaRuy59Wefekzdu9pKbnVEhk",
-    "/ip4/35.204.99.97/tcp/30333/p2p/12D3KooWP6pV3ZmcXzGDjv8ZMgA6nZxfAKDxSz4VNiLx6vVCQgJX"
-  ],
+  "bootNodes": [],
   "telemetryEndpoints": null,
   "protocolId": null,
   "properties": {

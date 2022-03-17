@@ -2,11 +2,7 @@
   "name": "Statemine",
   "id": "statemine",
   "chainType": "Live",
-  "bootNodes": [
-    "/ip4/34.77.217.152/tcp/30334/p2p/12D3KooWF63ZxKtZMYs5247WQA8fcTiGJb2osXykc31cmjwNLwem",
-    "/ip4/34.77.119.77/tcp/30334/p2p/12D3KooWGowDwrXAh9cxkbPHPHuwMouFHrMcJhCVXcFS2B8vc5Ry",
-    "/ip4/35.188.228.71/tcp/30334/p2p/12D3KooWNqL6XroD35tDAs3DKG7do8dbKvdnACrR7Z3dcKesNcG4"
-  ],
+  "bootNodes": [],
   "telemetryEndpoints": null,
   "protocolId": null,
   "properties": {
