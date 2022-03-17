@@ -1,0 +1,47 @@
+[package]
+name = "cumulus-pallet-xcmp-queue"
+version = "0.1.0"
+authors = ["Parity Technologies <admin@parity.io>"]
+edition = "2021"
+
+[dependencies]
+# Other dependencies
+codec = { package = "parity-scale-codec", version = "2.3.0", features = [ "derive" ], default-features = false }
+rand_chacha = { version = "0.3.0", default-features = false }
+scale-info = { version = "1.0.0", default-features = false, features = ["derive"] }
+log = { version = "0.4.14", default-features = false }
+
+# Substrate Dependencies
+sp-std = { git = "https://github.com/purestake/substrate", default-features = false, branch = "moonbeam-axia-v0.9.17" }
+sp-runtime = { git = "https://github.com/purestake/substrate", default-features = false, branch = "moonbeam-axia-v0.9.17" }
+frame-support = { git = "https://github.com/purestake/substrate", default-features = false, branch = "moonbeam-axia-v0.9.17" }
+frame-system = { git = "https://github.com/purestake/substrate", default-features = false, branch = "moonbeam-axia-v0.9.17" }
+
+# Axia Dependencies
+xcm = { git = "https://github.com/purestake/axia", default-features = false, branch = "moonbeam-axia-v0.9.17" }
+xcm-executor = { git = "https://github.com/purestake/axia", default-features = false, branch = "moonbeam-axia-v0.9.17" }
+
+# Cumulus Dependencies
+cumulus-primitives-core = { path = "../../primitives/core", default-features = false }
+
+[dev-dependencies]
+sp-core = { git = "https://github.com/purestake/substrate", branch = "moonbeam-axia-v0.9.17" }
+sp-io = { git = "https://github.com/purestake/substrate", branch = "moonbeam-axia-v0.9.17" }
+cumulus-pallet-allychain-system = { path = "../allychain-system" }
+xcm-builder = { git = "https://github.com/purestake/axia", branch = "moonbeam-axia-v0.9.17" }
+pallet-balances = { git = "https://github.com/purestake/substrate", branch = "moonbeam-axia-v0.9.17" }
+
+[features]
+default = [ "std" ]
+std = [
+	"codec/std",
+	"log/std",
+	"scale-info/std",
+	"sp-std/std",
+	"sp-runtime/std",
+	"frame-support/std",
+	"frame-system/std",
+	"cumulus-primitives-core/std",
+	"xcm/std",
+	"xcm-executor/std",
+]

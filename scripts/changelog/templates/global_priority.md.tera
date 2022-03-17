@@ -1,0 +1,37 @@
+{% import "high_priority.md.tera" as m_p -%}
+## Global Priority
+
+{%- set cumulus_prio = 0 -%}
+{%- set axia_prio = 0 -%}
+{%- set substrate_prio = 0 -%}
+
+{# We fetch the various priorities #}
+{%- if cumulus.meta.C -%}
+    {%- set cumulus_prio = cumulus.meta.C.max -%}
+{%- endif -%}
+{%- if axia.meta.C -%}
+    {%- set axia_prio = axia.meta.C.max -%}
+{%- endif -%}
+{%- if substrate.meta.C -%}
+    {%- set substrate_prio = substrate.meta.C.max -%}
+{%- endif -%}
+
+{# We compute the global priority #}
+{%- set global_prio = cumulus_prio -%}
+{%- if axia_prio > global_prio -%}
+    {% set global_prio = axia_prio -%}
+{%- endif -%}
+{%- if substrate_prio > global_prio -%}
+    {%- set global_prio = substrate_prio -%}
+{%- endif -%}
+
+{# We show the result #}
+{{ m_p::high_priority(p=global_prio, changes=changes) }}
+
+<!--
+- Cumulus: {{ cumulus_prio }}
+- Axia: {{ axia_prio }}
+- Substrate: {{ substrate_prio }}
+-->
+
+{# todo: show high prio list here #}
