@@ -6,4 +6,4 @@ edition = "2021"
 build = "build.rs"
 
 [dependencies]
-axia-node-core-pvf = { git = "https://github.com/purestake/axia", branch = "moonbeam-axia-v0.9.17" }
+axia-node-core-pvf = { git = "https://github.com/axtend/axia", branch = "axia" }

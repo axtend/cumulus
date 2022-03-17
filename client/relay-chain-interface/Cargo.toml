@@ -5,17 +5,17 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-axia-overseer = { git = "https://github.com/purestake/axia", branch = "moonbeam-axia-v0.9.17" }
+axia-overseer = { git = "https://github.com/axtend/axia", branch = "axia" }
 
 cumulus-primitives-core = { path = "../../primitives/core" }
 
-sp-core = { git = "https://github.com/purestake/substrate", branch = "moonbeam-axia-v0.9.17" }
-sp-api = { git = "https://github.com/purestake/substrate", branch = "moonbeam-axia-v0.9.17" }
-sp-runtime = { git = "https://github.com/purestake/substrate", branch = "moonbeam-axia-v0.9.17" }
-sp-blockchain = { git = "https://github.com/purestake/substrate", branch = "moonbeam-axia-v0.9.17" }
-sp-state-machine = { git = "https://github.com/purestake/substrate", branch = "moonbeam-axia-v0.9.17" }
-sc-client-api = { git = "https://github.com/purestake/substrate", branch = "moonbeam-axia-v0.9.17" }
-sc-service = { git = "https://github.com/purestake/substrate", branch = "moonbeam-axia-v0.9.17" }
+sp-core = { git = "https://github.com/axtend/axlib", branch = "axlib" }
+sp-api = { git = "https://github.com/axtend/axlib", branch = "axlib" }
+sp-runtime = { git = "https://github.com/axtend/axlib", branch = "axlib" }
+sp-blockchain = { git = "https://github.com/axtend/axlib", branch = "axlib" }
+sp-state-machine = { git = "https://github.com/axtend/axlib", branch = "axlib" }
+sc-client-api = { git = "https://github.com/axtend/axlib", branch = "axlib" }
+sc-service = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 
 futures = "0.3.1"
 parking_lot = "0.12.0"

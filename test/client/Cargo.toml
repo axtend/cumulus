@@ -5,23 +5,23 @@ authors = ["Parity Technologies <admin@parity.io>"]
 edition = "2021"
 
 [dependencies]
-sc-service = { git = "https://github.com/purestake/substrate", branch = "moonbeam-axia-v0.9.17" }
-sc-consensus = { git = "https://github.com/purestake/substrate", branch = "moonbeam-axia-v0.9.17" }
-sc-block-builder = { git = "https://github.com/purestake/substrate", branch = "moonbeam-axia-v0.9.17" }
-sc-executor = { git = "https://github.com/purestake/substrate", branch = "moonbeam-axia-v0.9.17" }
-sc-executor-common = { git = "https://github.com/purestake/substrate", branch = "moonbeam-axia-v0.9.17" }
-substrate-test-client = { git = "https://github.com/purestake/substrate", branch = "moonbeam-axia-v0.9.17" }
-sp-runtime = { git = "https://github.com/purestake/substrate", branch = "moonbeam-axia-v0.9.17" }
-sp-core = { git = "https://github.com/purestake/substrate", branch = "moonbeam-axia-v0.9.17" }
-sp-api = { git = "https://github.com/purestake/substrate", branch = "moonbeam-axia-v0.9.17" }
-sp-keyring = { git = "https://github.com/purestake/substrate", branch = "moonbeam-axia-v0.9.17" }
-sp-blockchain = { git = "https://github.com/purestake/substrate", branch = "moonbeam-axia-v0.9.17" }
-sp-inherents = { git = "https://github.com/purestake/substrate", branch = "moonbeam-axia-v0.9.17" }
-sp-io = { git = "https://github.com/purestake/substrate", branch = "moonbeam-axia-v0.9.17" }
-sp-timestamp = { git = "https://github.com/purestake/substrate", branch = "moonbeam-axia-v0.9.17" }
-frame-system = { git = "https://github.com/purestake/substrate", branch = "moonbeam-axia-v0.9.17" }
-pallet-transaction-payment = { git = "https://github.com/purestake/substrate", branch = "moonbeam-axia-v0.9.17" }
-pallet-balances = { git = "https://github.com/purestake/substrate", branch = "moonbeam-axia-v0.9.17" }
+sc-service = { git = "https://github.com/axtend/axlib", branch = "axlib" }
+sc-consensus = { git = "https://github.com/axtend/axlib", branch = "axlib" }
+sc-block-builder = { git = "https://github.com/axtend/axlib", branch = "axlib" }
+sc-executor = { git = "https://github.com/axtend/axlib", branch = "axlib" }
+sc-executor-common = { git = "https://github.com/axtend/axlib", branch = "axlib" }
+substrate-test-client = { git = "https://github.com/axtend/axlib", branch = "axlib" }
+sp-runtime = { git = "https://github.com/axtend/axlib", branch = "axlib" }
+sp-core = { git = "https://github.com/axtend/axlib", branch = "axlib" }
+sp-api = { git = "https://github.com/axtend/axlib", branch = "axlib" }
+sp-keyring = { git = "https://github.com/axtend/axlib", branch = "axlib" }
+sp-blockchain = { git = "https://github.com/axtend/axlib", branch = "axlib" }
+sp-inherents = { git = "https://github.com/axtend/axlib", branch = "axlib" }
+sp-io = { git = "https://github.com/axtend/axlib", branch = "axlib" }
+sp-timestamp = { git = "https://github.com/axtend/axlib", branch = "axlib" }
+frame-system = { git = "https://github.com/axtend/axlib", branch = "axlib" }
+pallet-transaction-payment = { git = "https://github.com/axtend/axlib", branch = "axlib" }
+pallet-balances = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 
 # Cumulus deps
 cumulus-test-runtime = { path = "../runtime" }
@@ -31,8 +31,8 @@ cumulus-primitives-core = { path = "../../primitives/core" }
 cumulus-primitives-allychain-inherent = { path = "../../primitives/allychain-inherent" }
 
 # Axia deps
-axia-primitives = { git = "https://github.com/purestake/axia", branch = "moonbeam-axia-v0.9.17" }
-axia-allychain = { git = "https://github.com/purestake/axia", branch = "moonbeam-axia-v0.9.17" }
+axia-primitives = { git = "https://github.com/axtend/axia", branch = "axia" }
+axia-allychain = { git = "https://github.com/axtend/axia", branch = "axia" }
 
 # Other deps
 codec = { package = "parity-scale-codec", version = "2.3.0", default-features = false, features = [ "derive" ] }

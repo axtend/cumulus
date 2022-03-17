@@ -7,18 +7,18 @@ edition = "2021"
 
 [dependencies]
 # Substrate deps
-sp-blockchain = { git = "https://github.com/purestake/substrate", branch = "moonbeam-axia-v0.9.17" }
-sp-consensus = { git = "https://github.com/purestake/substrate", branch = "moonbeam-axia-v0.9.17" }
-sp-runtime = { git = "https://github.com/purestake/substrate", branch = "moonbeam-axia-v0.9.17" }
-sp-api = { git = "https://github.com/purestake/substrate", branch = "moonbeam-axia-v0.9.17" }
-sp-core = { git = "https://github.com/purestake/substrate", branch = "moonbeam-axia-v0.9.17" }
-sc-client-api = { git = "https://github.com/purestake/substrate", branch = "moonbeam-axia-v0.9.17" }
-sp-state-machine = { git = "https://github.com/purestake/substrate", branch = "moonbeam-axia-v0.9.17" }
+sp-blockchain = { git = "https://github.com/axtend/axlib", branch = "axlib" }
+sp-consensus = { git = "https://github.com/axtend/axlib", branch = "axlib" }
+sp-runtime = { git = "https://github.com/axtend/axlib", branch = "axlib" }
+sp-api = { git = "https://github.com/axtend/axlib", branch = "axlib" }
+sp-core = { git = "https://github.com/axtend/axlib", branch = "axlib" }
+sc-client-api = { git = "https://github.com/axtend/axlib", branch = "axlib" }
+sp-state-machine = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 
 # Axia deps
-axia-primitives = { git = "https://github.com/purestake/axia", branch = "moonbeam-axia-v0.9.17" }
-axia-node-primitives = { git = "https://github.com/purestake/axia", branch = "moonbeam-axia-v0.9.17" }
-axia-allychain = { git = "https://github.com/purestake/axia", branch = "moonbeam-axia-v0.9.17" }
+axia-primitives = { git = "https://github.com/axtend/axia", branch = "axia" }
+axia-node-primitives = { git = "https://github.com/axtend/axia", branch = "axia" }
+axia-allychain = { git = "https://github.com/axtend/axia", branch = "axia" }
 
 cumulus-relay-chain-interface = { path = "../relay-chain-interface" }
 
@@ -40,16 +40,16 @@ cumulus-primitives-core = { path = "../../primitives/core" }
 cumulus-relay-chain-local = { path = "../relay-chain-local" }
 
 # Axia deps
-axia-test-client = { git = "https://github.com/purestake/axia", branch = "moonbeam-axia-v0.9.17" }
-axia-client = { git = "https://github.com/purestake/axia", branch = "moonbeam-axia-v0.9.17" }
-axia-service = { git = "https://github.com/purestake/axia", branch = "moonbeam-axia-v0.9.17" }
+axia-test-client = { git = "https://github.com/axtend/axia", branch = "axia" }
+axia-client = { git = "https://github.com/axtend/axia", branch = "axia" }
+axia-service = { git = "https://github.com/axtend/axia", branch = "axia" }
 
 # substrate deps
-sc-client-api = { git = "https://github.com/purestake/substrate", branch = "moonbeam-axia-v0.9.17" }
-sp-core = { git = "https://github.com/purestake/substrate", branch = "moonbeam-axia-v0.9.17" }
-sp-keyring = { git = "https://github.com/purestake/substrate", branch = "moonbeam-axia-v0.9.17" }
-sp-keystore = { git = "https://github.com/purestake/substrate", branch = "moonbeam-axia-v0.9.17" }
-sp-consensus = { git = "https://github.com/purestake/substrate", branch = "moonbeam-axia-v0.9.17" }
-sc-cli = { git = "https://github.com/purestake/substrate", branch = "moonbeam-axia-v0.9.17" }
-substrate-test-utils = { git = "https://github.com/purestake/substrate", branch = "moonbeam-axia-v0.9.17" }
-sc-service = { git = "https://github.com/purestake/substrate", branch = "moonbeam-axia-v0.9.17" }
+sc-client-api = { git = "https://github.com/axtend/axlib", branch = "axlib" }
+sp-core = { git = "https://github.com/axtend/axlib", branch = "axlib" }
+sp-keyring = { git = "https://github.com/axtend/axlib", branch = "axlib" }
+sp-keystore = { git = "https://github.com/axtend/axlib", branch = "axlib" }
+sp-consensus = { git = "https://github.com/axtend/axlib", branch = "axlib" }
+sc-cli = { git = "https://github.com/axtend/axlib", branch = "axlib" }
+substrate-test-utils = { git = "https://github.com/axtend/axlib", branch = "axlib" }
+sc-service = { git = "https://github.com/axtend/axlib", branch = "axlib" }

@@ -12,7 +12,7 @@ edition = "2021"
 targets = ["x86_64-unknown-linux-gnu"]
 
 [build-dependencies]
-substrate-wasm-builder = { git = "https://github.com/purestake/substrate", branch = "moonbeam-axia-v0.9.17" }
+substrate-wasm-builder = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 
 [dependencies]
 hex-literal = { version = "0.3.4", optional = true }
@@ -27,37 +27,37 @@ pallet-template = { path = "../pallets/template", default-features = false }
 
 # Substrate Dependencies
 ## Substrate Primitive Dependencies
-sp-api = { git = "https://github.com/purestake/substrate", default-features = false , branch = "moonbeam-axia-v0.9.17" }
-sp-block-builder = { git = "https://github.com/purestake/substrate", default-features = false , branch = "moonbeam-axia-v0.9.17" }
-sp-consensus-aura = { git = "https://github.com/purestake/substrate", default-features = false , branch = "moonbeam-axia-v0.9.17" }
-sp-core = { git = "https://github.com/purestake/substrate", default-features = false , branch = "moonbeam-axia-v0.9.17" }
-sp-inherents = { git = "https://github.com/purestake/substrate", default-features = false , branch = "moonbeam-axia-v0.9.17" }
-sp-io = { git = "https://github.com/purestake/substrate", default-features = false , branch = "moonbeam-axia-v0.9.17" }
-sp-offchain = { git = "https://github.com/purestake/substrate", default-features = false , branch = "moonbeam-axia-v0.9.17" }
-sp-runtime = { git = "https://github.com/purestake/substrate", default-features = false , branch = "moonbeam-axia-v0.9.17" }
-sp-session = { git = "https://github.com/purestake/substrate", default-features = false , branch = "moonbeam-axia-v0.9.17" }
-sp-std = { git = "https://github.com/purestake/substrate", default-features = false , branch = "moonbeam-axia-v0.9.17" }
-sp-transaction-pool = { git = "https://github.com/purestake/substrate", default-features = false , branch = "moonbeam-axia-v0.9.17" }
-sp-version = { git = "https://github.com/purestake/substrate", default-features = false , branch = "moonbeam-axia-v0.9.17" }
+sp-api = { git = "https://github.com/axtend/axlib", default-features = false , branch = "axlib" }
+sp-block-builder = { git = "https://github.com/axtend/axlib", default-features = false , branch = "axlib" }
+sp-consensus-aura = { git = "https://github.com/axtend/axlib", default-features = false , branch = "axlib" }
+sp-core = { git = "https://github.com/axtend/axlib", default-features = false , branch = "axlib" }
+sp-inherents = { git = "https://github.com/axtend/axlib", default-features = false , branch = "axlib" }
+sp-io = { git = "https://github.com/axtend/axlib", default-features = false , branch = "axlib" }
+sp-offchain = { git = "https://github.com/axtend/axlib", default-features = false , branch = "axlib" }
+sp-runtime = { git = "https://github.com/axtend/axlib", default-features = false , branch = "axlib" }
+sp-session = { git = "https://github.com/axtend/axlib", default-features = false , branch = "axlib" }
+sp-std = { git = "https://github.com/axtend/axlib", default-features = false , branch = "axlib" }
+sp-transaction-pool = { git = "https://github.com/axtend/axlib", default-features = false , branch = "axlib" }
+sp-version = { git = "https://github.com/axtend/axlib", default-features = false , branch = "axlib" }
 
 ## Substrate FRAME Dependencies
-frame-benchmarking = { git = "https://github.com/purestake/substrate", default-features = false, optional = true , branch = "moonbeam-axia-v0.9.17" }
-frame-try-runtime = { git = "https://github.com/purestake/substrate", default-features = false, optional = true , branch = "moonbeam-axia-v0.9.17" }
-frame-executive = { git = "https://github.com/purestake/substrate", default-features = false , branch = "moonbeam-axia-v0.9.17" }
-frame-support = { git = "https://github.com/purestake/substrate", default-features = false, branch = "moonbeam-axia-v0.9.17" }
-frame-system = { git = "https://github.com/purestake/substrate", default-features = false , branch = "moonbeam-axia-v0.9.17" }
-frame-system-benchmarking = { git = "https://github.com/purestake/substrate", default-features = false, optional = true , branch = "moonbeam-axia-v0.9.17" }
-frame-system-rpc-runtime-api = { git = "https://github.com/purestake/substrate", default-features = false , branch = "moonbeam-axia-v0.9.17" }
+frame-benchmarking = { git = "https://github.com/axtend/axlib", default-features = false, optional = true , branch = "axlib" }
+frame-try-runtime = { git = "https://github.com/axtend/axlib", default-features = false, optional = true , branch = "axlib" }
+frame-executive = { git = "https://github.com/axtend/axlib", default-features = false , branch = "axlib" }
+frame-support = { git = "https://github.com/axtend/axlib", default-features = false, branch = "axlib" }
+frame-system = { git = "https://github.com/axtend/axlib", default-features = false , branch = "axlib" }
+frame-system-benchmarking = { git = "https://github.com/axtend/axlib", default-features = false, optional = true , branch = "axlib" }
+frame-system-rpc-runtime-api = { git = "https://github.com/axtend/axlib", default-features = false , branch = "axlib" }
 
 ## Substrate Pallet Dependencies
-pallet-aura = { git = "https://github.com/purestake/substrate", default-features = false , branch = "moonbeam-axia-v0.9.17" }
-pallet-authorship = { git = "https://github.com/purestake/substrate", default-features = false , branch = "moonbeam-axia-v0.9.17" }
-pallet-balances = { git = "https://github.com/purestake/substrate", default-features = false , branch = "moonbeam-axia-v0.9.17" }
-pallet-session = { git = "https://github.com/purestake/substrate", default-features = false , branch = "moonbeam-axia-v0.9.17" }
-pallet-sudo = { git = "https://github.com/purestake/substrate", default-features = false , branch = "moonbeam-axia-v0.9.17" }
-pallet-timestamp = { git = "https://github.com/purestake/substrate", default-features = false , branch = "moonbeam-axia-v0.9.17" }
-pallet-transaction-payment = { git = "https://github.com/purestake/substrate", default-features = false , branch = "moonbeam-axia-v0.9.17" }
-pallet-transaction-payment-rpc-runtime-api = { git = "https://github.com/purestake/substrate", default-features = false , branch = "moonbeam-axia-v0.9.17" }
+pallet-aura = { git = "https://github.com/axtend/axlib", default-features = false , branch = "axlib" }
+pallet-authorship = { git = "https://github.com/axtend/axlib", default-features = false , branch = "axlib" }
+pallet-balances = { git = "https://github.com/axtend/axlib", default-features = false , branch = "axlib" }
+pallet-session = { git = "https://github.com/axtend/axlib", default-features = false , branch = "axlib" }
+pallet-sudo = { git = "https://github.com/axtend/axlib", default-features = false , branch = "axlib" }
+pallet-timestamp = { git = "https://github.com/axtend/axlib", default-features = false , branch = "axlib" }
+pallet-transaction-payment = { git = "https://github.com/axtend/axlib", default-features = false , branch = "axlib" }
+pallet-transaction-payment-rpc-runtime-api = { git = "https://github.com/axtend/axlib", default-features = false , branch = "axlib" }
 
 # Cumulus dependencies
 cumulus-pallet-aura-ext = { path = "../../pallets/aura-ext", default-features = false }
@@ -73,12 +73,12 @@ allychain-info = { path = "../../axia-allychains/pallets/allychain-info", defaul
 cumulus-pallet-session-benchmarking = {path = "../../pallets/session-benchmarking", default-features = false, version = "3.0.0"}
 
 # Axia Dependencies
-pallet-xcm = { git = "https://github.com/purestake/axia", default-features = false , branch = "moonbeam-axia-v0.9.17" }
-axia-allychain = { git = "https://github.com/purestake/axia", default-features = false , branch = "moonbeam-axia-v0.9.17" }
-axia-runtime-common = { git = "https://github.com/purestake/axia", default-features = false, branch = "moonbeam-axia-v0.9.17" }
-xcm = { git = "https://github.com/purestake/axia", default-features = false , branch = "moonbeam-axia-v0.9.17" }
-xcm-builder = { git = "https://github.com/purestake/axia", default-features = false , branch = "moonbeam-axia-v0.9.17" }
-xcm-executor = { git = "https://github.com/purestake/axia", default-features = false , branch = "moonbeam-axia-v0.9.17" }
+pallet-xcm = { git = "https://github.com/axtend/axia", default-features = false , branch = "axia" }
+axia-allychain = { git = "https://github.com/axtend/axia", default-features = false , branch = "axia" }
+axia-runtime-common = { git = "https://github.com/axtend/axia", default-features = false, branch = "axia" }
+xcm = { git = "https://github.com/axtend/axia", default-features = false , branch = "axia" }
+xcm-builder = { git = "https://github.com/axtend/axia", default-features = false , branch = "axia" }
+xcm-executor = { git = "https://github.com/axtend/axia", default-features = false , branch = "axia" }
 
 [features]
 default = [

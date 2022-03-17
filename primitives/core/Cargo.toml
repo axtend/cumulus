@@ -6,16 +6,16 @@ edition = "2021"
 
 [dependencies]
 # Substrate dependencies
-sp-std = { git = "https://github.com/purestake/substrate", default-features = false, branch = "moonbeam-axia-v0.9.17" }
-sp-api = { git = "https://github.com/purestake/substrate", default-features = false, branch = "moonbeam-axia-v0.9.17" }
-sp-runtime = { git = "https://github.com/purestake/substrate", default-features = false, branch = "moonbeam-axia-v0.9.17" }
-sp-trie = { git = "https://github.com/purestake/substrate", default-features = false, branch = "moonbeam-axia-v0.9.17" }
-frame-support = { git = "https://github.com/purestake/substrate", default-features = false, branch = "moonbeam-axia-v0.9.17" }
+sp-std = { git = "https://github.com/axtend/axlib", default-features = false, branch = "axlib" }
+sp-api = { git = "https://github.com/axtend/axlib", default-features = false, branch = "axlib" }
+sp-runtime = { git = "https://github.com/axtend/axlib", default-features = false, branch = "axlib" }
+sp-trie = { git = "https://github.com/axtend/axlib", default-features = false, branch = "axlib" }
+frame-support = { git = "https://github.com/axtend/axlib", default-features = false, branch = "axlib" }
 
 # Axia dependencies
-axia-allychain = { git = "https://github.com/purestake/axia", default-features = false, branch = "moonbeam-axia-v0.9.17" }
-axia-primitives = { git = "https://github.com/purestake/axia", default-features = false, branch = "moonbeam-axia-v0.9.17" }
-axia-core-primitives = { git = "https://github.com/purestake/axia", default-features = false, branch = "moonbeam-axia-v0.9.17" }
+axia-allychain = { git = "https://github.com/axtend/axia", default-features = false, branch = "axia" }
+axia-primitives = { git = "https://github.com/axtend/axia", default-features = false, branch = "axia" }
+axia-core-primitives = { git = "https://github.com/axtend/axia", default-features = false, branch = "axia" }
 
 # Other dependencies
 codec = { package = "parity-scale-codec", version = "2.3.0", default-features = false, features = [ "derive" ] }

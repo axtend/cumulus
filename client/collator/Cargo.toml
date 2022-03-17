@@ -6,17 +6,17 @@ edition = "2021"
 
 [dependencies]
 # Substrate dependencies
-sp-runtime = { git = "https://github.com/purestake/substrate", branch = "moonbeam-axia-v0.9.17" }
-sp-core = { git = "https://github.com/purestake/substrate", branch = "moonbeam-axia-v0.9.17" }
-sp-consensus = { git = "https://github.com/purestake/substrate", branch = "moonbeam-axia-v0.9.17" }
-sp-api = { git = "https://github.com/purestake/substrate", branch = "moonbeam-axia-v0.9.17" }
-sc-client-api = { git = "https://github.com/purestake/substrate", branch = "moonbeam-axia-v0.9.17" }
+sp-runtime = { git = "https://github.com/axtend/axlib", branch = "axlib" }
+sp-core = { git = "https://github.com/axtend/axlib", branch = "axlib" }
+sp-consensus = { git = "https://github.com/axtend/axlib", branch = "axlib" }
+sp-api = { git = "https://github.com/axtend/axlib", branch = "axlib" }
+sc-client-api = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 
 # Axia dependencies
-axia-primitives = { git = "https://github.com/purestake/axia", branch = "moonbeam-axia-v0.9.17" }
-axia-node-primitives = { git = "https://github.com/purestake/axia", branch = "moonbeam-axia-v0.9.17" }
-axia-overseer = { git = "https://github.com/purestake/axia", branch = "moonbeam-axia-v0.9.17" }
-axia-node-subsystem = { git = "https://github.com/purestake/axia", branch = "moonbeam-axia-v0.9.17" }
+axia-primitives = { git = "https://github.com/axtend/axia", branch = "axia" }
+axia-node-primitives = { git = "https://github.com/axtend/axia", branch = "axia" }
+axia-overseer = { git = "https://github.com/axtend/axia", branch = "axia" }
+axia-node-subsystem = { git = "https://github.com/axtend/axia", branch = "axia" }
 
 # Cumulus dependencies
 cumulus-client-network = { path = "../network" }
@@ -32,16 +32,16 @@ tracing = "0.1.25"
 
 [dev-dependencies]
 # Axia dependencies
-axia-node-subsystem-test-helpers = { git = "https://github.com/purestake/axia", branch = "moonbeam-axia-v0.9.17" }
+axia-node-subsystem-test-helpers = { git = "https://github.com/axtend/axia", branch = "axia" }
 
 # Cumulus dependencies
 cumulus-test-runtime = { path = "../../test/runtime" }
 cumulus-test-client = { path = "../../test/client" }
 
 # Substrate dependencies
-sp-state-machine = { git = "https://github.com/purestake/substrate", branch = "moonbeam-axia-v0.9.17" }
-sp-tracing = { git = "https://github.com/purestake/substrate", branch = "moonbeam-axia-v0.9.17" }
-sp-maybe-compressed-blob = { git = "https://github.com/purestake/substrate", branch = "moonbeam-axia-v0.9.17" }
+sp-state-machine = { git = "https://github.com/axtend/axlib", branch = "axlib" }
+sp-tracing = { git = "https://github.com/axtend/axlib", branch = "axlib" }
+sp-maybe-compressed-blob = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 
 # Other dependencies
 async-trait = "0.1.42"
