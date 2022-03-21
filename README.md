@@ -132,7 +132,7 @@ Due to this you'll need ROC in order to deploy contracts on Canvas.
 As a first step, you should create an account. See [here](https://wiki.axia.network/docs/learn-account-generation)
 for a detailed guide.
 
-As a second step, you have to get ROC testnet tokens through the [Betanet Faucet](https://wiki.axia.network/docs/learn-DOT#getting-betanet-tokens).
+As a second step, you have to get ROC testnet tokens through the [Betanet Faucet](https://wiki.axia.network/docs/learn-AXC#getting-betanet-tokens).
 This is a chat room in which you need to write:
 
 ```bash

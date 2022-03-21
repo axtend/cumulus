@@ -13,7 +13,7 @@
   "properties": {
     "ss58Format": 0,
     "tokenDecimals": 10,
-    "tokenSymbol": "DOT"
+    "tokenSymbol": "AXC"
   },
   "relay_chain": "axia",
   "para_id": 1000,
