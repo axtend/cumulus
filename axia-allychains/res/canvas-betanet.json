@@ -1,6 +1,6 @@
 {
-  "name": "Canvas on Rococo",
-  "id": "canvas-rococo",
+  "name": "Canvas on Betanet",
+  "id": "canvas-betanet",
   "chainType": "Live",
   "bootNodes": [
     "/ip4/34.90.191.237/tcp/30333/p2p/12D3KooWKg3Rpxcr9oJ8n6khoxpGKWztCZydtUZk2cojHqnfLrpj",
@@ -14,7 +14,7 @@
     "tokenDecimals": 12,
     "tokenSymbol": "ROC"
   },
-  "relay_chain": "rococo",
+  "relay_chain": "betanet",
   "para_id": 1002,
   "consensusEngine": null,
   "codeSubstitutes": {},

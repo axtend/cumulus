@@ -18,7 +18,7 @@ use crate::{
 	chain_spec,
 	cli::{Cli, RelayChainCli, Subcommand},
 	service::{
-		new_partial, Block, CanvasKusamaRuntimeExecutor, RococoAllychainRuntimeExecutor,
+		new_partial, Block, CanvasAxiaTestRuntimeExecutor, BetanetAllychainRuntimeExecutor,
 		SeedlingRuntimeExecutor, ShellRuntimeExecutor, StatemineRuntimeExecutor,
 		StatemintRuntimeExecutor, WestmintRuntimeExecutor,
 	},
@@ -47,7 +47,7 @@ trait IdentifyChain {
 	fn is_statemint(&self) -> bool;
 	fn is_statemine(&self) -> bool;
 	fn is_westmint(&self) -> bool;
-	fn is_canvas_kusama(&self) -> bool;
+	fn is_canvas_axctest(&self) -> bool;
 }
 
 impl IdentifyChain for dyn sc_service::ChainSpec {
@@ -66,9 +66,9 @@ impl IdentifyChain for dyn sc_service::ChainSpec {
 	fn is_westmint(&self) -> bool {
 		self.id().starts_with("westmint")
 	}
-	fn is_canvas_kusama(&self) -> bool {
-		// we use the same runtime on rococo and kusama
-		self.id().starts_with("canvas-kusama") || self.id().starts_with("canvas-rococo")
+	fn is_canvas_axctest(&self) -> bool {
+		// we use the same runtime on betanet and axctest
+		self.id().starts_with("canvas-axctest") || self.id().starts_with("canvas-betanet")
 	}
 }
 
@@ -88,8 +88,8 @@ impl<T: sc_service::ChainSpec + 'static> IdentifyChain for T {
 	fn is_westmint(&self) -> bool {
 		<dyn sc_service::ChainSpec>::is_westmint(self)
 	}
-	fn is_canvas_kusama(&self) -> bool {
-		<dyn sc_service::ChainSpec>::is_canvas_kusama(self)
+	fn is_canvas_axctest(&self) -> bool {
+		<dyn sc_service::ChainSpec>::is_canvas_axctest(self)
 	}
 }
 
@@ -134,12 +134,12 @@ fn load_spec(id: &str) -> std::result::Result<Box<dyn sc_service::ChainSpec>, St
 		"westmint" => Box::new(chain_spec::ChainSpec::from_json_bytes(
 			&include_bytes!("../res/westmint.json")[..],
 		)?),
-		// -- Canvas on Rococo
-		"canvas-rococo-dev" => Box::new(chain_spec::canvas_rococo_development_config()),
-		"canvas-rococo-local" => Box::new(chain_spec::canvas_rococo_local_config()),
-		"canvas-rococo-genesis" => Box::new(chain_spec::canvas_rococo_config()),
-		"canvas-rococo" => Box::new(chain_spec::ChainSpec::from_json_bytes(
-			&include_bytes!("../res/canvas-rococo.json")[..],
+		// -- Canvas on Betanet
+		"canvas-betanet-dev" => Box::new(chain_spec::canvas_betanet_development_config()),
+		"canvas-betanet-local" => Box::new(chain_spec::canvas_betanet_local_config()),
+		"canvas-betanet-genesis" => Box::new(chain_spec::canvas_betanet_config()),
+		"canvas-betanet" => Box::new(chain_spec::ChainSpec::from_json_bytes(
+			&include_bytes!("../res/canvas-betanet.json")[..],
 		)?),
 		// -- Fallback (generic chainspec)
 		"" => Box::new(chain_spec::get_chain_spec()),
@@ -156,8 +156,8 @@ fn load_spec(id: &str) -> std::result::Result<Box<dyn sc_service::ChainSpec>, St
 				Box::new(chain_spec::ShellChainSpec::from_json_file(path.into())?)
 			} else if chain_spec.is_seedling() {
 				Box::new(chain_spec::SeedlingChainSpec::from_json_file(path.into())?)
-			} else if chain_spec.is_canvas_kusama() {
-				Box::new(chain_spec::CanvasKusamaChainSpec::from_json_file(path.into())?)
+			} else if chain_spec.is_canvas_axctest() {
+				Box::new(chain_spec::CanvasAxiaTestChainSpec::from_json_file(path.into())?)
 			} else {
 				Box::new(chain_spec)
 			}
@@ -211,10 +211,10 @@ impl SubstrateCli for Cli {
 			&shell_runtime::VERSION
 		} else if chain_spec.is_seedling() {
 			&seedling_runtime::VERSION
-		} else if chain_spec.is_canvas_kusama() {
-			&canvas_kusama_runtime::VERSION
+		} else if chain_spec.is_canvas_axctest() {
+			&canvas_axctest_runtime::VERSION
 		} else {
-			&rococo_allychain_runtime::VERSION
+			&betanet_allychain_runtime::VERSION
 		}
 	}
 }
@@ -317,11 +317,11 @@ macro_rules! construct_async_run {
 				let task_manager = $components.task_manager;
 				{ $( $code )* }.map(|v| (v, task_manager))
 			})
-		} else if runner.config().chain_spec.is_canvas_kusama() {
+		} else if runner.config().chain_spec.is_canvas_axctest() {
 			runner.async_run(|$config| {
-				let $components = new_partial::<canvas_kusama_runtime::RuntimeApi, CanvasKusamaRuntimeExecutor, _>(
+				let $components = new_partial::<canvas_axctest_runtime::RuntimeApi, CanvasAxiaTestRuntimeExecutor, _>(
 					&$config,
-					crate::service::canvas_kusama_build_import_queue,
+					crate::service::canvas_axctest_build_import_queue,
 				)?;
 				let task_manager = $components.task_manager;
 				{ $( $code )* }.map(|v| (v, task_manager))
@@ -329,12 +329,12 @@ macro_rules! construct_async_run {
 		} else {
 			runner.async_run(|$config| {
 				let $components = new_partial::<
-					rococo_allychain_runtime::RuntimeApi,
-					RococoAllychainRuntimeExecutor,
+					betanet_allychain_runtime::RuntimeApi,
+					BetanetAllychainRuntimeExecutor,
 					_
 				>(
 					&$config,
-					crate::service::rococo_allychain_build_import_queue,
+					crate::service::betanet_allychain_build_import_queue,
 				)?;
 				let task_manager = $components.task_manager;
 				{ $( $code )* }.map(|v| (v, task_manager))
@@ -572,13 +572,13 @@ pub fn run() -> Result<()> {
 					.await
 					.map(|r| r.0)
 					.map_err(Into::into)
-				} else if config.chain_spec.is_canvas_kusama() {
-					crate::service::start_canvas_kusama_node(config, axia_config, id)
+				} else if config.chain_spec.is_canvas_axctest() {
+					crate::service::start_canvas_axctest_node(config, axia_config, id)
 						.await
 						.map(|r| r.0)
 						.map_err(Into::into)
 				} else {
-					crate::service::start_rococo_allychain_node(config, axia_config, id)
+					crate::service::start_betanet_allychain_node(config, axia_config, id)
 						.await
 						.map(|r| r.0)
 						.map_err(Into::into)

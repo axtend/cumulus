@@ -28,7 +28,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        chain: ["statemine", "westmint", "statemint", "rococo-allychain", "shell", "canvas-kusama"]
+        chain: ["statemine", "westmint", "statemint", "betanet-allychain", "shell", "canvas-axctest"]
     steps:
       - uses: actions/checkout@v2
         with:

@@ -3,7 +3,7 @@ name = "westmint-runtime"
 version = "1.0.0"
 authors = ["Parity Technologies <admin@parity.io>"]
 edition = "2021"
-description = "Westend variant of Statemint allychain runtime"
+description = "Alphanet variant of Statemint allychain runtime"
 
 [dependencies]
 codec = { package = "parity-scale-codec", version = "2.3.0", default-features = false, features = ["derive", "max-encoded-len"] }
@@ -65,7 +65,7 @@ allychains-common = { path = "../allychains-common", default-features = false }
 # Axia dependencies
 axia-allychain = { git = "https://github.com/axtend/axia", default-features = false, branch = "axia" }
 axia-runtime-common = { git = "https://github.com/axtend/axia", default-features = false, branch = "axia" }
-westend-runtime-constants = { git = "https://github.com/axtend/axia", default-features = false, branch = "axia" }
+alphanet-runtime-constants = { git = "https://github.com/axtend/axia", default-features = false, branch = "axia" }
 axia-core-primitives = { git = "https://github.com/axtend/axia", default-features = false, branch = "axia" }
 xcm = { git = "https://github.com/axtend/axia", default-features = false, branch = "axia" }
 xcm-builder = { git = "https://github.com/axtend/axia", default-features = false, branch = "axia" }
@@ -159,5 +159,5 @@ std = [
 	"axia-allychain/std",
 	"axia-runtime-common/std",
 	"axia-core-primitives/std",
-	"westend-runtime-constants/std",
+	"alphanet-runtime-constants/std",
 ]

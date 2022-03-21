@@ -6,7 +6,7 @@ on:
     inputs:
       reference_url:
         description: The WebSocket url of the reference node
-        default: wss://kusama-statemine-rpc.paritytech.net
+        default: wss://axctest-statemine-rpc.paritytech.net
         required: true
       binary_url:
         description: A url to a Linux binary for the node containing the runtime to test

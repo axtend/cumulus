@@ -19,7 +19,7 @@ updates:
       - dependency-name: "sub-tokens"
       - dependency-name: "axia-*"
       - dependency-name: "xcm*"
-      - dependency-name: "kusama-*"
-      - dependency-name: "westend-*"
+      - dependency-name: "axctest-*"
+      - dependency-name: "alphanet-*"
     schedule:
       interval: "daily"

@@ -34,7 +34,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        runtime: ["shell", "statemine", "statemint", "westmint", "rococo-allychain", "canvas-kusama"]
+        runtime: ["shell", "statemine", "statemint", "westmint", "betanet-allychain", "canvas-axctest"]
     steps:
       - name: Checkout sources
         uses: actions/checkout@v2
@@ -120,12 +120,12 @@ jobs:
           WESTMINT_DIGEST: ${{ github.workspace}}/westmint-srtool-json/westmint_srtool_output.json
           STATEMINE_DIGEST: ${{ github.workspace}}/statemine-srtool-json/statemine_srtool_output.json
           STATEMINT_DIGEST: ${{ github.workspace}}/statemint-srtool-json/statemint_srtool_output.json
-          ROCOCO_PARA_DIGEST: ${{ github.workspace}}/rococo-allychain-srtool-json/rococo-allychain_srtool_output.json
-          CANVAS_KUSAMA_DIGEST: ${{ github.workspace}}/canvas-kusama-srtool-json/canvas-kusama_srtool_output.json
+          BETANET_PARA_DIGEST: ${{ github.workspace}}/betanet-allychain-srtool-json/betanet-allychain_srtool_output.json
+          CANVAS_AXIATEST_DIGEST: ${{ github.workspace}}/canvas-axctest-srtool-json/canvas-axctest_srtool_output.json
           REF1: ${{ github.event.inputs.ref1 }}
           REF2: ${{ github.event.inputs.ref2 }}
           PRE_RELEASE: ${{ github.event.inputs.pre_release }}
-          HIDE_SRTOOL_ROCOCO: false
+          HIDE_SRTOOL_BETANET: false
           HIDE_SRTOOL_SHELL: false
         run: |
           find ${{env.GITHUB_WORKSPACE}} -type f -name "*_srtool_output.json"
@@ -133,8 +133,8 @@ jobs:
           ls -al $WESTMINT_DIGEST
           ls -al $STATEMINE_DIGEST
           ls -al $STATEMINT_DIGEST
-          ls -al $ROCOCO_PARA_DIGEST
-          ls -al $CANVAS_KUSAMA_DIGEST
+          ls -al $BETANET_PARA_DIGEST
+          ls -al $CANVAS_AXIATEST_DIGEST
 
           echo "The diff will be computed from $REF1 to $REF2"
           cd cumulus/scripts/changelog
@@ -168,7 +168,7 @@ jobs:
       RUNTIME_DIR: axia-allychains
     strategy:
       matrix:
-        runtime: ["shell", "statemine", "statemint", "westmint", "rococo-allychain", "canvas-kusama"]
+        runtime: ["shell", "statemine", "statemint", "westmint", "betanet-allychain", "canvas-axctest"]
     steps:
       - name: Checkout sources
         uses: actions/checkout@v2

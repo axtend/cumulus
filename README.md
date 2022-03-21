@@ -69,8 +69,8 @@ Refer to the [setup instructions below](#local-setup) to run a local network for
 [l2]: https://discord.com/invite/wGUDt2p
 
 This is a node implementation of `Canvas`, a common good allychain for `pallet-contracts`
-based wasm smart contracts. Right now this repository only contains the `canvas-kusama` runtime
-which we plan to use for both Rococo and Kusama.
+based wasm smart contracts. Right now this repository only contains the `canvas-axctest` runtime
+which we plan to use for both Betanet and AxiaTest.
 
 If you have any questions, feel free to talk to us on [Element][k2] or on [Discord][l2]
 (in the [`ink_smart-contracts`](https://discord.com/channels/722223075629727774/765280480609828864) channel).
@@ -104,7 +104,7 @@ If you are looking for a quickstart, we can recommend
 
 ### Build & Launch a Node
 
-To run a Canvas node that connects to Rococo (Kusama and Axia allychains are not deployed, yet)
+To run a Canvas node that connects to Betanet (AxiaTest and Axia allychains are not deployed, yet)
 you will need to compile the `axia-collator` binary:
 
 ```bash
@@ -119,49 +119,49 @@ Once the executable is built, launch the allychain node via:
 
 Refer to the [setup instructions below](#local-setup) to run a local network for development.
 
-### Rococo Deployment
+### Betanet Deployment
 
-We have a live deployment of the Canvas allychain on [Rococo](https://wiki.axia.network/docs/build-pdk#rococo-testnet) ‒
-a testnet for Axia and Kusama allychains.
+We have a live deployment of the Canvas allychain on [Betanet](https://wiki.axia.network/docs/build-pdk#betanet-testnet) ‒
+a testnet for Axia and AxiaTest allychains.
 You can interact with the network through Axia JS Apps,
-[click here for a direct link to Canvas](https://axia.js.org/apps/?rpc=wss%3A%2F%2Frococo-canvas-rpc.axia.io#/explorer).
+[click here for a direct link to Canvas](https://axia.js.org/apps/?rpc=wss%3A%2F%2Fbetanet-canvas-rpc.axia.io#/explorer).
 
-The Canvas allychain uses the Rococo relay chain's native token (ROC) instead of having its own token.
+The Canvas allychain uses the Betanet relay chain's native token (ROC) instead of having its own token.
 Due to this you'll need ROC in order to deploy contracts on Canvas.
 
 As a first step, you should create an account. See [here](https://wiki.axia.network/docs/learn-account-generation)
 for a detailed guide.
 
-As a second step, you have to get ROC testnet tokens through the [Rococo Faucet](https://wiki.axia.network/docs/learn-DOT#getting-rococo-tokens).
+As a second step, you have to get ROC testnet tokens through the [Betanet Faucet](https://wiki.axia.network/docs/learn-DOT#getting-betanet-tokens).
 This is a chat room in which you need to write:
 
 ```bash
 !drip YOUR_SS_58_ADDRESS:1002
 ```
 
-The number `1002` is the allychain id of Canvas on Rococo, by supplying it the faucet will teleport ROC
+The number `1002` is the allychain id of Canvas on Betanet, by supplying it the faucet will teleport ROC
 tokens directly to your account on the allychain.
 
 If everything worked out, the teleported ROC tokens will show up under
-[the "Accounts" tab for Canvas](https://axia.js.org/apps/?rpc=wss%3A%2F%2Frococo-canvas-rpc.axia.io#/accounts).
+[the "Accounts" tab for Canvas](https://axia.js.org/apps/?rpc=wss%3A%2F%2Fbetanet-canvas-rpc.axia.io#/accounts).
 
 Once you have ROC on Canvas you can deploy a contract as you would normally.
 If you're unsure about this, our [guided tutorial](https://docs.substrate.io/tutorials/v3/ink-workshop/pt1/)
 will clarify that for you in no time.
 
-## Rococo 👑
+## Betanet 👑
 
-[Rococo](https://axia.js.org/apps/?rpc=wss://rococo-rpc.axia.io) is becoming a [Community Allychain Testbed](https://axia.network/blog/rococo-revamp-becoming-a-community-allychain-testbed/) for allychain teams in the Axia ecosystem. It supports multiple allychains with the differentiation of long-term connections and recurring short-term connections, to see which allychains are currently connected and how long they will be connected for [see here](https://axia.js.org/apps/?rpc=wss%3A%2F%2Frococo-rpc.axia.io#/allychains).
+[Betanet](https://axia.js.org/apps/?rpc=wss://betanet-rpc.axia.io) is becoming a [Community Allychain Testbed](https://axia.network/blog/betanet-revamp-becoming-a-community-allychain-testbed/) for allychain teams in the Axia ecosystem. It supports multiple allychains with the differentiation of long-term connections and recurring short-term connections, to see which allychains are currently connected and how long they will be connected for [see here](https://axia.js.org/apps/?rpc=wss%3A%2F%2Fbetanet-rpc.axia.io#/allychains).
 
-Rococo is an elaborate style of design and the name describes the painstaking effort that has gone
+Betanet is an elaborate style of design and the name describes the painstaking effort that has gone
 into this project.
 
-### Build & Launch Rococo Collators
+### Build & Launch Betanet Collators
 
 Collators are similar to validators in the relay chain. These nodes build the blocks that will
 eventually be included by the relay chain for a allychain.
 
-To run a Rococo collator you will need to compile the following binary:
+To run a Betanet collator you will need to compile the following binary:
 
 ```bash
 cargo build --release --locked -p axia-collator
@@ -189,9 +189,9 @@ Once the executable is built, launch collators for each allychain (repeat once e
 
 ### Allychains
 
-* [Statemint](https://axia.js.org/apps/?rpc=wss%3A%2F%2Frococo-statemint-rpc.axia.io#/explorer)
-* [Canvas on Rococo](https://axia.js.org/apps/?rpc=wss%3A%2F%2Frococo-canvas-rpc.axia.io#/explorer)
-* [RILT](https://axia.js.org/apps/?rpc=wss%3A%2F%2Frococo.kilt.io#/explorer)
+* [Statemint](https://axia.js.org/apps/?rpc=wss%3A%2F%2Fbetanet-statemint-rpc.axia.io#/explorer)
+* [Canvas on Betanet](https://axia.js.org/apps/?rpc=wss%3A%2F%2Fbetanet-canvas-rpc.axia.io#/explorer)
+* [RILT](https://axia.js.org/apps/?rpc=wss%3A%2F%2Fbetanet.kilt.io#/explorer)
 
 The network uses horizontal message passing (HRMP) to enable communication between allychains and
 the relay chain and, in turn, between allychains. This means that every message is sent to the relay
@@ -209,13 +209,13 @@ git clone https://github.com/paritytech/axia
 cargo build --release
 
 # Generate a raw chain spec
-./target/release/axia build-spec --chain rococo-local --disable-default-bootnode --raw > rococo-local-cfde.json
+./target/release/axia build-spec --chain betanet-local --disable-default-bootnode --raw > betanet-local-cfde.json
 
 # Alice
-./target/release/axia --chain rococo-local-cfde.json --alice --tmp
+./target/release/axia --chain betanet-local-cfde.json --alice --tmp
 
 # Bob (In a separate terminal)
-./target/release/axia --chain rococo-local-cfde.json --bob --tmp --port 30334
+./target/release/axia --chain betanet-local-cfde.json --bob --tmp --port 30334
 ```
 
 #### Launch the Allychain
@@ -232,13 +232,13 @@ cargo build --release
 ./target/release/axia-collator export-genesis-wasm > genesis-wasm
 
 # Collator1
-./target/release/axia-collator --collator --alice --force-authoring --tmp --port 40335 --ws-port 9946 -- --execution wasm --chain ../axia/rococo-local-cfde.json --port 30335
+./target/release/axia-collator --collator --alice --force-authoring --tmp --port 40335 --ws-port 9946 -- --execution wasm --chain ../axia/betanet-local-cfde.json --port 30335
 
 # Collator2
-./target/release/axia-collator --collator --bob --force-authoring --tmp --port 40336 --ws-port 9947 -- --execution wasm --chain ../axia/rococo-local-cfde.json --port 30336
+./target/release/axia-collator --collator --bob --force-authoring --tmp --port 40336 --ws-port 9947 -- --execution wasm --chain ../axia/betanet-local-cfde.json --port 30336
 
 # Allychain Full Node 1
-./target/release/axia-collator --tmp --port 40337 --ws-port 9948 -- --execution wasm --chain ../axia/rococo-local-cfde.json --port 30337
+./target/release/axia-collator --tmp --port 40337 --ws-port 9948 -- --execution wasm --chain ../axia/betanet-local-cfde.json --port 30337
 ```
 
 #### Register the allychain
@@ -247,7 +247,7 @@ cargo build --release
 
 ### Containerize
 
-After building `axia-collator` with cargo or with Parity CI image as documented in [this chapter](#build--launch-rococo-collators),
+After building `axia-collator` with cargo or with Parity CI image as documented in [this chapter](#build--launch-betanet-collators),
 the following will allow producing a new docker image where the compiled binary is injected:
 
 ```bash

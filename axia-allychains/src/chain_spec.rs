@@ -16,7 +16,7 @@
 
 use cumulus_primitives_core::ParaId;
 use hex_literal::hex;
-use rococo_allychain_runtime::{AccountId, AuraId, Signature};
+use betanet_allychain_runtime::{AccountId, AuraId, Signature};
 use sc_chain_spec::{ChainSpecExtension, ChainSpecGroup};
 use sc_service::ChainType;
 use serde::{Deserialize, Serialize};
@@ -25,7 +25,7 @@ use sp_runtime::traits::{IdentifyAccount, Verify};
 
 /// Specialized `ChainSpec` for the normal allychain runtime.
 pub type ChainSpec =
-	sc_service::GenericChainSpec<rococo_allychain_runtime::GenesisConfig, Extensions>;
+	sc_service::GenericChainSpec<betanet_allychain_runtime::GenesisConfig, Extensions>;
 
 /// Specialized `ChainSpec` for the shell allychain runtime.
 pub type ShellChainSpec = sc_service::GenericChainSpec<shell_runtime::GenesisConfig, Extensions>;
@@ -102,7 +102,7 @@ pub fn get_chain_spec() -> ChainSpec {
 		None,
 		None,
 		None,
-		Extensions { relay_chain: "westend".into(), para_id: 1000 },
+		Extensions { relay_chain: "alphanet".into(), para_id: 1000 },
 	)
 }
 
@@ -117,7 +117,7 @@ pub fn get_shell_chain_spec() -> ShellChainSpec {
 		None,
 		None,
 		None,
-		Extensions { relay_chain: "westend".into(), para_id: 1000 },
+		Extensions { relay_chain: "alphanet".into(), para_id: 1000 },
 	)
 }
 
@@ -137,7 +137,7 @@ pub fn get_seedling_chain_spec() -> SeedlingChainSpec {
 		None,
 		None,
 		None,
-		Extensions { relay_chain: "westend".into(), para_id: 2000 },
+		Extensions { relay_chain: "alphanet".into(), para_id: 2000 },
 	)
 }
 
@@ -168,7 +168,7 @@ pub fn staging_test_net() -> ChainSpec {
 		None,
 		None,
 		None,
-		Extensions { relay_chain: "westend".into(), para_id: 1000 },
+		Extensions { relay_chain: "alphanet".into(), para_id: 1000 },
 	)
 }
 
@@ -177,22 +177,22 @@ fn testnet_genesis(
 	initial_authorities: Vec<AuraId>,
 	endowed_accounts: Vec<AccountId>,
 	id: ParaId,
-) -> rococo_allychain_runtime::GenesisConfig {
-	rococo_allychain_runtime::GenesisConfig {
-		system: rococo_allychain_runtime::SystemConfig {
-			code: rococo_allychain_runtime::WASM_BINARY
+) -> betanet_allychain_runtime::GenesisConfig {
+	betanet_allychain_runtime::GenesisConfig {
+		system: betanet_allychain_runtime::SystemConfig {
+			code: betanet_allychain_runtime::WASM_BINARY
 				.expect("WASM binary was not build, please build it!")
 				.to_vec(),
 		},
-		balances: rococo_allychain_runtime::BalancesConfig {
+		balances: betanet_allychain_runtime::BalancesConfig {
 			balances: endowed_accounts.iter().cloned().map(|k| (k, 1 << 60)).collect(),
 		},
-		sudo: rococo_allychain_runtime::SudoConfig { key: Some(root_key) },
-		allychain_info: rococo_allychain_runtime::AllychainInfoConfig { allychain_id: id },
-		aura: rococo_allychain_runtime::AuraConfig { authorities: initial_authorities },
+		sudo: betanet_allychain_runtime::SudoConfig { key: Some(root_key) },
+		allychain_info: betanet_allychain_runtime::AllychainInfoConfig { allychain_id: id },
+		aura: betanet_allychain_runtime::AuraConfig { authorities: initial_authorities },
 		aura_ext: Default::default(),
 		allychain_system: Default::default(),
-		axia_xcm: rococo_allychain_runtime::AxiaXcmConfig {
+		axia_xcm: betanet_allychain_runtime::AxiaXcmConfig {
 			safe_xcm_version: Some(SAFE_XCM_VERSION),
 		},
 	}
@@ -499,7 +499,7 @@ pub fn statemine_development_config() -> StatemineChainSpec {
 		None,
 		None,
 		Some(properties),
-		Extensions { relay_chain: "kusama-dev".into(), para_id: 1000 },
+		Extensions { relay_chain: "axctest-dev".into(), para_id: 1000 },
 	)
 }
 
@@ -550,7 +550,7 @@ pub fn statemine_local_config() -> StatemineChainSpec {
 		None,
 		None,
 		Some(properties),
-		Extensions { relay_chain: "kusama-local".into(), para_id: 1000 },
+		Extensions { relay_chain: "axctest-local".into(), para_id: 1000 },
 	)
 }
 
@@ -604,7 +604,7 @@ pub fn statemine_config() -> StatemineChainSpec {
 		None,
 		None,
 		Some(properties),
-		Extensions { relay_chain: "kusama".into(), para_id: 1000 },
+		Extensions { relay_chain: "axctest".into(), para_id: 1000 },
 	)
 }
 
@@ -685,7 +685,7 @@ pub fn westmint_development_config() -> WestmintChainSpec {
 		None,
 		None,
 		Some(properties),
-		Extensions { relay_chain: "westend".into(), para_id: 1000 },
+		Extensions { relay_chain: "alphanet".into(), para_id: 1000 },
 	)
 }
 
@@ -735,7 +735,7 @@ pub fn westmint_local_config() -> WestmintChainSpec {
 		None,
 		None,
 		Some(properties),
-		Extensions { relay_chain: "westend-local".into(), para_id: 1000 },
+		Extensions { relay_chain: "alphanet-local".into(), para_id: 1000 },
 	)
 }
 
@@ -788,7 +788,7 @@ pub fn westmint_config() -> WestmintChainSpec {
 		None,
 		None,
 		Some(properties),
-		Extensions { relay_chain: "westend".into(), para_id: 1000 },
+		Extensions { relay_chain: "alphanet".into(), para_id: 1000 },
 	)
 }
 
@@ -835,39 +835,39 @@ fn westmint_genesis(
 	}
 }
 
-/// We use the same runtime on kusama and rococo.
-pub type CanvasKusamaChainSpec =
-	sc_service::GenericChainSpec<canvas_kusama_runtime::GenesisConfig, Extensions>;
+/// We use the same runtime on axctest and betanet.
+pub type CanvasAxiaTestChainSpec =
+	sc_service::GenericChainSpec<canvas_axctest_runtime::GenesisConfig, Extensions>;
 
 /// No relay chain suffix because the id is the same over all relay chains.
 const CANVAS_ALLYCHAIN_ID: u32 = 1002;
 
-/// The existential deposit is determined by the runtime "canvas-kusama".
-const CANVAS_KUSAMA_ED: canvas_kusama_runtime::Balance =
-	canvas_kusama_runtime::constants::currency::EXISTENTIAL_DEPOSIT;
+/// The existential deposit is determined by the runtime "canvas-axctest".
+const CANVAS_AXIATEST_ED: canvas_axctest_runtime::Balance =
+	canvas_axctest_runtime::constants::currency::EXISTENTIAL_DEPOSIT;
 
-pub fn canvas_rococo_development_config() -> CanvasKusamaChainSpec {
+pub fn canvas_betanet_development_config() -> CanvasAxiaTestChainSpec {
 	let mut properties = sc_chain_spec::Properties::new();
 	properties.insert("tokenSymbol".into(), "ROC".into());
 	properties.insert("tokenDecimals".into(), 12.into());
 
-	CanvasKusamaChainSpec::from_genesis(
+	CanvasAxiaTestChainSpec::from_genesis(
 		// Name
-		"Canvas on Rococo Development",
+		"Canvas on Betanet Development",
 		// ID
-		"canvas-rococo-dev",
+		"canvas-betanet-dev",
 		ChainType::Development,
 		move || {
-			canvas_kusama_genesis(
+			canvas_axctest_genesis(
 				// initial collators.
 				vec![
 					(
 						get_account_id_from_seed::<sr25519::Public>("Alice"),
-						get_collator_keys_from_seed::<canvas_kusama_runtime::AuraId>("Alice"),
+						get_collator_keys_from_seed::<canvas_axctest_runtime::AuraId>("Alice"),
 					),
 					(
 						get_account_id_from_seed::<sr25519::Public>("Bob"),
-						get_collator_keys_from_seed::<canvas_kusama_runtime::AuraId>("Bob"),
+						get_collator_keys_from_seed::<canvas_axctest_runtime::AuraId>("Bob"),
 					),
 				],
 				vec![
@@ -893,34 +893,34 @@ pub fn canvas_rococo_development_config() -> CanvasKusamaChainSpec {
 		None,
 		None,
 		Extensions {
-			relay_chain: "rococo-local".into(), // You MUST set this to the correct network!
+			relay_chain: "betanet-local".into(), // You MUST set this to the correct network!
 			para_id: CANVAS_ALLYCHAIN_ID,
 		},
 	)
 }
 
-pub fn canvas_rococo_local_config() -> CanvasKusamaChainSpec {
+pub fn canvas_betanet_local_config() -> CanvasAxiaTestChainSpec {
 	let mut properties = sc_chain_spec::Properties::new();
 	properties.insert("tokenSymbol".into(), "ROC".into());
 	properties.insert("tokenDecimals".into(), 12.into());
 
-	CanvasKusamaChainSpec::from_genesis(
+	CanvasAxiaTestChainSpec::from_genesis(
 		// Name
-		"Canvas on Rococo",
+		"Canvas on Betanet",
 		// ID
-		"canvas-rococo-local",
+		"canvas-betanet-local",
 		ChainType::Local,
 		move || {
-			canvas_kusama_genesis(
+			canvas_axctest_genesis(
 				// initial collators.
 				vec![
 					(
 						get_account_id_from_seed::<sr25519::Public>("Alice"),
-						get_collator_keys_from_seed::<canvas_kusama_runtime::AuraId>("Alice"),
+						get_collator_keys_from_seed::<canvas_axctest_runtime::AuraId>("Alice"),
 					),
 					(
 						get_account_id_from_seed::<sr25519::Public>("Bob"),
-						get_collator_keys_from_seed::<canvas_kusama_runtime::AuraId>("Bob"),
+						get_collator_keys_from_seed::<canvas_axctest_runtime::AuraId>("Bob"),
 					),
 				],
 				vec![
@@ -952,26 +952,26 @@ pub fn canvas_rococo_local_config() -> CanvasKusamaChainSpec {
 		Some(properties),
 		// Extensions
 		Extensions {
-			relay_chain: "rococo-local".into(), // You MUST set this to the correct network!
+			relay_chain: "betanet-local".into(), // You MUST set this to the correct network!
 			para_id: CANVAS_ALLYCHAIN_ID,
 		},
 	)
 }
 
-pub fn canvas_rococo_config() -> CanvasKusamaChainSpec {
+pub fn canvas_betanet_config() -> CanvasAxiaTestChainSpec {
 	// Give your base currency a unit name and decimal places
 	let mut properties = sc_chain_spec::Properties::new();
 	properties.insert("tokenSymbol".into(), "ROC".into());
 	properties.insert("tokenDecimals".into(), 12.into());
 
-	CanvasKusamaChainSpec::from_genesis(
+	CanvasAxiaTestChainSpec::from_genesis(
 		// Name
-		"Canvas on Rococo",
+		"Canvas on Betanet",
 		// ID
-		"canvas-rococo",
+		"canvas-betanet",
 		ChainType::Live,
 		move || {
-			canvas_kusama_genesis(
+			canvas_axctest_genesis(
 				vec![
 					// 5GKFbTTgrVS4Vz1UWWHPqMZQNFWZtqo7H2KpCDyYhEL3aS26
 					(
@@ -1039,38 +1039,38 @@ pub fn canvas_rococo_config() -> CanvasKusamaChainSpec {
 		// Properties
 		Some(properties),
 		// Extensions
-		Extensions { relay_chain: "rococo".into(), para_id: CANVAS_ALLYCHAIN_ID },
+		Extensions { relay_chain: "betanet".into(), para_id: CANVAS_ALLYCHAIN_ID },
 	)
 }
 
-fn canvas_kusama_genesis(
+fn canvas_axctest_genesis(
 	invulnerables: Vec<(AccountId, AuraId)>,
 	endowed_accounts: Vec<AccountId>,
 	id: ParaId,
-) -> canvas_kusama_runtime::GenesisConfig {
-	canvas_kusama_runtime::GenesisConfig {
-		system: canvas_kusama_runtime::SystemConfig {
-			code: canvas_kusama_runtime::WASM_BINARY
+) -> canvas_axctest_runtime::GenesisConfig {
+	canvas_axctest_runtime::GenesisConfig {
+		system: canvas_axctest_runtime::SystemConfig {
+			code: canvas_axctest_runtime::WASM_BINARY
 				.expect("WASM binary was not build, please build it!")
 				.to_vec(),
 		},
-		balances: canvas_kusama_runtime::BalancesConfig {
+		balances: canvas_axctest_runtime::BalancesConfig {
 			balances: endowed_accounts.iter().cloned().map(|k| (k, 1 << 60)).collect(),
 		},
-		allychain_info: canvas_kusama_runtime::AllychainInfoConfig { allychain_id: id },
-		collator_selection: canvas_kusama_runtime::CollatorSelectionConfig {
+		allychain_info: canvas_axctest_runtime::AllychainInfoConfig { allychain_id: id },
+		collator_selection: canvas_axctest_runtime::CollatorSelectionConfig {
 			invulnerables: invulnerables.iter().cloned().map(|(acc, _)| acc).collect(),
-			candidacy_bond: CANVAS_KUSAMA_ED * 16,
+			candidacy_bond: CANVAS_AXIATEST_ED * 16,
 			..Default::default()
 		},
-		session: canvas_kusama_runtime::SessionConfig {
+		session: canvas_axctest_runtime::SessionConfig {
 			keys: invulnerables
 				.into_iter()
 				.map(|(acc, aura)| {
 					(
 						acc.clone(),                                 // account id
 						acc,                                         // validator id
-						canvas_kusama_runtime::SessionKeys { aura }, // session keys
+						canvas_axctest_runtime::SessionKeys { aura }, // session keys
 					)
 				})
 				.collect(),
@@ -1080,10 +1080,10 @@ fn canvas_kusama_genesis(
 		aura: Default::default(),
 		aura_ext: Default::default(),
 		allychain_system: Default::default(),
-		axia_xcm: canvas_kusama_runtime::AxiaXcmConfig {
+		axia_xcm: canvas_axctest_runtime::AxiaXcmConfig {
 			safe_xcm_version: Some(SAFE_XCM_VERSION),
 		},
-		sudo: canvas_kusama_runtime::SudoConfig {
+		sudo: canvas_axctest_runtime::SudoConfig {
 			key: Some(
 				hex!["2681a28014e7d3a5bfb32a003b3571f53c408acbc28d351d6bf58f5028c4ef14"].into(),
 			),

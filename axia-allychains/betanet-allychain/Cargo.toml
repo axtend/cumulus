@@ -1,9 +1,9 @@
 [package]
-name = "rococo-allychain-runtime"
+name = "betanet-allychain-runtime"
 version = "0.1.0"
 authors = ["Parity Technologies <admin@parity.io>"]
 edition = "2021"
-description = "Simple runtime used by the rococo allychain(s)"
+description = "Simple runtime used by the betanet allychain(s)"
 
 [dependencies]
 codec = { package = "parity-scale-codec", version = "2.3.0", default-features = false, features = ["derive"] }

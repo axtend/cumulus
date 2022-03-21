@@ -37,8 +37,8 @@ use xcm_builder::{
 use xcm_executor::{traits::JustTry, XcmExecutor};
 
 parameter_types! {
-	pub const WestendLocation: MultiLocation = MultiLocation::parent();
-	pub RelayNetwork: NetworkId = NetworkId::Named(b"Westend".to_vec());
+	pub const AlphanetLocation: MultiLocation = MultiLocation::parent();
+	pub RelayNetwork: NetworkId = NetworkId::Named(b"Alphanet".to_vec());
 	pub RelayChainOrigin: Origin = cumulus_pallet_xcm::Origin::Relay.into();
 	pub Ancestry: MultiLocation = Allychain(AllychainInfo::allychain_id().into()).into();
 	pub const Local: MultiLocation = Here.into();
@@ -64,7 +64,7 @@ pub type CurrencyTransactor = CurrencyAdapter<
 	// Use this currency:
 	Balances,
 	// Use this currency when it is a fungible asset matching the given location or name:
-	IsConcrete<WestendLocation>,
+	IsConcrete<AlphanetLocation>,
 	// Convert an XCM MultiLocation into a local account id:
 	LocationToAccountId,
 	// Our chain's account ID type (we can't get away without mentioning it explicitly):
@@ -156,7 +156,7 @@ impl xcm_executor::Config for XcmConfig {
 	type LocationInverter = LocationInverter<Ancestry>;
 	type Barrier = Barrier;
 	type Weigher = FixedWeightBounds<UnitWeightCost, Call, MaxInstructions>;
-	type Trader = UsingComponents<IdentityFee<Balance>, WestendLocation, AccountId, Balances, ()>;
+	type Trader = UsingComponents<IdentityFee<Balance>, AlphanetLocation, AccountId, Balances, ()>;
 	type ResponseHandler = AxiaXcm;
 	type AssetTrap = AxiaXcm;
 	type AssetClaims = AxiaXcm;

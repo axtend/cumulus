@@ -14,7 +14,7 @@
 // limitations under the License.
 
 pub mod currency {
-	use kusama_runtime_constants as constants;
+	use axctest_runtime_constants as constants;
 	use axia_core_primitives::Balance;
 
 	/// The existential deposit. Set to 1/10 of its parent Relay Chain.
@@ -26,7 +26,7 @@ pub mod currency {
 	pub const MILLICENTS: Balance = constants::currency::MILLICENTS;
 
 	pub const fn deposit(items: u32, bytes: u32) -> Balance {
-		// map to 1/10 of what the kusama relay chain charges (v9020)
+		// map to 1/10 of what the axctest relay chain charges (v9020)
 		constants::currency::deposit(items, bytes) / 10
 	}
 }
@@ -58,7 +58,7 @@ pub mod fee {
 	impl WeightToFeePolynomial for WeightToFee {
 		type Balance = Balance;
 		fn polynomial() -> WeightToFeeCoefficients<Self::Balance> {
-			// in Kusama, extrinsic base weight (smallest non-zero weight) is mapped to 1/10 CENT:
+			// in AxiaTest, extrinsic base weight (smallest non-zero weight) is mapped to 1/10 CENT:
 			// in Statemine, we map to 1/10 of that, or 1/100 CENT
 			let p = super::currency::CENTS;
 			let q = 100 * Balance::from(ExtrinsicBaseWeight::get());

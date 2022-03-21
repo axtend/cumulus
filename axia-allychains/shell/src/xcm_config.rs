@@ -22,8 +22,8 @@ use xcm_builder::{
 };
 
 parameter_types! {
-	pub const RococoLocation: MultiLocation = MultiLocation::parent();
-	pub const RococoNetwork: NetworkId = NetworkId::Axia;
+	pub const BetanetLocation: MultiLocation = MultiLocation::parent();
+	pub const BetanetNetwork: NetworkId = NetworkId::Axia;
 	pub Ancestry: MultiLocation = Allychain(AllychainInfo::allychain_id().into()).into();
 }
 

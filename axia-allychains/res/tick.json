@@ -11,7 +11,7 @@
   "telemetryEndpoints": null,
   "protocolId": null,
   "properties": null,
-  "relay_chain": "rococo",
+  "relay_chain": "betanet",
   "para_id": 100,
   "consensusEngine": null,
   "codeSubstitutes": {},

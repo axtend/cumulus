@@ -1,5 +1,5 @@
 [package]
-name = "canvas-kusama-runtime"
+name = "canvas-axctest-runtime"
 version = "0.2.0"
 authors = ["Parity Technologies <admin@parity.io>"]
 edition = "2021"
@@ -73,7 +73,7 @@ allychain-info = { path = "../pallets/allychain-info", default-features = false 
 axia-allychain = { git = "https://github.com/axtend/axia", default-features = false , branch = "axia" }
 axia-runtime-common = { git = "https://github.com/axtend/axia", default-features = false, branch = "axia" }
 axia-core-primitives = { git = "https://github.com/axtend/axia", default-features = false, branch = "axia" }
-kusama-runtime-constants = { git = "https://github.com/axtend/axia", default-features = false, branch = "axia" }
+axctest-runtime-constants = { git = "https://github.com/axtend/axia", default-features = false, branch = "axia" }
 xcm = { git = "https://github.com/axtend/axia", default-features = false , branch = "axia" }
 xcm-builder = { git = "https://github.com/axtend/axia", default-features = false , branch = "axia" }
 xcm-executor = { git = "https://github.com/axtend/axia", default-features = false , branch = "axia" }
@@ -137,7 +137,7 @@ std = [
 	"allychain-info/std",
 	"axia-allychain/std",
 	"axia-runtime-common/std",
-	"kusama-runtime-constants/std",
+	"axctest-runtime-constants/std",
 	"xcm/std",
 	"xcm-builder/std",
 	"xcm-executor/std",

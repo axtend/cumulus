@@ -273,7 +273,7 @@ impl cumulus_pallet_aura_ext::Config for Runtime {}
 
 parameter_types! {
 	pub const RocLocation: MultiLocation = MultiLocation::parent();
-	pub const RococoNetwork: NetworkId = NetworkId::Axia;
+	pub const BetanetNetwork: NetworkId = NetworkId::Axia;
 	pub RelayChainOrigin: Origin = cumulus_pallet_xcm::Origin::Relay.into();
 	pub Ancestry: MultiLocation = Allychain(AllychainInfo::allychain_id().into()).into();
 	pub CheckingAccount: AccountId = AxiaXcm::check_account();
@@ -288,7 +288,7 @@ pub type LocationToAccountId = (
 	// Sibling allychain origins convert to AccountId via the `ParaId::into`.
 	SiblingAllychainConvertsVia<Sibling, AccountId>,
 	// Straight up local `AccountId32` origins just alias directly to `AccountId`.
-	AccountId32Aliases<RococoNetwork, AccountId>,
+	AccountId32Aliases<BetanetNetwork, AccountId>,
 );
 
 /// Means for transacting assets on this chain.
@@ -348,7 +348,7 @@ pub type XcmOriginToTransactDispatchOrigin = (
 	ParentAsSuperuser<Origin>,
 	// Native signed account converter; this just converts an `AccountId32` origin into a normal
 	// `Origin::Signed` origin of the same 32-byte value.
-	SignedAccountId32AsNative<RococoNetwork, Origin>,
+	SignedAccountId32AsNative<BetanetNetwork, Origin>,
 	// Xcm origins can be represented natively under the Xcm pallet's Xcm origin.
 	XcmPassthrough<Origin>,
 );
@@ -415,7 +415,7 @@ impl Config for XcmConfig {
 }
 
 /// Local origins on this chain are allowed to dispatch XCM sends/executions.
-pub type LocalOriginToLocation = SignedToAccountId32<Origin, AccountId, RococoNetwork>;
+pub type LocalOriginToLocation = SignedToAccountId32<Origin, AccountId, BetanetNetwork>;
 
 /// The means for routing XCM messages which are not for local execution into the right message
 /// queues.
@@ -482,7 +482,7 @@ parameter_types! {
 	pub const MaxAuthorities: u32 = 100_000;
 }
 
-/// A majority of the Unit body from Rococo over XCM is our required administration origin.
+/// A majority of the Unit body from Betanet over XCM is our required administration origin.
 pub type AdminOrigin =
 	EnsureOneOf<EnsureRoot<AccountId>, EnsureXcm<IsMajorityOfBody<RocLocation, UnitBody>>>;
 

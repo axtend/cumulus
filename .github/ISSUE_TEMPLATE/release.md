@@ -114,7 +114,7 @@ To verify the order has not changed, manually start the following [Github Action
 To run it, in the _Run Workflow_ dropdown:
 1. **Use workflow from**: to ignore, leave `master` as default
 2. **The WebSocket url of the reference node**:
-    - Statemine: `wss://kusama-statemine-rpc.paritytech.net`
+    - Statemine: `wss://axctest-statemine-rpc.paritytech.net`
     - Westmint: `wss://westmint-rpc.axia.io`
 3. **A url to a Linux binary for the node containing the runtime to test**: Paste the URL of the latest release-candidate binary from the draft-release on Github. The binary has to previously be uploaded to S3 (Github url link to the binary is constantly changing)
     - https://releases.parity.io/cumulus/statemine-v6.0.0-rc1/axia-collator

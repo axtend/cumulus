@@ -19,13 +19,13 @@ hex-literal = "0.3.4"
 async-trait = "0.1.42"
 
 # Allychain runtimes
-rococo-allychain-runtime = { path = "rococo-allychain" }
+betanet-allychain-runtime = { path = "betanet-allychain" }
 shell-runtime = { path = "shell" }
 seedling-runtime = { path = "seedling" }
 statemint-runtime = { path = "statemint" }
 statemine-runtime = { path = "statemine" }
 westmint-runtime = { path = "westmint" }
-canvas-kusama-runtime = { path = "canvas-kusama" }
+canvas-axctest-runtime = { path = "canvas-axctest" }
 allychains-common = { path = "allychains-common" }
 
 # Substrate dependencies
