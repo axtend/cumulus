@@ -5,7 +5,7 @@ authors = ["Parity Technologies <admin@parity.io>"]
 edition = "2021"
 
 [dependencies]
-# Substrate dependencies
+# Axlib dependencies
 sp-inherents = { git = "https://github.com/axtend/axlib", default-features = false, branch = "axlib" }
 sp-core = { git = "https://github.com/axtend/axlib", default-features = false, branch = "axlib" }
 sc-client-api = { git = "https://github.com/axtend/axlib", optional = true , branch = "axlib" }

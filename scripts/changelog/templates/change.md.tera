@@ -30,7 +30,7 @@
 {%- set repo = dot -%}
 {%- elif c.html_url is containing("cumulus") -%}
 {%- set repo = cml -%}
-{%- elif c.html_url is containing("substrate") -%}
+{%- elif c.html_url is containing("axlib") -%}
 {%- set repo = sub -%}
 {%- else -%}
 {%- set repo = "   " -%}

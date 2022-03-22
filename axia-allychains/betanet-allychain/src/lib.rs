@@ -499,7 +499,7 @@ impl pallet_assets::Config for Runtime {
 	type StringLimit = AssetsStringLimit;
 	type Freezer = ();
 	type Extra = ();
-	type WeightInfo = pallet_assets::weights::SubstrateWeight<Runtime>;
+	type WeightInfo = pallet_assets::weights::AxlibWeight<Runtime>;
 	type AssetAccountDeposit = AssetAccountDeposit;
 }
 

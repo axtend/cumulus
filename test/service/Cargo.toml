@@ -11,7 +11,7 @@ serde = { version = "1.0.132", features = ["derive"] }
 async-trait = "0.1.42"
 tokio = { version = "1.17.0", features = ["macros"] }
 
-# Substrate
+# Axlib
 frame-system = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 pallet-transaction-payment = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 frame-system-rpc-runtime-api = { git = "https://github.com/axtend/axlib", branch = "axlib" }
@@ -36,7 +36,7 @@ sp-state-machine = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 sp-timestamp = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 sp-trie = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 sp-tracing = { git = "https://github.com/axtend/axlib", branch = "axlib" }
-substrate-test-client = { git = "https://github.com/axtend/axlib", branch = "axlib" }
+axlib-test-client = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 
 # Axia
 axia-primitives = { git = "https://github.com/axtend/axia", branch = "axia" }
@@ -67,9 +67,9 @@ futures = "0.3.5"
 # Axia dependencies
 axia-test-service = { git = "https://github.com/axtend/axia", branch = "axia" }
 
-# Substrate dependencies
+# Axlib dependencies
 sc-cli = { git = "https://github.com/axtend/axlib", branch = "axlib" }
-substrate-test-utils = { git = "https://github.com/axtend/axlib", branch = "axlib" }
+axlib-test-utils = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 
 [[bench]]
 name = "transaction_throughput"

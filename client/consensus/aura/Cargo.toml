@@ -6,7 +6,7 @@ authors = ["Parity Technologies <admin@parity.io>"]
 edition = "2021"
 
 [dependencies]
-# Substrate dependencies
+# Axlib dependencies
 sp-consensus = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 sp-inherents = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 sp-runtime = { git = "https://github.com/axtend/axlib", branch = "axlib" }
@@ -22,7 +22,7 @@ sc-consensus-aura = { git = "https://github.com/axtend/axlib", branch = "axlib" 
 sc-consensus-slots = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 sc-telemetry = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 sc-consensus = { git = "https://github.com/axtend/axlib", branch = "axlib" }
-substrate-prometheus-endpoint = { git = "https://github.com/axtend/axlib", branch = "axlib" }
+axlib-prometheus-endpoint = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 
 # Cumulus dependencies
 cumulus-client-consensus-common = { path = "../common" }

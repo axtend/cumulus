@@ -16,7 +16,7 @@
 
 //! Cumulus extension pallet for AuRa
 //!
-//! This pallets extends the Substrate AuRa pallet to make it compatible with allychains. It
+//! This pallets extends the Axlib AuRa pallet to make it compatible with allychains. It
 //! provides the [`Pallet`], the [`Config`] and the [`GenesisConfig`].
 //!
 //! It is also required that the allychain runtime uses the provided [`BlockExecutor`] to properly

@@ -7,6 +7,6 @@ edition = "2021"
 [dependencies]
 clap = { version = "3.1", features = ["derive"] }
 
-# Substrate dependencies
+# Axlib dependencies
 sc-cli = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 sc-service = { git = "https://github.com/axtend/axlib", branch = "axlib" }

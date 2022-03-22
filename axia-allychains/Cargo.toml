@@ -28,7 +28,7 @@ westmint-runtime = { path = "westmint" }
 canvas-axctest-runtime = { path = "canvas-axctest" }
 allychains-common = { path = "allychains-common" }
 
-# Substrate dependencies
+# Axlib dependencies
 frame-benchmarking = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 frame-benchmarking-cli = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 sp-runtime = { git = "https://github.com/axtend/axlib", default-features = false, branch = "axlib" }
@@ -57,7 +57,7 @@ sc-tracing = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 sp-offchain = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 sp-api = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 sp-consensus-aura = { git = "https://github.com/axtend/axlib", branch = "axlib" }
-substrate-prometheus-endpoint = { git = "https://github.com/axtend/axlib", branch = "axlib" }
+axlib-prometheus-endpoint = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 
 # try-runtime stuff.
 try-runtime-cli = { git = "https://github.com/axtend/axlib", branch = "axlib" }
@@ -65,7 +65,7 @@ try-runtime-cli = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 # RPC related dependencies
 jsonrpc-core = "18.0.0"
 sc-transaction-pool-api = { git = "https://github.com/axtend/axlib", branch = "axlib" }
-frame-rpc-system = { package = "substrate-frame-rpc-system", git = "https://github.com/axtend/axlib", branch = "axlib" }
+frame-rpc-system = { package = "axlib-frame-rpc-system", git = "https://github.com/axtend/axlib", branch = "axlib" }
 pallet-transaction-payment-rpc = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 pallet-contracts-rpc = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 
@@ -89,7 +89,7 @@ axia-allychain = { git = "https://github.com/axtend/axia", branch = "axia" }
 xcm = { git = "https://github.com/axtend/axia", branch = "axia" }
 
 [build-dependencies]
-substrate-build-script-utils = { git = "https://github.com/axtend/axlib", branch = "axlib" }
+axlib-build-script-utils = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 
 [dev-dependencies]
 assert_cmd = "2.0"

@@ -12,7 +12,7 @@ cumulus-client-pov-recovery = { path = "../pov-recovery" }
 cumulus-relay-chain-interface = { path = "../relay-chain-interface" }
 cumulus-primitives-core = { path = "../../primitives/core" }
 
-# Substrate dependencies
+# Axlib dependencies
 sc-chain-spec = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 sc-client-api = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 sc-service = { git = "https://github.com/axtend/axlib", branch = "axlib" }

@@ -6,7 +6,7 @@ description = "Cumulus-specific networking protocol"
 edition = "2021"
 
 [dependencies]
-# Substrate deps
+# Axlib deps
 sp-blockchain = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 sp-consensus = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 sp-runtime = { git = "https://github.com/axtend/axlib", branch = "axlib" }
@@ -44,12 +44,12 @@ axia-test-client = { git = "https://github.com/axtend/axia", branch = "axia" }
 axia-client = { git = "https://github.com/axtend/axia", branch = "axia" }
 axia-service = { git = "https://github.com/axtend/axia", branch = "axia" }
 
-# substrate deps
+# axlib deps
 sc-client-api = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 sp-core = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 sp-keyring = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 sp-keystore = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 sp-consensus = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 sc-cli = { git = "https://github.com/axtend/axlib", branch = "axlib" }
-substrate-test-utils = { git = "https://github.com/axtend/axlib", branch = "axlib" }
+axlib-test-utils = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 sc-service = { git = "https://github.com/axtend/axlib", branch = "axlib" }

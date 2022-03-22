@@ -6,7 +6,7 @@ edition = "2021"
 description = "Adds functionality to migrate from a Solo to a Allychain"
 
 [dependencies]
-# Substrate dependencies
+# Axlib dependencies
 frame-support = { git = "https://github.com/axtend/axlib", default-features = false, branch = "axlib" }
 frame-system = { git = "https://github.com/axtend/axlib", default-features = false, branch = "axlib" }
 sp-std = { git = "https://github.com/axtend/axlib", default-features = false, branch = "axlib" }

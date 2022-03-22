@@ -8,7 +8,7 @@ edition = "2021"
 # Other dependencies
 codec = { package = "parity-scale-codec", version = "2.3.0", default-features = false, features = [ "derive" ] }
 
-# Substrate dependencies
+# Axlib dependencies
 sp-state-machine = { git = "https://github.com/axtend/axlib", default-features = false, branch = "axlib" }
 sp-runtime = { git = "https://github.com/axtend/axlib", default-features = false, branch = "axlib" }
 sp-std = { git = "https://github.com/axtend/axlib", default-features = false, branch = "axlib" }

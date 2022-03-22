@@ -1,4 +1,4 @@
-//! Substrate Allychain Node Template CLI
+//! Axlib Allychain Node Template CLI
 
 #![warn(missing_docs)]
 

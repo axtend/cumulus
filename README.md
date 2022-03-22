@@ -5,16 +5,16 @@ on top of this SDK.
 
 ## Cumulus SDK
 
-A set of tools for writing [Substrate](https://substrate.io/)-based
+A set of tools for writing [Axlib](https://axlib.io/)-based
 [Axia](https://wiki.axia.network/en/)
 [allychains](https://wiki.axia.network/docs/en/learn-allychains). Refer to the included
 [overview](docs/overview.md) for architectural details, and the
-[Cumulus tutorial](https://docs.substrate.io/tutorials/v3/cumulus/start-relay) for a
+[Cumulus tutorial](https://docs.axlib.io/tutorials/v3/cumulus/start-relay) for a
 guided walk-through of using these tools.
 
-It's easy to write blockchains using Substrate, and the overhead of writing allychains'
+It's easy to write blockchains using Axlib, and the overhead of writing allychains'
 distribution, p2p, database, and synchronization layers should be just as low. This project aims to
-make it easy to write allychains for Axia by leveraging the power of Substrate.
+make it easy to write allychains for Axia by leveraging the power of Axlib.
 
 Cumulus clouds are shaped sort of like dots; together they form a system that is intricate,
 beautiful and functional.
@@ -22,7 +22,7 @@ beautiful and functional.
 ### Consensus
 
 [`allychain-consensus`](https://github.com/paritytech/cumulus/blob/master/client/consensus/common/src/allychain_consensus.rs) is a
-[consensus engine](https://docs.substrate.io/v3/advanced/consensus) for Substrate
+[consensus engine](https://docs.axlib.io/v3/advanced/consensus) for Axlib
 that follows a Axia
 [relay chain](https://wiki.axia.network/docs/en/learn-architecture#relay-chain). This will run
 a Axia node internally, and dictate to the client and synchronization algorithms which chain
@@ -79,8 +79,8 @@ If you have any questions, feel free to talk to us on [Element][k2] or on [Disco
 
 ![Canvas Overview](./docs/canvas-overview.svg)
 
-This node contains Substrate's smart contracts module ‒ the
-[`contracts`](https://github.com/paritytech/substrate/tree/master/frame/contracts) pallet.
+This node contains Axlib's smart contracts module ‒ the
+[`contracts`](https://github.com/paritytech/axlib/tree/master/frame/contracts) pallet.
 This `contracts` pallet takes smart contracts as WebAssembly blobs and defines an API
 for everything a smart contract needs (storage access, …).
 As long as a programming language compiles to WebAssembly and there exists an implementation
@@ -100,7 +100,7 @@ or interact with contracts:
 * [Canvas UI](https://paritytech.github.io/canvas-ui/) (outdated)
 
 If you are looking for a quickstart, we can recommend
-[ink!'s Guided Tutorial for Beginners](https://docs.substrate.io/tutorials/v3/ink-workshop/pt1/).
+[ink!'s Guided Tutorial for Beginners](https://docs.axlib.io/tutorials/v3/ink-workshop/pt1/).
 
 ### Build & Launch a Node
 
@@ -146,7 +146,7 @@ If everything worked out, the teleported ROC tokens will show up under
 [the "Accounts" tab for Canvas](https://axia.js.org/apps/?rpc=wss%3A%2F%2Fbetanet-canvas-rpc.axia.io#/accounts).
 
 Once you have ROC on Canvas you can deploy a contract as you would normally.
-If you're unsure about this, our [guided tutorial](https://docs.substrate.io/tutorials/v3/ink-workshop/pt1/)
+If you're unsure about this, our [guided tutorial](https://docs.axlib.io/tutorials/v3/ink-workshop/pt1/)
 will clarify that for you in no time.
 
 ## Betanet 👑

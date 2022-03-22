@@ -6,7 +6,7 @@ authors = ["Parity Technologies <admin@parity.io>"]
 edition = "2021"
 
 [dependencies]
-# Substrate deps
+# Axlib deps
 sc-consensus = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 sc-client-api = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 sp-consensus = { git = "https://github.com/axtend/axlib", branch = "axlib" }
@@ -29,7 +29,7 @@ async-trait = "0.1.52"
 dyn-clone = "1.0.4"
 
 [dev-dependencies]
-# Substrate deps
+# Axlib deps
 sp-tracing = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 # Cumulus dependencies
 cumulus-test-client = { path = "../../../test/client" }

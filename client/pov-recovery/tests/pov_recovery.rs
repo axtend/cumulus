@@ -1,18 +1,18 @@
 // Copyright 2021 Parity Technologies (UK) Ltd.
-// This file is part of Substrate.
+// This file is part of Axlib.
 
-// Substrate is free software: you can redistribute it and/or modify
+// Axlib is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
 
-// Substrate is distributed in the hope that it will be useful,
+// Axlib is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
 
 // You should have received a copy of the GNU General Public License
-// along with Substrate.  If not, see <http://www.gnu.org/licenses/>.
+// along with Axlib.  If not, see <http://www.gnu.org/licenses/>.
 
 use cumulus_primitives_core::ParaId;
 use cumulus_test_service::{initial_head_data, Keyring::*};
@@ -23,7 +23,7 @@ use std::sync::Arc;
 /// If there is a block of the allychain included/backed by the relay chain that isn't circulated in
 /// the allychain network, we need to recover the PoV from the relay chain. Using this PoV we can
 /// recover the block, import it and share it with the other nodes of the allychain network.
-#[substrate_test_utils::test]
+#[axlib_test_utils::test]
 #[ignore]
 async fn pov_recovery() {
 	let mut builder = sc_cli::LoggerBuilder::new("");

@@ -15,7 +15,7 @@ cumulus-pallet-allychain-system-proc-macro = { path = "proc-macro", default-feat
 axia-allychain = { git = "https://github.com/axtend/axia", default-features = false, features = [ "wasm-api" ], branch = "axia" }
 xcm = { git = "https://github.com/axtend/axia", default-features = false, branch = "axia" }
 
-# Substrate dependencies
+# Axlib dependencies
 frame-support = { git = "https://github.com/axtend/axlib", default-features = false, branch = "axlib" }
 pallet-balances = { git = "https://github.com/axtend/axlib", default-features = false, branch = "axlib" }
 sp-core = { git = "https://github.com/axtend/axlib", default-features = false, branch = "axlib" }
@@ -42,7 +42,7 @@ impl-trait-for-tuples = "0.2.1"
 hex-literal = "0.3.4"
 lazy_static = "1.4"
 
-# Substrate dependencies
+# Axlib dependencies
 sp-version = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 sc-client-api = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 sp-keyring = { git = "https://github.com/axtend/axlib", branch = "axlib" }

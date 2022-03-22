@@ -10,7 +10,7 @@ sc-consensus = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 sc-block-builder = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 sc-executor = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 sc-executor-common = { git = "https://github.com/axtend/axlib", branch = "axlib" }
-substrate-test-client = { git = "https://github.com/axtend/axlib", branch = "axlib" }
+axlib-test-client = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 sp-runtime = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 sp-core = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 sp-api = { git = "https://github.com/axtend/axlib", branch = "axlib" }

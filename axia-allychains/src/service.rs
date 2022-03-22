@@ -56,7 +56,7 @@ use sp_runtime::{
 	traits::{BlakeTwo256, Header as HeaderT},
 };
 use std::{marker::PhantomData, sync::Arc, time::Duration};
-use substrate_prometheus_endpoint::Registry;
+use axlib_prometheus_endpoint::Registry;
 
 /// Native executor instance.
 pub struct BetanetAllychainRuntimeExecutor;

@@ -35,7 +35,7 @@ pub type BalanceOf<T> =
 
 const SEED: u32 = 0;
 
-// TODO: remove if this is given in substrate commit.
+// TODO: remove if this is given in axlib commit.
 macro_rules! whitelist {
 	($acc:ident) => {
 		frame_benchmarking::benchmarking::add_to_whitelist(

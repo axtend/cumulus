@@ -6,7 +6,7 @@ edition = "2021"
 description = "AURA consensus extension pallet for allychains"
 
 [dependencies]
-# Substrate dependencies
+# Axlib dependencies
 frame-support = { git = "https://github.com/axtend/axlib", default-features = false, branch = "axlib" }
 frame-system = { git = "https://github.com/axtend/axlib", default-features = false, branch = "axlib" }
 frame-executive = { git = "https://github.com/axtend/axlib", default-features = false, branch = "axlib" }

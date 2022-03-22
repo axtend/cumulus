@@ -39,5 +39,5 @@ cumulus-test-service = { path = "../../test/service" }
 axia-test-client = { git = "https://github.com/axtend/axia", branch = "axia" }
 axia-primitives = { git = "https://github.com/axtend/axia", branch = "axia" }
 
-# substrate deps
+# axlib deps
 sp-keyring = { git = "https://github.com/axtend/axlib", branch = "axlib" }

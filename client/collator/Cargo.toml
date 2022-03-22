@@ -5,7 +5,7 @@ authors = ["Parity Technologies <admin@parity.io>"]
 edition = "2021"
 
 [dependencies]
-# Substrate dependencies
+# Axlib dependencies
 sp-runtime = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 sp-core = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 sp-consensus = { git = "https://github.com/axtend/axlib", branch = "axlib" }
@@ -38,7 +38,7 @@ axia-node-subsystem-test-helpers = { git = "https://github.com/axtend/axia", bra
 cumulus-test-runtime = { path = "../../test/runtime" }
 cumulus-test-client = { path = "../../test/client" }
 
-# Substrate dependencies
+# Axlib dependencies
 sp-state-machine = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 sp-tracing = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 sp-maybe-compressed-blob = { git = "https://github.com/axtend/axlib", branch = "axlib" }
