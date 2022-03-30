@@ -23,7 +23,7 @@ fs.readFile(input, "utf8", (err, data) => {
   const startsWith = (str, arr) => arr.some((test) => str.startsWith(test));
 
   const filter_prefixes = [
-    // axlib well known keys
+    // substrate well known keys
     ":code",
     ":heappages",
     ":extrinsic_index",

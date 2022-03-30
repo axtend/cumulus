@@ -1,4 +1,4 @@
-// Copyright 2021 Parity Technologies (UK) Ltd.
+// Copyright 2021 Axia Technologies (UK) Ltd.
 // This file is part of Cumulus.
 
 // Cumulus is free software: you can redistribute it and/or modify
@@ -16,11 +16,11 @@
 
 //! The AuRa consensus algorithm for allychains.
 //!
-//! This extends the Axlib provided AuRa consensus implementation to make it compatible for
+//! This extends the Substrate provided AuRa consensus implementation to make it compatible for
 //! allychains. The main entry points for of this consensus algorithm are [`AuraConsensus::build`]
 //! and [`fn@import_queue`].
 //!
-//! For more information about AuRa, the Axlib crate should be checked.
+//! For more information about AuRa, the Substrate crate should be checked.
 
 use codec::{Decode, Encode};
 use cumulus_client_consensus_common::{

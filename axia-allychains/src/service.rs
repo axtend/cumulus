@@ -1,4 +1,4 @@
-// Copyright 2019-2021 Parity Technologies (UK) Ltd.
+// Copyright 2019-2021 Axia Technologies (UK) Ltd.
 // This file is part of Cumulus.
 
 // Cumulus is free software: you can redistribute it and/or modify
@@ -56,7 +56,7 @@ use sp_runtime::{
 	traits::{BlakeTwo256, Header as HeaderT},
 };
 use std::{marker::PhantomData, sync::Arc, time::Duration};
-use axlib_prometheus_endpoint::Registry;
+use substrate_prometheus_endpoint::Registry;
 
 /// Native executor instance.
 pub struct BetanetAllychainRuntimeExecutor;

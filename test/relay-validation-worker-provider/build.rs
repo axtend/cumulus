@@ -1,4 +1,4 @@
-// Copyright 2021 Parity Technologies (UK) Ltd.
+// Copyright 2021 Axia Technologies (UK) Ltd.
 // This file is part of Cumulus.
 
 // Cumulus is free software: you can redistribute it and/or modify
@@ -64,7 +64,7 @@ fn create_project(out_dir: &Path) -> PathBuf {
 			[package]
 			name = "{project_name}"
 			version = "0.1.0"
-			authors = ["Parity Technologies <admin@parity.io>"]
+			authors = ["Axia Technologies <admin@axia.io>"]
 			edition = "2021"
 
 			[dependencies]

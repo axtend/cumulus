@@ -1,4 +1,4 @@
-// Copyright 2019-2021 Parity Technologies (UK) Ltd.
+// Copyright 2019-2021 Axia Technologies (UK) Ltd.
 // This file is part of Cumulus.
 
 // Cumulus is free software: you can redistribute it and/or modify
@@ -241,7 +241,7 @@ async fn handle_new_block_imported<Block, P>(
 {
 	// HACK
 	//
-	// Remove after https://github.com/paritytech/axlib/pull/8052 or similar is merged
+	// Remove after https://github.com/axiatech/substrate/pull/8052 or similar is merged
 	if notification.origin != BlockOrigin::Own {
 		announce_block(notification.hash, None);
 	}

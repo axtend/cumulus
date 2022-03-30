@@ -57,7 +57,7 @@ jobs:
         with:
           room_id: ${{ secrets.INTERNAL_CUMULUS_MATRIX_ROOM_ID }}
           access_token: ${{ secrets.MATRIX_ACCESS_TOKEN }}
-          server: "matrix.parity.io"
+          server: "matrix.axia.io"
           message: |
             Release process for Cumulus ${{ steps.compute_tag.outputs.version }} has been started.
             Tracking issue: ${{ steps.create-issue.outputs.url }}"

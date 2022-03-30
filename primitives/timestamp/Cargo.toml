@@ -1,12 +1,12 @@
 [package]
 name = "cumulus-primitives-timestamp"
 version = "0.1.0"
-authors = ["Parity Technologies <admin@parity.io>"]
+authors = ["Axia Technologies <admin@axia.io>"]
 edition = "2021"
 description = "Provides timestamp related functionality for allychains."
 
 [dependencies]
-# Axlib dependencies
+# Substrate dependencies
 sp-timestamp = { git = "https://github.com/axtend/axlib", default-features = false, branch = "axlib" }
 sp-inherents = { git = "https://github.com/axtend/axlib", default-features = false, branch = "axlib" }
 sp-std = { git = "https://github.com/axtend/axlib", default-features = false, branch = "axlib" }
@@ -15,7 +15,7 @@ sp-std = { git = "https://github.com/axtend/axlib", default-features = false, br
 cumulus-primitives-core = { path = "../core", default-features = false }
 
 [dev-dependencies]
-# Axlib dependencies
+# Substrate dependencies
 sp-tracing = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 sp-runtime = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 sp-consensus = { git = "https://github.com/axtend/axlib", branch = "axlib" }

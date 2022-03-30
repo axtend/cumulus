@@ -1,4 +1,4 @@
-// Copyright 2021 Parity Technologies (UK) Ltd.
+// Copyright 2021 Axia Technologies (UK) Ltd.
 // This file is part of Cumulus.
 
 // Cumulus is free software: you can redistribute it and/or modify
@@ -31,7 +31,7 @@ use sp_core::crypto::Pair;
 use sp_inherents::CreateInherentDataProviders;
 use sp_runtime::traits::Block as BlockT;
 use std::{fmt::Debug, hash::Hash, sync::Arc};
-use axlib_prometheus_endpoint::Registry;
+use substrate_prometheus_endpoint::Registry;
 
 /// Parameters of [`import_queue`].
 pub struct ImportQueueParams<'a, I, C, CIDP, S, CAW> {

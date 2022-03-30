@@ -8,7 +8,7 @@ use frame_support::{
 	weights::Weight,
 };
 use pallet_contracts::{
-	weights::{AxlibWeight, WeightInfo},
+	weights::{SubstrateWeight, WeightInfo},
 	Config, DefaultAddressGenerator, Frame, Schedule,
 };
 pub use allychains_common::AVERAGE_ON_INITIALIZE_RATIO;
@@ -48,7 +48,7 @@ impl Config for Runtime {
 	type DepositPerItem = DepositPerItem;
 	type DepositPerByte = DepositPerByte;
 	type WeightPrice = pallet_transaction_payment::Pallet<Self>;
-	type WeightInfo = AxlibWeight<Self>;
+	type WeightInfo = SubstrateWeight<Self>;
 	type ChainExtension = ();
 	type DeletionQueueDepth = DeletionQueueDepth;
 	type DeletionWeightLimit = DeletionWeightLimit;

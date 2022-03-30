@@ -1,7 +1,7 @@
 [package]
 name = "cumulus-pallet-dmp-queue"
 version = "0.1.0"
-authors = ["Parity Technologies <admin@parity.io>"]
+authors = ["Axia Technologies <admin@axia.io>"]
 edition = "2021"
 
 [dependencies]
@@ -10,7 +10,7 @@ codec = { package = "parity-scale-codec", version = "2.3.0", features = [ "deriv
 scale-info = { version = "1.0.0", default-features = false, features = ["derive"] }
 log = { version = "0.4.14", default-features = false }
 
-# Axlib Dependencies
+# Substrate Dependencies
 sp-std = { git = "https://github.com/axtend/axlib", default-features = false, branch = "axlib" }
 sp-io = { git = "https://github.com/axtend/axlib", default-features = false, branch = "axlib" }
 sp-runtime = { git = "https://github.com/axtend/axlib", default-features = false, branch = "axlib" }

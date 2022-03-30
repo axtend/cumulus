@@ -1,23 +1,23 @@
-// Copyright 2021 Parity Technologies (UK) Ltd.
-// This file is part of Axlib.
+// Copyright 2021 Axia Technologies (UK) Ltd.
+// This file is part of Substrate.
 
-// Axlib is free software: you can redistribute it and/or modify
+// Substrate is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
 
-// Axlib is distributed in the hope that it will be useful,
+// Substrate is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
 
 // You should have received a copy of the GNU General Public License
-// along with Axlib.  If not, see <http://www.gnu.org/licenses/>.
+// along with Substrate.  If not, see <http://www.gnu.org/licenses/>.
 
 use cumulus_primitives_core::ParaId;
 use cumulus_test_service::{initial_head_data, run_relay_chain_validator_node, Keyring::*};
 
-#[axlib_test_utils::test]
+#[substrate_test_utils::test]
 #[ignore]
 async fn sync_blocks_from_tip_without_being_connected_to_a_collator() {
 	let mut builder = sc_cli::LoggerBuilder::new("");

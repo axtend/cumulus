@@ -1,7 +1,7 @@
 [package]
 name = "allychains-common"
 version = "1.0.0"
-authors = ["Parity Technologies <admin@parity.io>"]
+authors = ["Axia Technologies <admin@axia.io>"]
 edition = "2021"
 description = "Logic which is common to all allychain runtimes"
 
@@ -13,7 +13,7 @@ targets = ["x86_64-unknown-linux-gnu"]
 codec = { package = "parity-scale-codec", version = "2.3.0", features = ["derive"], default-features = false }
 scale-info = { version = "1.0.0", default-features = false, features = ["derive"] }
 
-# Axlib dependencies
+# Substrate dependencies
 sp-consensus-aura = { git = "https://github.com/axtend/axlib", branch = "axlib", default-features = false }
 sp-std = { git = "https://github.com/axtend/axlib", branch = "axlib", default-features = false }
 sp-io = { git = "https://github.com/axtend/axlib", branch = "axlib", default-features = false }
@@ -41,7 +41,7 @@ sp-io = { git = "https://github.com/axtend/axlib", default-features = false , br
 pallet-authorship = { git = "https://github.com/axtend/axlib", default-features = false , branch = "axlib" }
 
 [build-dependencies]
-axlib-wasm-builder = { git = "https://github.com/axtend/axlib", branch = "axlib" }
+substrate-wasm-builder = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 
 [features]
 default = ["std"]

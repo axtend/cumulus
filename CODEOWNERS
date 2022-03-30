@@ -17,11 +17,11 @@
 # - The latest matching rule, if multiple, takes precedence.
 
 # CI
-/.github/ @paritytech/ci @chevdor
-/.gitlab-ci.yml @paritytech/ci
-/scripts/ci/ @paritytech/ci
-/scripts/github/ @paritytech/ci @chevdor
-/scripts/extrinsic-ordering-filter.sh @paritytech/ci @chevdor
+/.github/ @axiatech/ci @chevdor
+/.gitlab-ci.yml @axiatech/ci
+/scripts/ci/ @axiatech/ci
+/scripts/github/ @axiatech/ci @chevdor
+/scripts/extrinsic-ordering-filter.sh @axiatech/ci @chevdor
 
 # CHANGELOG
 /scripts/changelog/ @chevdor

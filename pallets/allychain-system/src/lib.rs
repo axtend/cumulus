@@ -1,4 +1,4 @@
-// Copyright 2020 Parity Technologies (UK) Ltd.
+// Copyright 2020 Axia Technologies (UK) Ltd.
 // This file is part of Cumulus.
 
 // Cumulus is free software: you can redistribute it and/or modify
@@ -604,7 +604,7 @@ pub mod pallet {
 	#[pallet::genesis_build]
 	impl<T: Config> GenesisBuild<T> for GenesisConfig {
 		fn build(&self) {
-			// TODO: Remove after https://github.com/paritytech/cumulus/issues/479
+			// TODO: Remove after https://github.com/axiatech/cumulus/issues/479
 			sp_io::storage::set(b":c", &[]);
 		}
 	}

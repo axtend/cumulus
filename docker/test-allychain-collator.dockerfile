@@ -1,5 +1,5 @@
-# This file is sourced from https://github.com/paritytech/axia/blob/master/scripts/dockerfiles/axia/axia_builder.Dockerfile
-FROM docker.io/paritytech/ci-linux:production as builder
+# This file is sourced from https://github.com/axiatech/axia/blob/master/scripts/dockerfiles/axia/axia_builder.Dockerfile
+FROM docker.io/axiatech/ci-linux:production as builder
 
 WORKDIR /cumulus
 COPY . /cumulus
@@ -23,7 +23,7 @@ RUN apt-get update && apt-get install jq curl bash -y && \
     npm install --global yarn && \
     yarn global add @axia/api-cli@0.10.0-beta.14
 COPY --from=builder \
-    /paritytech/cumulus/target/release/axia-collator /usr/bin
+    /axiatech/cumulus/target/release/axia-collator /usr/bin
 COPY ./docker/scripts/inject_bootnodes.sh /usr/bin
 CMD ["/usr/bin/inject_bootnodes.sh"]
 COPY ./docker/scripts/healthcheck.sh /usr/bin/
@@ -35,12 +35,12 @@ HEALTHCHECK --interval=300s --timeout=75s --start-period=30s --retries=3 \
 # outputs, which can then be moved into a volume at runtime
 FROM debian:buster-slim as runtime
 COPY --from=builder \
-    /paritytech/cumulus/target/release/wbuild/cumulus-test-allychain-runtime/cumulus_test_allychain_runtime.compact.wasm \
+    /axiatech/cumulus/target/release/wbuild/cumulus-test-allychain-runtime/cumulus_test_allychain_runtime.compact.wasm \
     /var/opt/
 CMD ["cp", "-v", "/var/opt/cumulus_test_allychain_runtime.compact.wasm", "/runtime/"]
 
 FROM debian:buster-slim
 COPY --from=builder \
-    /paritytech/cumulus/target/release/axia-collator /usr/bin
+    /axiatech/cumulus/target/release/axia-collator /usr/bin
 
 CMD ["/usr/bin/axia-collator"]

@@ -1,12 +1,12 @@
 [package]
 name = "cumulus-client-pov-recovery"
 version = "0.1.0"
-authors = ["Parity Technologies <admin@parity.io>"]
+authors = ["Axia Technologies <admin@axia.io>"]
 description = "Cumulus-specific networking protocol"
 edition = "2021"
 
 [dependencies]
-# Axlib deps
+# Substrate deps
 sp-consensus = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 sp-runtime = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 sp-api = { git = "https://github.com/axtend/axlib", branch = "axlib" }
@@ -37,8 +37,8 @@ tokio = { version = "1.17.0", features = ["macros"] }
 # Cumulus deps
 cumulus-test-service = { path = "../../test/service" }
 
-# axlib deps
+# substrate deps
 sc-client-api = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 sc-cli = { git = "https://github.com/axtend/axlib", branch = "axlib" }
-axlib-test-utils = { git = "https://github.com/axtend/axlib", branch = "axlib" }
+substrate-test-utils = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 sc-service = { git = "https://github.com/axtend/axlib", branch = "axlib" }

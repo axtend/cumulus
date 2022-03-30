@@ -20,4 +20,4 @@ jobs:
             -----
 
             ${{github.event.release.body}}
-          server: "matrix.parity.io"
+          server: "matrix.axia.io"

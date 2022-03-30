@@ -1,4 +1,4 @@
-// Copyright 2019-2021 Parity Technologies (UK) Ltd.
+// Copyright 2019-2021 Axia Technologies (UK) Ltd.
 // This file is part of Cumulus.
 
 // Cumulus is free software: you can redistribute it and/or modify
@@ -31,7 +31,7 @@ use allychains_common::{AuraId, StatemintAuraId};
 use axia_allychain::primitives::AccountIdConversion;
 use sc_cli::{
 	ChainSpec, CliConfiguration, DefaultConfigurationValues, ImportParams, KeystoreParams,
-	NetworkParams, Result, RuntimeVersion, SharedParams, AxlibCli,
+	NetworkParams, Result, RuntimeVersion, SharedParams, SubstrateCli,
 };
 use sc_service::{
 	config::{BasePath, PrometheusConfig},
@@ -165,7 +165,7 @@ fn load_spec(id: &str) -> std::result::Result<Box<dyn sc_service::ChainSpec>, St
 	})
 }
 
-impl AxlibCli for Cli {
+impl SubstrateCli for Cli {
 	fn impl_name() -> String {
 		"Axia collator".into()
 	}
@@ -189,7 +189,7 @@ impl AxlibCli for Cli {
 	}
 
 	fn support_url() -> String {
-		"https://github.com/paritytech/cumulus/issues/new".into()
+		"https://github.com/axiatech/cumulus/issues/new".into()
 	}
 
 	fn copyright_start_year() -> i32 {
@@ -219,7 +219,7 @@ impl AxlibCli for Cli {
 	}
 }
 
-impl AxlibCli for RelayChainCli {
+impl SubstrateCli for RelayChainCli {
 	fn impl_name() -> String {
 		"Axia collator".into()
 	}
@@ -243,7 +243,7 @@ impl AxlibCli for RelayChainCli {
 	}
 
 	fn support_url() -> String {
-		"https://github.com/paritytech/cumulus/issues/new".into()
+		"https://github.com/axiatech/cumulus/issues/new".into()
 	}
 
 	fn copyright_start_year() -> i32 {
@@ -383,7 +383,7 @@ pub fn run() -> Result<()> {
 						.chain(cli.relaychain_args.iter()),
 				);
 
-				let axia_config = AxlibCli::create_configuration(
+				let axia_config = SubstrateCli::create_configuration(
 					&axia_cli,
 					&axia_cli,
 					config.tokio_handle.clone(),
@@ -521,7 +521,7 @@ pub fn run() -> Result<()> {
 
 				let tokio_handle = config.tokio_handle.clone();
 				let axia_config =
-					AxlibCli::create_configuration(&axia_cli, &axia_cli, tokio_handle)
+					SubstrateCli::create_configuration(&axia_cli, &axia_cli, tokio_handle)
 						.map_err(|err| format!("Relay chain argument error: {}", err))?;
 
 				info!("Allychain id: {:?}", id);

@@ -1,4 +1,4 @@
-// Copyright (C) 2021 Parity Technologies (UK) Ltd.
+// Copyright (C) 2021 Axia Technologies (UK) Ltd.
 // SPDX-License-Identifier: Apache-2.0
 
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -56,7 +56,7 @@
 //! To initiate rewards an ED needs to be transferred to the pot address.
 //!
 //! Note: Eventually the Pot distribution may be modified as discussed in
-//! [this issue](https://github.com/paritytech/statemint/issues/21#issuecomment-810481073).
+//! [this issue](https://github.com/axiatech/statemint/issues/21#issuecomment-810481073).
 
 #![cfg_attr(not(feature = "std"), no_std)]
 

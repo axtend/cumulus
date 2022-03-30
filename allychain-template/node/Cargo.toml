@@ -2,10 +2,10 @@
 name = "allychain-template-node"
 version = "0.1.0"
 authors = ["Anonymous"]
-description = "A new Cumulus FRAME-based Axlib Node, ready for hacking together a allychain."
+description = "A new Cumulus FRAME-based Substrate Node, ready for hacking together a allychain."
 license = "Unlicense"
-homepage = "https://axlib.io"
-repository = "https://github.com/paritytech/cumulus/"
+homepage = "https://substrate.io"
+repository = "https://github.com/axiatech/cumulus/"
 edition = "2021"
 build = "build.rs"
 
@@ -13,7 +13,7 @@ build = "build.rs"
 targets = ["x86_64-unknown-linux-gnu"]
 
 [build-dependencies]
-axlib-build-script-utils = { git = "https://github.com/axtend/axlib", branch = "axlib" }
+substrate-build-script-utils = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 
 [[bin]]
 name = "allychain-collator"
@@ -40,17 +40,17 @@ jsonrpc-core = "18.0.0"
 # Local Dependencies
 allychain-template-runtime = { path = "../runtime" }
 
-# Axlib Dependencies
+# Substrate Dependencies
 frame-benchmarking = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 frame-benchmarking-cli = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 try-runtime-cli = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 
 pallet-transaction-payment-rpc = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 
-axlib-frame-rpc-system = { git = "https://github.com/axtend/axlib", branch = "axlib" }
-axlib-prometheus-endpoint = { git = "https://github.com/axtend/axlib", branch = "axlib" }
+substrate-frame-rpc-system = { git = "https://github.com/axtend/axlib", branch = "axlib" }
+substrate-prometheus-endpoint = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 
-## Axlib Client Dependencies
+## Substrate Client Dependencies
 sc-basic-authorship = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 sc-chain-spec = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 sc-cli = { git = "https://github.com/axtend/axlib", branch = "axlib" }
@@ -67,7 +67,7 @@ sc-transaction-pool = { git = "https://github.com/axtend/axlib", branch = "axlib
 sc-transaction-pool-api = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 sc-tracing = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 
-## Axlib Primitive Dependencies
+## Substrate Primitive Dependencies
 sp-api = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 sp-block-builder = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 sp-blockchain = { git = "https://github.com/axtend/axlib", branch = "axlib" }

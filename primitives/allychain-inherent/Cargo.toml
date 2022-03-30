@@ -1,11 +1,11 @@
 [package]
 name = "cumulus-primitives-allychain-inherent"
 version = "0.1.0"
-authors = ["Parity Technologies <admin@parity.io>"]
+authors = ["Axia Technologies <admin@axia.io>"]
 edition = "2021"
 
 [dependencies]
-# Axlib dependencies
+# Substrate dependencies
 sp-inherents = { git = "https://github.com/axtend/axlib", default-features = false, branch = "axlib" }
 sp-core = { git = "https://github.com/axtend/axlib", default-features = false, branch = "axlib" }
 sc-client-api = { git = "https://github.com/axtend/axlib", optional = true , branch = "axlib" }

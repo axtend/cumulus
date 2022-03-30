@@ -1,7 +1,7 @@
 [package]
 name = "statemint-runtime"
 version = "1.0.0"
-authors = ["Parity Technologies <admin@parity.io>"]
+authors = ["Axia Technologies <admin@axia.io>"]
 edition = "2021"
 description = "Statemint allychain runtime"
 
@@ -14,7 +14,7 @@ serde = { version = "1.0.132", optional = true, features = ["derive"] }
 scale-info = { version = "1.0.0", default-features = false, features = ["derive"] }
 smallvec = "1.6.1"
 
-# Axlib dependencies
+# Substrate dependencies
 sp-std = { git = "https://github.com/axtend/axlib", default-features = false, branch = "axlib" }
 sp-api = { git = "https://github.com/axtend/axlib", default-features = false, branch = "axlib" }
 sp-io = { git = "https://github.com/axtend/axlib", default-features = false, branch = "axlib" }
@@ -80,7 +80,7 @@ frame-try-runtime = { git = "https://github.com/axtend/axlib", default-features 
 hex-literal = "0.3.4"
 
 [build-dependencies]
-axlib-wasm-builder = { git = "https://github.com/axtend/axlib", branch = "axlib" }
+substrate-wasm-builder = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 
 [features]
 default = [ "std" ]

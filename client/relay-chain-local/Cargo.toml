@@ -1,5 +1,5 @@
 [package]
-authors = ["Parity Technologies <admin@parity.io>"]
+authors = ["Axia Technologies <admin@axia.io>"]
 name = "cumulus-relay-chain-local"
 version = "0.1.0"
 edition = "2021"
@@ -39,5 +39,5 @@ cumulus-test-service = { path = "../../test/service" }
 axia-test-client = { git = "https://github.com/axtend/axia", branch = "axia" }
 axia-primitives = { git = "https://github.com/axtend/axia", branch = "axia" }
 
-# axlib deps
+# substrate deps
 sp-keyring = { git = "https://github.com/axtend/axlib", branch = "axlib" }

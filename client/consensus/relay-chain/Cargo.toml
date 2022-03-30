@@ -2,11 +2,11 @@
 name = "cumulus-client-consensus-relay-chain"
 description = "The relay-chain provided consensus algorithm"
 version = "0.1.0"
-authors = ["Parity Technologies <admin@parity.io>"]
+authors = ["Axia Technologies <admin@axia.io>"]
 edition = "2021"
 
 [dependencies]
-# Axlib deps
+# Substrate deps
 sp-consensus = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 sp-inherents = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 sp-runtime = { git = "https://github.com/axtend/axlib", branch = "axlib" }
@@ -16,7 +16,7 @@ sp-block-builder = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 sp-api = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 sc-client-api = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 sc-consensus = { git = "https://github.com/axtend/axlib", branch = "axlib" }
-axlib-prometheus-endpoint = { git = "https://github.com/axtend/axlib", branch = "axlib" }
+substrate-prometheus-endpoint = { git = "https://github.com/axtend/axlib", branch = "axlib" }
 
 # Axia dependencies
 

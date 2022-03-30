@@ -1,12 +1,12 @@
-// Copyright 2020-2021 Parity Technologies (UK) Ltd.
+// Copyright 2020-2021 Axia Technologies (UK) Ltd.
 // This file is part of Cumulus.
 
-// Axlib is free software: you can redistribute it and/or modify
+// Substrate is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
 
-// Axlib is distributed in the hope that it will be useful,
+// Substrate is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
@@ -224,7 +224,7 @@ where
 
 /// Prepare the allychain's node configuration
 ///
-/// This function will disable the default announcement of Axlib for the allychain in favor
+/// This function will disable the default announcement of Substrate for the allychain in favor
 /// of the one of Cumulus.
 pub fn prepare_node_config(mut allychain_config: Configuration) -> Configuration {
 	allychain_config.announce_block = false;
@@ -234,7 +234,7 @@ pub fn prepare_node_config(mut allychain_config: Configuration) -> Configuration
 
 /// A shared import queue
 ///
-/// This is basically a hack until the Axlib side is implemented properly.
+/// This is basically a hack until the Substrate side is implemented properly.
 #[derive(Clone)]
 pub struct SharedImportQueue<Block: BlockT>(Arc<parking_lot::Mutex<dyn ImportQueue<Block>>>);
 

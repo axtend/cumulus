@@ -1,12 +1,12 @@
 [package]
 name = "cumulus-pallet-aura-ext"
 version = "0.1.0"
-authors = ["Parity Technologies <admin@parity.io>"]
+authors = ["Axia Technologies <admin@axia.io>"]
 edition = "2021"
 description = "AURA consensus extension pallet for allychains"
 
 [dependencies]
-# Axlib dependencies
+# Substrate dependencies
 frame-support = { git = "https://github.com/axtend/axlib", default-features = false, branch = "axlib" }
 frame-system = { git = "https://github.com/axtend/axlib", default-features = false, branch = "axlib" }
 frame-executive = { git = "https://github.com/axtend/axlib", default-features = false, branch = "axlib" }

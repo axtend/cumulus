@@ -1,6 +1,6 @@
-// This file is part of Axlib.
+// This file is part of Substrate.
 
-// Copyright (C) 2021 Parity Technologies (UK) Ltd.
+// Copyright (C) 2021 Axia Technologies (UK) Ltd.
 // SPDX-License-Identifier: Apache-2.0
 
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -35,9 +35,9 @@ pub trait WeightInfo {
 	fn new_session(_c: u32, _r: u32) -> Weight;
 }
 
-/// Weights for pallet_collator_selection using the Axlib node and recommended hardware.
-pub struct AxlibWeight<T>(PhantomData<T>);
-impl<T: frame_system::Config> WeightInfo for AxlibWeight<T> {
+/// Weights for pallet_collator_selection using the Substrate node and recommended hardware.
+pub struct SubstrateWeight<T>(PhantomData<T>);
+impl<T: frame_system::Config> WeightInfo for SubstrateWeight<T> {
 	fn set_invulnerables(b: u32) -> Weight {
 		(18_563_000 as Weight)
 			// Standard Error: 0

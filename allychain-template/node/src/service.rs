@@ -1,4 +1,4 @@
-//! Service and ServiceFactory implementation. Specialized wrapper over axlib service.
+//! Service and ServiceFactory implementation. Specialized wrapper over substrate service.
 
 // std
 use std::{sync::Arc, time::Duration};
@@ -19,7 +19,7 @@ use cumulus_primitives_core::ParaId;
 use cumulus_relay_chain_interface::RelayChainInterface;
 use cumulus_relay_chain_local::build_relay_chain_interface;
 
-// Axlib Imports
+// Substrate Imports
 use sc_client_api::ExecutorProvider;
 use sc_executor::NativeElseWasmExecutor;
 use sc_network::NetworkService;
@@ -29,7 +29,7 @@ use sp_api::ConstructRuntimeApi;
 use sp_consensus::SlotData;
 use sp_keystore::SyncCryptoStorePtr;
 use sp_runtime::traits::BlakeTwo256;
-use axlib_prometheus_endpoint::Registry;
+use substrate_prometheus_endpoint::Registry;
 
 /// Native executor instance.
 pub struct TemplateRuntimeExecutor;
@@ -191,7 +191,7 @@ where
 		+ sp_block_builder::BlockBuilder<Block>
 		+ cumulus_primitives_core::CollectCollationInfo<Block>
 		+ pallet_transaction_payment_rpc::TransactionPaymentRuntimeApi<Block, Balance>
-		+ axlib_frame_rpc_system::AccountNonceApi<Block, AccountId, Nonce>,
+		+ substrate_frame_rpc_system::AccountNonceApi<Block, AccountId, Nonce>,
 	sc_client_api::StateBackendFor<TFullBackend<Block>, Block>: sp_api::StateBackend<BlakeTwo256>,
 	Executor: sc_executor::NativeExecutionDispatch + 'static,
 	RB: Fn(

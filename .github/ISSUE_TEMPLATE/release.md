@@ -42,7 +42,7 @@ candidate branch or started an additional release candidate branch (rc-2, rc-3, 
 - [ ] Check that the new axia-collator versions have [run on the network](#burn-in)
     without issue.
 - [ ] Check that a draft release has been created at
-    https://github.com/paritytech/cumulus/releases with relevant [release
+    https://github.com/axiatech/cumulus/releases with relevant [release
     notes](#release-notes).
 - [ ] Check that [build artifacts](#build-artifacts) have been added to the
     draft-release.
@@ -53,7 +53,7 @@ candidate branch or started an additional release candidate branch (rc-2, rc-3, 
 
 ### Burn In
 
-Ensure that Parity DevOps has run the new release on Westmint and Statemine collators for 12h prior to publishing the release.
+Ensure that Axia DevOps has run the new release on Westmint and Statemine collators for 12h prior to publishing the release.
 
 ### Build Artifacts
 
@@ -73,7 +73,7 @@ The release notes should list:
     based on the max priority of any *client* changes.
 - Which native runtimes and their versions are included
 - The proposal hashes of the runtimes as built with
-    [srtool](https://github.com/paritytech/srtool)
+    [srtool](https://github.com/axiatech/srtool)
 - Any changes in this release that are still awaiting audit
 
 The release notes may also list:
@@ -109,15 +109,15 @@ Offline signing libraries depend on a consistent ordering of call indices and
 functions. Compare the metadata of the current and new runtimes and ensure that
 the `module index, call index` tuples map to the same set of functions. It also checks if there have been any changes in `storage`. In case of a breaking change, increase `transaction_version`.
 
-To verify the order has not changed, manually start the following [Github Action](https://github.com/paritytech/cumulus/actions/workflows/extrinsic-ordering-check-from-bin.yml). It takes around a minute to run and will produce the report as artifact you need to manually check.
+To verify the order has not changed, manually start the following [Github Action](https://github.com/axiatech/cumulus/actions/workflows/extrinsic-ordering-check-from-bin.yml). It takes around a minute to run and will produce the report as artifact you need to manually check.
 
 To run it, in the _Run Workflow_ dropdown:
 1. **Use workflow from**: to ignore, leave `master` as default
 2. **The WebSocket url of the reference node**:
-    - Statemine: `wss://axctest-statemine-rpc.paritytech.net`
+    - Statemine: `wss://axctest-statemine-rpc.axiatech.net`
     - Westmint: `wss://westmint-rpc.axia.io`
 3. **A url to a Linux binary for the node containing the runtime to test**: Paste the URL of the latest release-candidate binary from the draft-release on Github. The binary has to previously be uploaded to S3 (Github url link to the binary is constantly changing)
-    - https://releases.parity.io/cumulus/statemine-v6.0.0-rc1/axia-collator
+    - https://releases.axia.io/cumulus/statemine-v6.0.0-rc1/axia-collator
 4. **The name of the chain under test. Usually, you would pass a local chain**:
     - Statemine: `statemine-local`
     - Westmint: `westmint-local`

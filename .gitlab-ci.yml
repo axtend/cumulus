@@ -14,10 +14,10 @@ variables:                         &default-vars
   GIT_DEPTH:                       100
   CARGO_INCREMENTAL:               0
   CARGO_TARGET_DIR:                "/ci-cache/${CI_PROJECT_NAME}/targets/${CI_COMMIT_REF_NAME}/${CI_JOB_NAME}"
-  CI_IMAGE:                        "paritytech/ci-linux:production"
+  CI_IMAGE:                        "axiatech/ci-linux:production"
   DOCKER_OS:                       "debian:stretch"
   ARCH:                            "x86_64"
-  WASM_BUILD_WORKSPACE_HINT:       "/builds/parity/cumulus/"
+  WASM_BUILD_WORKSPACE_HINT:       "/builds/axia/cumulus/"
 
 .rust-info-script:                 &rust-info-script
   - rustup show
@@ -58,7 +58,7 @@ variables:                         &default-vars
       - api_failure
   interruptible:                   true
   tags:
-    - kubernetes-parity-build
+    - kubernetes-axia-build
 
 .collect-artifacts:                &collect-artifacts
   artifacts:
@@ -151,11 +151,11 @@ check-rustdoc:
 publish-s3:
   stage:                           publish
   <<:                              *kubernetes-env
-  image:                           paritytech/awscli:latest
+  image:                           axiatech/awscli:latest
   <<:                              *publish-refs
   variables:
     GIT_STRATEGY:                  none
-    BUCKET:                        "releases.parity.io"
+    BUCKET:                        "releases.axia.io"
     PREFIX:                        "cumulus/${ARCH}-${DOCKER_OS}"
   before_script:
     # Job will fail if no artifacts were provided by test-linux-stable job. It's only possible for
